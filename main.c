@@ -15,7 +15,7 @@ int main1 (void)
     printf("\n\n1. AdminServer\n");
     printf("2. Servidor\n");
     printf("3. Cliente\n");
-    printf("4. Salir\n");
+    printf("4. Salir\n\n");
     printf("Opcion: ");
     fgets(linea, 5, stdin);
     limpiarEntrada(linea, 5);
