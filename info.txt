@@ -4,3 +4,6 @@ Como servidor tiene solo 2 funciones propias no tiene ninguna distincion en el n
 
 La interfaz esta acabada pero faltaría poder viajar entre menus, cuando tengamos la base de datos y los sockets
 podremos seguir. Estan los logins del adminServer y de cliente para saber como hacerlos.
+
+En sqlite3.txt esta el archivo copiado del documento de alud "Librerias de acceso a SQlLite de C/C++".
+El documento tiene 153000 lineas mientras que el actual "SQlLite3.c" tiene 149000. No se a que se debe esta diferencia de lineas.
