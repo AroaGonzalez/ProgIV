@@ -1,12 +1,6 @@
 Las funciones que empiezan por "s" hacen referencia a la administracion del servidor,
 las que empiezan por "c" a cliente y las que empizan por "g" son funciones que sirven en ambas.
-Como servidor tiene solo 2 funciones propias y no tiene ninguna distincion en el nombre.
+Como servidor tiene solo 2 funciones propias no tiene ninguna distincion en el nombre.
 
-La interfaz esta acabada pero faltaría poder viajar entre menus (he hecho un poco de admistrador del servidor
-y el de cliente para que nos hagamos una idea de como hacerlo).
-
-En modificar datos tanto de adminServer como de servidor falta poner que pasaria al selecciona las opciones. Es 
-muy facil de hacer pero hoy no me da tiempo a acabarlo sorry. Sería poner una opcion para intruducir el dato 
-que se quiera cambiar y ya.
-
-Acabo de ejecutar el programa y va dpm asiq genial :)
+La interfaz esta acabada pero faltaría poder viajar entre menus, cuando tengamos la base de datos y los sockets
+podremos seguir. Estan los logins del adminServer y de cliente para saber como hacerlos.
