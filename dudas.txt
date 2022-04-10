@@ -1,0 +1,9 @@
+sockets:
+    son genericos??
+    es copypaste directamente??
+    se necesita .h??
+    hay que referenciarlos desde main??
+
+sqlite3:
+    hay un fallo en sqlite3.c copypasteado
+    
