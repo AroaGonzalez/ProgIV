@@ -19,7 +19,7 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	int DNI;
+	int DNI[8];
 	char Nombre;
 	char Apellidos;
     char Fecha;
@@ -36,7 +36,7 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			strcpy(DNI, (int) sqlite3_column_int(stmt, 0));
+			strcpy(DNI, (int *) sqlite3_column_int(stmt, 0));
 			Nombre = sqlite3_column_text(stmt, 1);
 			Apellidos = sqlite3_column_text(stmt, 2);
 			Fecha = sqlite3_column_text(stmt, 3);
@@ -46,7 +46,7 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 			nombreUsuario = sqlite3_column_text(stmt, 7);
 			Contrasenya = sqlite3_column_text(stmt, 8);
 			Cod_cuota = sqlite3_column_int(stmt, 9);
-			printf("DNI: %d Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota);
+			printf("DNI: %i Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota);
 		}
 	} while (result == SQLITE_ROW);
 
@@ -80,7 +80,7 @@ int insertarAdmin(sqlite3 *db, char contrasenya[]) {
 	printf("SQL query prepared (SELECT)\n");
 
 	char Nombre;
-    char Contrasenya;
+    char Contrasenya[30];
 
 	printf("\n");
 	printf("\n");
@@ -124,7 +124,7 @@ int insertarCliente(sqlite3 *db, char contrasenya[]) {
 	printf("SQL query prepared (SELECT)\n");
 
 	char Nombre;
-    char Contrasenya;
+    char Contrasenya[30];
 
 	printf("\n");
 	printf("\n");
@@ -153,7 +153,7 @@ int insertarCliente(sqlite3 *db, char contrasenya[]) {
 	return SQLITE_OK;
 }
 
-int crearReserva(sqlite3 *db, int cod[]) {
+int crearReserva(sqlite3 *db, int Cod[]) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select Cod, Hora, Tipo, Precio, Cod_poli from Reserva";
@@ -167,7 +167,7 @@ int crearReserva(sqlite3 *db, int cod[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	int Cod;
+	int Cod[3];
 	int Hora;
     char Tipo;
 	float Precio;
@@ -222,7 +222,6 @@ int main1 (void)
 
     return *linea;
 
-    
 }
 
 int main(void)
