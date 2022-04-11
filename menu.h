@@ -29,6 +29,20 @@ typedef struct
     
 }Cuota;
 
+typedef struct
+{
+    int ref;
+    char nombre;
+    char *instalaciones;
+    char direccion;
+    char municipio;
+    int codMunicipio;
+    char provincia;
+    int codProv;
+    int tel;
+}Polideportivo;
+
+
 
 
 
