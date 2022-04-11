@@ -14,7 +14,8 @@ database:
     tenemos que crear
 
 c/c++:
-    que requisitos tiene que tener el código para que se reutilizable de c a c++?? -> si está bien hecho (funciona) debería funcionar
+    que requisitos tiene que tener el código para que se reutilizable de c a c++?? -> si está bien hecho (funciona) debería funcionar,
+    tener muchas funciones en vez de hacer las consultas a sql directamente,pq las funciones al star en .c y .h se pueden traspasar directamente a c++
     a que te refieres con "• ¿Ha contemplado la continuidad para la siguiente fase?"?? -> que miremos que todo vaya a poder servir 
     de cara a futuro (bien estructurado y teniendo en cuenta que todo está orientado a cliente/servidor)
 
