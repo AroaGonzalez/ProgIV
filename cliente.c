@@ -5,6 +5,40 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
+void leerPolideportivos(Polideportivo* p[], char* fichero)
+{
+	FILE* file = fopen(fichero, "r");
+
+    int contlinea;
+    int charIndex = 0;
+	char **lineas;
+	char c;
+
+	while ((c=fgetc(file)) != EOF)
+	{
+
+		if (c == '\n')
+		{
+            contlinea++;
+            charIndex = 0;
+            char ref[1];
+
+			sscanf(ref, "%i", &p[contlinea]->ref);
+
+		}else
+		{   
+            do
+            {
+                lineas[contlinea][charIndex] = c;
+                charIndex++;
+            } while (c != ';');
+		}
+	}
+
+    fclose(file);
+}
+
+
 char cMostrarMenuGestPoli1()
 {
     char linea [MAX_LINE];
@@ -172,6 +206,7 @@ Usuario cMostrarMenuModifDatDir()
     sqlite3 *db;
     Usuario *u;
     char linea [MAX_LINE];
+
     printf("\nNueva direccion: ");
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
