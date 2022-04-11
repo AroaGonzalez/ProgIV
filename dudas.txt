@@ -5,5 +5,15 @@ sockets:
     hay que referenciarlos desde main??
 
 sqlite3:
-    hay un fallo en sqlite3.c copypasteado
+    hay un fallo en sqlite3.c copypasteado, pq
+    hay que descargar algun tipo de librería?? (a parte de las de sqlite3)
+
+database:
+    como enlazar el excel de  polideportivos con la bd ya creada "Polideportivos.sql", algun app/libreria q se recomiende??
+    hemos creado la bd (actualmente vacía), como metemos la data?? la creamos a mano?? cuantos aprox??
+
+c/c++:
+    que requisitos tiene que tener el código para que se reutilizable de c a c++??
+    a que te refieres con "• ¿Ha contemplado la continuidad para la siguiente fase?"??
+
     
