@@ -26,12 +26,22 @@ typedef struct
 
 typedef struct
 {
-    
+    char nombreUsuario [MAX_LINE];
+    char contrasenya [MAX_LINE];
+
+}Administrador;
+
+typedef struct
+{
+    int Cod[MAX_LINE];
+    char Nombre[MAX_LINE];
+    float Precio[MAX_LINE];
+    char Tipo[MAX_LINE];
 }Cuota;
 
 typedef struct
 {
-    int ref;
+    char ref;
     char nombre;
     char *instalaciones;
     char direccion;
@@ -42,6 +52,14 @@ typedef struct
     int tel;
 }Polideportivo;
 
+typedef struct
+{
+    int Cod[MAX_LINE];
+    int Hora[MAX_LINE];
+    char Tipo[MAX_LINE];
+    float Precio[MAX_LINE];
+    int Cod_poli[MAX_LINE];
+}Reserva;
 
 
 
@@ -96,11 +114,11 @@ char cMostrarMenuModifDat();
 
     Usuario cMostrarMenuModifDatDir();
 
-    char cMostrarMenuModifDatTCout();
+    Usuario cMostrarMenuModifDatTCout();
 
-    Cliente cMostrarMenuModifDatNomUsu();
+    Usuario cMostrarMenuModifDatNomUsu();
 
-    Cliente cMostrarMenuModifDatContr();
+    Usuario cMostrarMenuModifDatContr();
 
 char cMostrarMenuContactPoli();
 

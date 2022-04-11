@@ -10,7 +10,7 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
 	FILE* file = fopen(fichero, "r");
 
     int contlinea;
-    int charIndex = 0;
+    int charIndex;
 	char **lineas;
 	char c;
 
@@ -216,45 +216,49 @@ Usuario cMostrarMenuModifDatDir()
     return *u;
 }
 
-char cMostrarMenuModifDatTCout()
+Usuario cMostrarMenuModifDatTCout()
 {
+    sqlite3 *db;
+    Usuario *u;
+
     char linea [MAX_LINE];
     printf("\nNuevo tipo de cuota: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->cuota, MAX_LINE, stdin);
+    limpiarEntrada(u->cuota, MAX_LINE);
     printf("\nTipo de cuota actualizado\n");
+    *u->cuota = insertarUsuario(db, u->cuota);
 
-    return *linea;
+    return *u;
 }
 
-Cliente cMostrarMenuModifDatNomUsu()
+Usuario cMostrarMenuModifDatNomUsu()
 {
-    Cliente *c;
+    Usuario *u;
     sqlite3 *db;
     char linea [MAX_LINE];
 
     printf("\nNuevo nombre de usuario: ");
-    fgets(c->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(c->nombreUsuario, MAX_LINE);
+    fgets(u->nombreUsuario, MAX_LINE, stdin);
+    limpiarEntrada(u->nombreUsuario, MAX_LINE);
     printf("\nNombre de usuario actualizado\n");
-    *c->nombreUsuario = insertarUsuario(db, c->nombreUsuario);
+    *u->nombreUsuario = insertarUsuario(db, u->nombreUsuario);
 
-    return *c;
+    return *u;
 }
 
-Cliente cMostrarMenuModifDatContr()
+Usuario cMostrarMenuModifDatContr()
 {
-    Cliente *c;
+    Usuario *u;
     sqlite3 *db;
 
     char linea [MAX_LINE];
     printf("\nNueva contrasenya: ");
-    fgets(*c->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(*c->contrasenya, MAX_LINE);
+    fgets(*u->contrasenya, MAX_LINE, stdin);
+    limpiarEntrada(*u->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
-    *c->contrasenya = insertarUsuario(db, c->contrasenya);
+    *u->contrasenya = insertarUsuario(db, u->contrasenya);
 
-    return *c;
+    return *u;
 }
 
 char cMostrarMenuContactPoli()

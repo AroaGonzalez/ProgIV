@@ -7,7 +7,7 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-int insertarUsuario(sqlite3 *db, int DNI[]) {
+int insertarUsuario(sqlite3 *db, Usuario *u) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota from Usuario";
@@ -21,15 +21,13 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	Usuario *u;
-
 	printf("\n");
 	printf("\n");
 	printf("Usuarios:\n");
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			strcpy(*u->DNI, (int *) sqlite3_column_int(stmt, 0));
+			*u->DNI = sqlite3_column_int(stmt, 0);
 			*u->nombre = sqlite3_column_text(stmt, 1);
 			*u->apellido = sqlite3_column_text(stmt, 2);
 			*u->fNac = sqlite3_column_text(stmt, 3);
@@ -58,7 +56,7 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 	return SQLITE_OK;
 }
 
-int insertarAdmin(sqlite3 *db, char contrasenya[]) {
+int insertarAdmin(sqlite3 *db, Administrador *a) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select Nombre, Contrasenya from Administrador";
@@ -72,18 +70,15 @@ int insertarAdmin(sqlite3 *db, char contrasenya[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	char Nombre;
-    char Contrasenya[30];
-
 	printf("\n");
 	printf("\n");
 	printf("Administradores:\n");
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			Nombre = sqlite3_column_text(stmt, 0);
-			strcpy(Contrasenya, (char *) sqlite3_column_text(stmt, 1));
-			printf("Nombre: %s, contrasenya: %s", Nombre, Contrasenya);
+			*a->nombreUsuario = sqlite3_column_text(stmt, 0);
+			*a->contrasenya = sqlite3_column_text(stmt, 1);
+			printf("Nombre: %s, contrasenya: %s", *a->nombreUsuario, *a->contrasenya);
 		}
 	} while (result == SQLITE_ROW);
 
@@ -102,7 +97,7 @@ int insertarAdmin(sqlite3 *db, char contrasenya[]) {
 	return SQLITE_OK;
 }
 
-int insertarCliente(sqlite3 *db, char contrasenya[]) {
+int insertarCliente(sqlite3 *db, Cliente *c) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select Nombre, Contrasenya from Cliente";
@@ -116,18 +111,15 @@ int insertarCliente(sqlite3 *db, char contrasenya[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	char Nombre;
-    char Contrasenya[30];
-
 	printf("\n");
 	printf("\n");
 	printf("Clientes:\n");
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			Nombre = sqlite3_column_text(stmt, 0);
-			strcpy(Contrasenya, (char *) sqlite3_column_text(stmt, 1));
-			printf("Nombre: %s, contrasenya: %s", Nombre, Contrasenya);
+			*c->nombreUsuario = sqlite3_column_text(stmt, 0);
+			*c->contrasenya = sqlite3_column_text(stmt, 1);
+			printf("Nombre: %s, contrasenya: %s", *c->nombreUsuario, *c->contrasenya);
 		}
 	} while (result == SQLITE_ROW);
 
@@ -146,7 +138,7 @@ int insertarCliente(sqlite3 *db, char contrasenya[]) {
 	return SQLITE_OK;
 }
 
-int crearReserva(sqlite3 *db, int Cod[]) {
+int crearReserva(sqlite3 *db, Reserva *r) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select Cod, Hora, Tipo, Precio, Cod_poli from Reserva";
@@ -160,24 +152,18 @@ int crearReserva(sqlite3 *db, int Cod[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	int Cod[3];
-	int Hora;
-    char Tipo;
-	float Precio;
-	int Cod_poli;
-
 	printf("\n");
 	printf("\n");
 	printf("Reservas:\n");
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			strcpy(Cod, (int *) sqlite3_column_text(stmt, 0));
-			Hora = sqlite3_column_int(stmt, 1);
-			Tipo = sqlite3_column_text(stmt, 2);
-			Precio = sqlite3_column_double(stmt, 3);
-			Cod_poli = sqlite3_column_int(stmt, 4);
-			printf("Cod: %i, hora: %i, tipo: %c, precio: %f, cod_poli: %i", Cod, Hora, Tipo, Precio, Cod_poli);
+			*r->Cod = sqlite3_column_text(stmt, 0);
+			*r->Hora = sqlite3_column_int(stmt, 1);
+			*r->Tipo = sqlite3_column_text(stmt, 2);
+			*r->Precio = sqlite3_column_double(stmt, 3);
+			*r->Cod_poli = sqlite3_column_int(stmt, 4);
+			printf("Cod: %i, hora: %i, tipo: %c, precio: %f, cod_poli: %i", *r->Cod, *r->Hora, *r->Tipo, *r->Precio, *r->Cod_poli);
 		}
 	} while (result == SQLITE_ROW);
 

@@ -5,7 +5,7 @@ use PolideportivosEuskadi;
 create table Cuota(
 Cod int(3) not null,
 Nombre char(15),
-Precio int(3) not null,
+Precio double(3) not null,
 Tipo char(20),
 primary key (COD)
 );
@@ -58,7 +58,7 @@ create table Reserva(
 Cod int(5) not null,
 Hora int(2) not null,
 Tipo char(15),
-Precio int(2),
+Precio double(3),
 Cod_poli int(5),
 primary key (Cod),
 foreign key (Cod_poli) references Polideportivo(Cod) on delete cascade
