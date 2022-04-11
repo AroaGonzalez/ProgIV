@@ -7,6 +7,8 @@ typedef struct
 {
     char nombre [MAX_LINE];
     char apellido [MAX_LINE];
+    char fNac [MAX_LINE];
+    char genero [MAX_LINE];
     int DNI [DNI_LINE];
     char direccion [MAX_LINE];
     char cuota [MAX_LINE];
@@ -68,9 +70,9 @@ int fecha();
 
 char cMostrarMenuGestPoli1();
 
-char cMostrarMenuRegUsu();
+Usuario cMostrarMenuRegUsu();
 
-char cMostrarMenuIniSes();
+Cliente cMostrarMenuIniSes();
 
 char cMostrarMenuMenuPrinc();
 
@@ -78,13 +80,13 @@ char cMostrarMenuGestReserv();
 
 char cMostrarMenuModifDat();
 
-    char cMostrarMenuModifDatDir();
+    Usuario cMostrarMenuModifDatDir();
 
     char cMostrarMenuModifDatTCout();
 
-    Usuario cMostrarMenuModifDatNomUsu();
+    Cliente cMostrarMenuModifDatNomUsu();
 
-    char cMostrarMenuModifDatContr();
+    Cliente cMostrarMenuModifDatContr();
 
 char cMostrarMenuContactPoli();
 
