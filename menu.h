@@ -1,5 +1,34 @@
 #ifndef _MENU_H_
 #define _MENU_H_
+#define MAX_LINE 30
+#define DNI_LINE 8
+
+typedef struct
+{
+    char nombre [MAX_LINE];
+    char apellido [MAX_LINE];
+    int DNI [DNI_LINE];
+    char direccion [MAX_LINE];
+    char cuota [MAX_LINE];
+    char nombreUsuario [MAX_LINE];
+    char contrasenya [MAX_LINE];
+
+}Usuario;
+
+typedef struct
+{
+    char nombreUsuario [MAX_LINE];
+    char contrasenya [MAX_LINE];
+
+}Cliente;
+
+typedef struct
+{
+    
+}Cuota;
+
+
+
 
 void limpiarEntrada(char *str, int max_line);
 
@@ -7,9 +36,9 @@ void limpiarEntrada(char *str, int max_line);
 
 char sMostrarMenuGestPoli1();
 
-char sMostrarMenuRegUsu();
+Usuario sMostrarMenuRegUsu();
 
-char sMostrarMenuIniSes();
+Cliente sMostrarMenuIniSes();
 
 char sMostrarMenuMenuPrinc();
 
@@ -53,7 +82,7 @@ char cMostrarMenuModifDat();
 
     char cMostrarMenuModifDatTCout();
 
-    char cMostrarMenuModifDatNomUsu();
+    Usuario cMostrarMenuModifDatNomUsu();
 
     char cMostrarMenuModifDatContr();
 
