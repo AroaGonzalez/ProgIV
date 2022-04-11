@@ -21,7 +21,7 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
 		{
             contlinea++;
             charIndex = 0;
-            char ref[1];
+            char ref[4];
 
 			sscanf(ref, "%i", &p[contlinea]->ref);
 
