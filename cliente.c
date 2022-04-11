@@ -46,6 +46,16 @@ Usuario cMostrarMenuRegUsu()
     fgets(u->DNI, MAX_LINE, stdin);
     limpiarEntrada(u->DNI, MAX_LINE);
     *u->DNI = insertarUsuario(db, u->DNI);
+
+    printf("\n-> Fecha nacimiento: ");
+    fgets(u->fNac, MAX_LINE, stdin);
+    limpiarEntrada(u->fNac, MAX_LINE);
+    *u->fNac = insertarUsuario(db, u->fNac);
+
+    printf("\n-> Genero: ");
+    fgets(u->genero, MAX_LINE, stdin);
+    limpiarEntrada(u->genero, MAX_LINE);
+    *u->genero = insertarUsuario(db, u->genero);
     
     printf("\n-> Direccion: ");
     fgets(u->direccion, MAX_LINE, stdin);
@@ -157,15 +167,18 @@ char cMostrarMenuModifDat()
     return *linea;
 }
 
-char cMostrarMenuModifDatDir()
+Usuario cMostrarMenuModifDatDir()
 {
+    sqlite3 *db;
+    Usuario *u;
     char linea [MAX_LINE];
     printf("\nNueva direccion: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->direccion, MAX_LINE, stdin);
+    limpiarEntrada(u->direccion, MAX_LINE);
     printf("\nDireccion actualizada\n");
+    *u->direccion = insertarUsuario(db, u->direccion);
 
-    return *linea;
+    return *u;
 }
 
 char cMostrarMenuModifDatTCout()
@@ -179,29 +192,34 @@ char cMostrarMenuModifDatTCout()
     return *linea;
 }
 
-Usuario cMostrarMenuModifDatNomUsu()
+Cliente cMostrarMenuModifDatNomUsu()
 {
-    Usuario *u;
+    Cliente *c;
     sqlite3 *db;
     char linea [MAX_LINE];
 
     printf("\nNuevo nombre de usuario: ");
-    fgets(u->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(u->nombreUsuario, MAX_LINE);
+    fgets(c->nombreUsuario, MAX_LINE, stdin);
+    limpiarEntrada(c->nombreUsuario, MAX_LINE);
     printf("\nNombre de usuario actualizado\n");
+    *c->nombreUsuario = insertarUsuario(db, c->nombreUsuario);
 
-    return *u;
+    return *c;
 }
 
-char cMostrarMenuModifDatContr()
+Cliente cMostrarMenuModifDatContr()
 {
+    Cliente *c;
+    sqlite3 *db;
+
     char linea [MAX_LINE];
     printf("\nNueva contrasenya: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(*c->contrasenya, MAX_LINE, stdin);
+    limpiarEntrada(*c->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
+    *c->contrasenya = insertarUsuario(db, c->contrasenya);
 
-    return *linea;
+    return *c;
 }
 
 char cMostrarMenuContactPoli()

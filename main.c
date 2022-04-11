@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX_LINE 30
+#define DNI_LINE 8
 
 int insertarUsuario(sqlite3 *db, int DNI[]) {
 	sqlite3_stmt *stmt;
@@ -19,16 +21,7 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 
 	printf("SQL query prepared (SELECT)\n");
 
-	int DNI[8];
-	char Nombre;
-	char Apellidos;
-    char Fecha;
-    char Genero;
-    char Direccion;
-    int Tel;
-    char nombreUsuario;
-    char Contrasenya;
-    int Cod_cuota;
+	Usuario *u;
 
 	printf("\n");
 	printf("\n");
@@ -36,17 +29,17 @@ int insertarUsuario(sqlite3 *db, int DNI[]) {
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			strcpy(DNI, (int *) sqlite3_column_int(stmt, 0));
-			Nombre = sqlite3_column_text(stmt, 1);
-			Apellidos = sqlite3_column_text(stmt, 2);
-			Fecha = sqlite3_column_text(stmt, 3);
-			Genero = sqlite3_column_text(stmt, 4);
-			Direccion = sqlite3_column_text(stmt, 5);
-			Tel = sqlite3_column_int(stmt, 6);
-			nombreUsuario = sqlite3_column_text(stmt, 7);
-			Contrasenya = sqlite3_column_text(stmt, 8);
-			Cod_cuota = sqlite3_column_int(stmt, 9);
-			printf("DNI: %i Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota);
+			strcpy(*u->DNI, (int *) sqlite3_column_int(stmt, 0));
+			*u->nombre = sqlite3_column_text(stmt, 1);
+			*u->apellido = sqlite3_column_text(stmt, 2);
+			*u->fNac = sqlite3_column_text(stmt, 3);
+			*u->genero = sqlite3_column_text(stmt, 4);
+			*u->direccion= sqlite3_column_text(stmt, 5);
+			*u->DNI = sqlite3_column_int(stmt, 6);
+			*u->nombreUsuario = sqlite3_column_text(stmt, 7);
+			*u->contrasenya = sqlite3_column_text(stmt, 8);
+			*u->cuota = sqlite3_column_int(stmt, 9);
+			printf("DNI: %i Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", *u->DNI, *u->nombre, *u->apellido, *u->fNac, *u->genero, *u->direccion, *u->DNI, *u->nombreUsuario, *u->contrasenya, *u->cuota);
 		}
 	} while (result == SQLITE_ROW);
 
