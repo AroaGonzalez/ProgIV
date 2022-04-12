@@ -41,13 +41,13 @@ typedef struct
 
 typedef struct
 {
-    char ref;
-    char nombre;
-    char *instalaciones;
-    char direccion;
-    char municipio;
+    char *ref;
+    char *nombre;
+    char **instalaciones;
+    char *direccion;
+    char *municipio;
     int codMunicipio;
-    char provincia;
+    char *provincia;
     int codProv;
     int tel;
 }Polideportivo;
@@ -62,8 +62,10 @@ typedef struct
 }Reserva;
 
 
+//POLIDEPORTIVO
+void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, int codMunicipio, char* provincia, int codProv, int tel);
 
-
+//Limpiar entradas
 void limpiarEntrada(char *str, int max_line);
 
 //ADMINSERVER MENU
@@ -72,7 +74,7 @@ char sMostrarMenuGestPoli1();
 
 Usuario sMostrarMenuRegUsu();
 
-Cliente sMostrarMenuIniSes();
+char sMostrarMenuIniSes();
 
 char sMostrarMenuMenuPrinc();
 

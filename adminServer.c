@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "sqlite3.h"
 #include <stdio.h>
 #include <string.h>
 #define MAX_LINE 5
@@ -25,47 +26,67 @@ char sMostrarMenuGestPoli1()
     return *linea;
 }
 
-char sMostrarMenuRegUsu()
+Usuario sMostrarMenuRegUsu()
 {
+    sqlite3 *db;
+    Usuario *u;
     char linea [MAX_LINE];
+
     printf("\n======================================\n");
     printf("REGISTRO DE USUARIO\n");
     printf("======================================\n\n");
-    printf("Rellene los siguientes parametros\n\n");
+    printf("Rellene los siguientes parametros\n");
     
     printf("-> Nombre: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
-    
+    fgets(u->nombre, MAX_LINE, stdin);
+    limpiarEntrada(u->nombre, MAX_LINE);
+    *u->nombre = insertarUsuario(db, u->nombre);
+
     printf("\n-> Apellido: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->apellido, MAX_LINE, stdin);
+    limpiarEntrada(u->apellido, MAX_LINE);
+    *u->apellido = insertarUsuario(db, u->apellido);
     
     printf("\n-> DNI: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->DNI, MAX_LINE, stdin);
+    limpiarEntrada(u->DNI, MAX_LINE);
+    *u->DNI = insertarUsuario(db, u->DNI);
+
+    printf("\n-> Fecha nacimiento: ");
+    fgets(u->fNac, MAX_LINE, stdin);
+    limpiarEntrada(u->fNac, MAX_LINE);
+    *u->fNac = insertarUsuario(db, u->fNac);
+
+    printf("\n-> Genero: ");
+    fgets(u->genero, MAX_LINE, stdin);
+    limpiarEntrada(u->genero, MAX_LINE);
+    *u->genero = insertarUsuario(db, u->genero);
     
     printf("\n-> Direccion: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->direccion, MAX_LINE, stdin);
+    limpiarEntrada(u->direccion, MAX_LINE);
+    *u->direccion = insertarUsuario(db, u->direccion);
     
     printf("\n-> Tipo de cuota: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->cuota, MAX_LINE, stdin);
+    limpiarEntrada(u->cuota, MAX_LINE);
+    *u->cuota = insertarUsuario(db, u->cuota);
     
     printf("\n-> Nombre de usuario: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->nombreUsuario, MAX_LINE, stdin);
+    limpiarEntrada(u->nombreUsuario, MAX_LINE);
+    *u->nombreUsuario = insertarUsuario(db, u->nombreUsuario);
     
     printf("\n-> Contrasenya: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    fgets(u->contrasenya, MAX_LINE, stdin);
+    limpiarEntrada(u->contrasenya, MAX_LINE);
+    *u->contrasenya = insertarUsuario(db, u->contrasenya);
 
     printf("\nUsuario creado correctamente, pulsa enter para continuar ");
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
 
-    return *linea;
+    return *u;
 }
 
 char sMostrarMenuIniSes()

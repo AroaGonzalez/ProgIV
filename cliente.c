@@ -2,10 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 #include "sqlite3.h"
+#include <stdlib.h>
+
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-void leerPolideportivos(Polideportivo* p[], char* fichero)
+void leerPolideportivos(Polideportivo* p, char* fichero)
 {
 	FILE* file = fopen(fichero, "r");
 
@@ -13,6 +15,7 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
     int charIndex;
 	char **lineas;
 	char c;
+    Polideportivo* p = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
 
 	while ((c=fgetc(file)) != EOF)
 	{
@@ -21,18 +24,14 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
 		{
             contlinea++;
             charIndex = 0;
-            char ref[4];
 
-			sscanf(ref, "%i", &p[contlinea]->ref);
-
-		}else
-		{   
-            do
-            {
-                lineas[contlinea][charIndex] = c;
-                charIndex++;
-            } while (c != ';');
-		}
+		}else if (c != ';')
+        {
+            lineas[contlinea][charIndex] = c;
+            charIndex++;
+            
+    
+        }
 	}
 
     fclose(file);
