@@ -43,4 +43,17 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
     p->direccion = malloc(sizeof(char)*(strlen(direccion)+1));
     p->municipio = malloc(sizeof(char)*(strlen(municipio)+1));
     p->provincia = malloc(sizeof(char)*(strlen(provincia)+1));
+
+    for (int i = 0; i < numInst -1; i++)
+		free(p->instalaciones[i]);
+
+	free(p->ref);
+    free(p->nombre);
+    free(p->instalaciones);
+    free(p->direccion);
+    free(p->municipio);
+    free(p->codMunicipio);
+    free(p->provincia);
+    free(p->codProv);
+    free(p->tel);
 }

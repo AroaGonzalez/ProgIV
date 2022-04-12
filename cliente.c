@@ -7,7 +7,7 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-void leerPolideportivos(Polideportivo* p, char* fichero)
+void leerPolideportivos(Polideportivo* p[], char* fichero)
 {
 	FILE* file = fopen(fichero, "r");
 
@@ -17,21 +17,68 @@ void leerPolideportivos(Polideportivo* p, char* fichero)
 	char c;
     Polideportivo* p = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
 
+    int puntoComa = 0;
+
 	while ((c=fgetc(file)) != EOF)
 	{
 
 		if (c == '\n')
 		{
+            p = p[contlinea];
             contlinea++;
             charIndex = 0;
+            puntoComa = 0;
 
 		}else if (c != ';')
         {
+            
             lineas[contlinea][charIndex] = c;
             charIndex++;
-            
     
+        }else if(c == ';')
+        {
+            InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
+            
+            puntoComa++;
+            if (puntoComa == 1)
+            {
+                p[contlinea]->ref = lineas;
+
+            }else if (puntoComa == 2)
+            {
+                p[contlinea]->nombre = lineas;
+
+            }else if (puntoComa == 3)
+            {
+                p[contlinea]->instalaciones = lineas;
+
+            }else if (puntoComa == 4)
+            {
+                p[contlinea]->direccion = lineas;
+
+            }else if (puntoComa == 5)
+            {
+                p[contlinea]->municipio = lineas;
+
+            }else if (puntoComa == 6)
+            {
+                p[contlinea]->codMunicipio = lineas;
+
+            }else if (puntoComa == 7)
+            {
+                p[contlinea]->provincia = lineas;
+
+            }else if (puntoComa == 8)
+            {
+                p[contlinea]->codProv = lineas;
+
+            }else if (puntoComa == 9)
+            {
+                p[contlinea]->tel = lineas;
+            }
+
         }
+        
 	}
 
     fclose(file);
