@@ -215,34 +215,6 @@ int main(void)
 
     printf("Database opened\n");
 
-	result = insertarUsuario(db, 12345678);
-	if (result != SQLITE_OK) {
-		printf("Error inserting new data\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	result = insertarAdmin(db, "pelele");
-	if (result != SQLITE_OK) {
-		printf("Error inserting new data\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	result = insertarCliente(db, "hakunaMatata");
-	if (result != SQLITE_OK) {
-		printf("Error inserting new data\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	result = crearReserva(db, 1);
-	if (result != SQLITE_OK) {
-		printf("Error inserting new data\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
     char opcion;
 
     do{

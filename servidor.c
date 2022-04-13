@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#define MAX_LINE 5
 
 void mostrarMenuServerEspera()
 {

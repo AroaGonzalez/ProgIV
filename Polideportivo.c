@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, int codMunicipio, char* provincia, int codProv, int tel)
+void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel)
 {
 
 
@@ -11,9 +11,9 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
 
     int numInst = 0;
 
-    for (int i = 0; i < strlen(p->instalaciones); i++)
+    for (int i = 0; i < strlen(*p->instalaciones); i++)
     {
-        if (p->instalaciones[i] == '#')
+        if (*p->instalaciones[i] == '#')
         {
             numInst++;
         }
@@ -26,7 +26,7 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
     int charIndex1 = 0;
     int contPalabra = 0;
 
-    while ((c1=fgetc(p->instalaciones)) != ';')
+    while ((c1=fgetc(*p->instalaciones)) != ';')
 	{
         if (c1 == '#')
         {
@@ -39,10 +39,13 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
         }
         
     }
-    
+
     p->direccion = malloc(sizeof(char)*(strlen(direccion)+1));
     p->municipio = malloc(sizeof(char)*(strlen(municipio)+1));
     p->provincia = malloc(sizeof(char)*(strlen(provincia)+1));
+    p->codMunicipio = malloc(sizeof(char)*(strlen(codMunicipio)+1));
+    p->codProv = malloc(sizeof(char)*(strlen(codProv)+1));
+    p->tel = malloc(sizeof(char)*(strlen(tel)+1));
 
     for (int i = 0; i < numInst -1; i++)
 		free(p->instalaciones[i]);
@@ -52,8 +55,9 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
     free(p->instalaciones);
     free(p->direccion);
     free(p->municipio);
-    free(p->codMunicipio);
     free(p->provincia);
+    free(p->codMunicipio);
     free(p->codProv);
     free(p->tel);
+
 }

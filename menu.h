@@ -46,10 +46,10 @@ typedef struct
     char **instalaciones;
     char *direccion;
     char *municipio;
-    int codMunicipio;
+    char* codMunicipio;
     char *provincia;
-    int codProv;
-    int tel;
+    char* codProv;
+    char* tel;
 }Polideportivo;
 
 typedef struct
@@ -63,7 +63,7 @@ typedef struct
 
 
 //POLIDEPORTIVO
-void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, int codMunicipio, char* provincia, int codProv, int tel);
+void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel);
 
 //Limpiar entradas
 void limpiarEntrada(char *str, int max_line);

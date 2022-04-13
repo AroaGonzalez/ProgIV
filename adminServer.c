@@ -2,7 +2,7 @@
 #include "sqlite3.h"
 #include <stdio.h>
 #include <string.h>
-#define MAX_LINE 5
+#define MAX_LINE 30
 
 void limpiarEntrada(char *str, int max_line)
 {

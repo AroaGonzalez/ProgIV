@@ -15,7 +15,7 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
     int charIndex;
 	char **lineas;
 	char c;
-    Polideportivo* p = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
+    Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
 
     int puntoComa = 0;
 
@@ -24,7 +24,7 @@ void leerPolideportivos(Polideportivo* p[], char* fichero)
 
 		if (c == '\n')
 		{
-            p = p[contlinea];
+            poli = p[contlinea];
             contlinea++;
             charIndex = 0;
             puntoComa = 0;
@@ -113,9 +113,9 @@ Usuario cMostrarMenuRegUsu()
     printf("Rellene los siguientes parametros\n");
     
     printf("-> Nombre: ");
-    fgets(u->nombre, MAX_LINE, stdin);
+    fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(u->nombre, MAX_LINE);
-    *u->nombre = insertarUsuario(db, u->nombre);
+    *u->nombre = insertarUsuario(db, linea);
 
     printf("\n-> Apellido: ");
     fgets(u->apellido, MAX_LINE, stdin);
@@ -160,7 +160,7 @@ Usuario cMostrarMenuRegUsu()
     printf("\nUsuario creado correctamente, pulsa enter para continuar ");
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
-
+    
     return *u;
 
 }
@@ -299,7 +299,7 @@ Usuario cMostrarMenuModifDatContr()
 
     char linea [MAX_LINE];
     printf("\nNueva contrasenya: ");
-    fgets(*u->contrasenya, MAX_LINE, stdin);
+    fgets(u->contrasenya, MAX_LINE, stdin);
     limpiarEntrada(*u->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
     *u->contrasenya = insertarUsuario(db, u->contrasenya);
