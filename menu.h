@@ -70,27 +70,7 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
 //Limpiar entradas
 void limpiarEntrada(char *str, int max_line);
 
-//ADMINSERVER MENU
 
-char sMostrarMenuGestPoli1();
-
-Usuario sMostrarMenuRegUsu();
-
-char sMostrarMenuIniSes();
-
-char sMostrarMenuMenuPrinc();
-
-char sMostrarMenuImportDat();
-
-char sMostrarMenuBorrarBD();
-
-//ADMINSERVER CONTROL
-
-int sGestionPolideportivos();
-
-int sRegistroUsuario();
-
-int sIniciarSesion();
 
 
 //SERVIDOR
@@ -102,37 +82,7 @@ void mostrarMenuClienteConn();
 int fecha();
 
 
-//CLIENTE MENU
 
-char cMostrarMenuGestPoli1();
-
-Usuario cMostrarMenuRegUsu();
-
-Cliente cMostrarMenuIniSes();
-
-char cMostrarMenuMenuPrinc();
-
-char cMostrarMenuGestReserv();
-
-char cMostrarMenuModifDat();
-
-    Usuario cMostrarMenuModifDatDir();
-
-    Usuario cMostrarMenuModifDatTCout();
-
-    Usuario cMostrarMenuModifDatNomUsu();
-
-    Usuario cMostrarMenuModifDatContr();
-
-char cMostrarMenuContactPoli();
-
-//CLIENTE CONTROL
-
-int cGestionPolideportivos();
-
-int cRegistroUsuario();
-
-int cIniciarSesion();
 
 //ADMINSERVER + CLIENTE
 
