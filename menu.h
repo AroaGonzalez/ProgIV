@@ -3,19 +3,7 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-typedef struct
-{
-    char nombre [MAX_LINE];
-    char apellido [MAX_LINE];
-    char fNac [MAX_LINE];
-    char genero [MAX_LINE];
-    int DNI [DNI_LINE];
-    char direccion [MAX_LINE];
-    char cuota [MAX_LINE];
-    char nombreUsuario [MAX_LINE];
-    char contrasenya [MAX_LINE];
 
-}Usuario;
 
 typedef struct
 {
@@ -38,6 +26,20 @@ typedef struct
     float Precio[MAX_LINE];
     char Tipo[MAX_LINE];
 }Cuota;
+
+typedef struct
+{
+    char *nombre [MAX_LINE];
+    char *apellido [MAX_LINE];
+    char *fNac [MAX_LINE];
+    char *genero [MAX_LINE];
+    int *DNI [DNI_LINE];
+    char *direccion [MAX_LINE];
+    //Cuota *cuota [MAX_LINE];
+    char *nombreUsuario [MAX_LINE];
+    char *contrasenya [MAX_LINE];
+
+}Usuario;
 
 typedef struct
 {

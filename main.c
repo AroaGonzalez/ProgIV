@@ -7,7 +7,7 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-int insertarUsuario(sqlite3 *db, Usuario *u) {
+int insertarUsuario(sqlite3 *db, Usuario u) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota from Usuario";
@@ -27,17 +27,17 @@ int insertarUsuario(sqlite3 *db, Usuario *u) {
 	do {
 		result = sqlite3_step(stmt) ;
 		if (result == SQLITE_ROW) {
-			*u->DNI = sqlite3_column_int(stmt, 0);
-			*u->nombre = sqlite3_column_text(stmt, 1);
-			*u->apellido = sqlite3_column_text(stmt, 2);
-			*u->fNac = sqlite3_column_text(stmt, 3);
-			*u->genero = sqlite3_column_text(stmt, 4);
-			*u->direccion= sqlite3_column_text(stmt, 5);
-			*u->DNI = sqlite3_column_int(stmt, 6);
-			*u->nombreUsuario = sqlite3_column_text(stmt, 7);
-			*u->contrasenya = sqlite3_column_text(stmt, 8);
-			*u->cuota = sqlite3_column_int(stmt, 9);
-			printf("DNI: %i Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", *u->DNI, *u->nombre, *u->apellido, *u->fNac, *u->genero, *u->direccion, *u->DNI, *u->nombreUsuario, *u->contrasenya, *u->cuota);
+			*u.DNI = sqlite3_column_int(stmt, 0);
+			*u.nombre = sqlite3_column_text(stmt, 1);
+			*u.apellido = sqlite3_column_text(stmt, 2);
+			*u.fNac = sqlite3_column_text(stmt, 3);
+			*u.genero = sqlite3_column_text(stmt, 4);
+			*u.direccion= sqlite3_column_text(stmt, 5);
+			*u.DNI = sqlite3_column_int(stmt, 6);
+			*u.nombreUsuario = sqlite3_column_text(stmt, 7);
+			*u.contrasenya = sqlite3_column_text(stmt, 8);
+			//*u.cuota = sqlite3_column_int(stmt, 9);
+			printf("DNI: %i Nombre: %s Apellidos: %s, Fecha: %s, Genero: %s, Direccion: %s, Tel: %d\nNombre de usuario: %s, contrasenya: %s, cod_cuota: %d", *u.DNI, *u.nombre, *u.apellido, *u.fNac, *u.genero, *u.direccion, *u.DNI, *u.nombreUsuario, *u.contrasenya);
 		}
 	} while (result == SQLITE_ROW);
 
