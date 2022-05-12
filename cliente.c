@@ -3,6 +3,9 @@
 #include <string.h>
 #include "sqlite3.h"
 #include <stdlib.h>
+#include "polideportivo.h"
+#include "usuario.h"
+#include "cuota.h"
 
 #define MAX_LINE 30
 #define DNI_LINE 8

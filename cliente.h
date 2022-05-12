@@ -4,6 +4,19 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
+typedef struct
+{
+    char nombreUsuario [MAX_LINE];
+    char contrasenya [MAX_LINE];
+
+}Cliente;
+
+
+
+
+
+
+
 //CLIENTE MENU
 
 char cMostrarMenuGestPoli1();
