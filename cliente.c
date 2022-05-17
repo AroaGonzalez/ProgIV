@@ -142,11 +142,11 @@ Usuario cMostrarMenuRegUsu()
     limpiarEntrada(u->direccion, MAX_LINE);
     *u->direccion = insertarUsuario(db, u->direccion);
     
-    printf("\n-> Tipo de cuota: ");
+    /*printf("\n-> Tipo de cuota: ");
     fgets(u->cuota, MAX_LINE, stdin);
     limpiarEntrada(u->cuota, MAX_LINE);
     *u->cuota = insertarUsuario(db, u->cuota);
-    
+    */
     printf("\n-> Nombre de usuario: ");
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
@@ -261,12 +261,12 @@ Usuario cMostrarMenuModifDatDir()
 
     return *u;
 }
-
+ /*
 Usuario cMostrarMenuModifDatTCout()
 {
     sqlite3 *db;
     Usuario *u;
-
+   
     char linea [MAX_LINE];
     printf("\nNuevo tipo de cuota: ");
     fgets(u->cuota, MAX_LINE, stdin);
@@ -276,7 +276,7 @@ Usuario cMostrarMenuModifDatTCout()
 
     return *u;
 }
-
+*/
 Usuario cMostrarMenuModifDatNomUsu()
 {
     Usuario *u;
@@ -324,7 +324,7 @@ char cMostrarMenuContactPoli()
     return *linea;}
 
 
-int cGestionPolideportivos(void)
+int cGestionPolideportivos()
 {
     char opcion;
 
