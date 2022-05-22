@@ -15,7 +15,7 @@ typedef struct
 
 char sMostrarMenuGestPoli1();
 
-//Usuario sMostrarMenuRegUsu();
+Usuario sMostrarMenuRegUsu();
 
 char sMostrarMenuIniSes();
 
