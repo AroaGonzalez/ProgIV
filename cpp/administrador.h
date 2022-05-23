@@ -9,8 +9,8 @@
 class Administrador: public Usuario
 {
     private:
-        char* nombreUsuario [MAX_LINE];
-        char* contrasenya [MAX_LINE];
+        char nombreUsuario [MAX_LINE];
+        char contrasenya [MAX_LINE];
 
     public:
         Administrador(); //vacío
@@ -19,6 +19,26 @@ class Administrador: public Usuario
         ~Administrador(); //destructor (falta por hacer)
 
         void limpiarEntrada(char *str, int max_line);
+
+        char sMostrarMenuGestPoli1();
+
+        Usuario sMostrarMenuRegUsu();
+
+        char sMostrarMenuIniSes();
+
+        char sMostrarMenuMenuPrinc();
+
+        char sMostrarMenuImportDat();
+
+        char sMostrarMenuBorrarBD();
+
+        //ADMINSERVER CONTROL
+
+        int sGestionPolideportivos();
+
+        int sRegistroUsuario();
+
+        int sIniciarSesion();
 };
 
 

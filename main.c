@@ -1,5 +1,9 @@
 #include "menu.h"
 #include "sqlite3.h"
+#include "usuario.h"
+#include "administrador.h"
+#include "cliente.h"
+#include "reserva.h"
 
 #include <stdio.h>
 #include <stdlib.h>
