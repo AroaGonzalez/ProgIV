@@ -2,6 +2,7 @@
 #define _USUARIO_H_
 #define DNI_LINE 8
 #define MAX_LINE 30
+#include "cuota.h"
 
 typedef struct
 {
@@ -11,7 +12,7 @@ typedef struct
     char *genero [MAX_LINE];
     int *DNI [DNI_LINE];
     char *direccion [MAX_LINE];
-    Cuota *cuota [MAX_LINE];
+    Cuota *cuota;
     char *nombreUsuario [MAX_LINE];
     char *contrasenya [MAX_LINE];
 

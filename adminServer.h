@@ -1,6 +1,7 @@
 #ifndef _ADMINSERVER_H_
 #define _ADMINSERVER_H_
 #include "menu.h"
+#include "usuario.h"
 #define MAX_LINE 30
 #define DNI_LINE 8
 

@@ -6,16 +6,10 @@
 
 typedef struct
 {
-    char nombreUsuario [MAX_LINE];
-    char contrasenya [MAX_LINE];
+    char* nombreUsuario [MAX_LINE];
+    char* contrasenya [MAX_LINE];
 
 }Cliente;
-
-
-
-
-
-
 
 //CLIENTE MENU
 

@@ -8,14 +8,17 @@
 
 class Administrador: public Usuario
 {
-private:
+    private:
+        char* nombreUsuario [MAX_LINE];
+        char* contrasenya [MAX_LINE];
 
-public:
-Administrador(); //vacío
-Administrador(); //por defecto (falta por hacer)
-Administrador(); //copia (falta por hacer)
-~Administrador(); //destructor (falta por hacer)
+    public:
+        Administrador(); //vacío
+        Administrador(); //por defecto (falta por hacer)
+        Administrador(); //copia (falta por hacer)
+        ~Administrador(); //destructor (falta por hacer)
 
+        void limpiarEntrada(char *str, int max_line);
 };
 
 

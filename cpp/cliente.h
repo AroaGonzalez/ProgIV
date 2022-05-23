@@ -5,21 +5,59 @@
 #define MAX_LINE 30
 #include "usuario.h"
 #include "cuota.h"
+#include "polideportivo.h"
 
-namespace Containers{
 
 class Cliente: public Usuario
 {
-private:
-Cuota *cuota [MAX_LINE];
-public:
-Cliente(); //vacío
-Cliente(); //por defecto (falta por hacer)
-Cliente(); //copia (falta por hacer)
-~Cliente(); //destructor (falta por hacer)
+    private:
+        char* nombreUsuario [MAX_LINE];
+        char* contrasenya [MAX_LINE];
+
+    public:
+        Cliente(); //vacío
+        Cliente(); //por defecto (falta por hacer)
+        Cliente(); //copia (falta por hacer)
+        ~Cliente(); //destructor (falta por hacer)
+
+        void limpiarEntrada(char *str, int max_line);
+
+        void leerPolideportivos(Polideportivo* p[], char* fichero);
+
+        char cMostrarMenuGestPoli1();
+
+        Usuario cMostrarMenuRegUsu();
+
+        Cliente cMostrarMenuIniSes();
+
+        char cMostrarMenuMenuPrinc();
+
+        char cMostrarMenuGestReserv();
+
+        char cMostrarMenuModifDat();
+
+            Usuario cMostrarMenuModifDatDir();
+
+            Usuario cMostrarMenuModifDatTCout();
+
+            Usuario cMostrarMenuModifDatNomUsu();
+
+            Usuario cMostrarMenuModifDatContr();
+
+        char cMostrarMenuContactPoli();
+
+        //CLIENTE CONTROL
+
+        int cGestionPolideportivos();
+
+        int cRegistroUsuario();
+
+        int cIniciarSesion();
+
+
 
 };
 
-}
+
 
 #endif
