@@ -16,8 +16,6 @@ void mostrarMenuClienteConn();
 int fecha();
 
 
-
-
 //ADMINSERVER + CLIENTE
 
 char gMostrarMenuGestPoli2();

@@ -3,7 +3,7 @@
 #include "menu.h"
 #include "sqlite3.h"
 #include "usuario.h"
-#include "administrador.h"
+#include "adminServer.h"
 #include "cliente.h"
 #include "reserva.h"
 
@@ -14,6 +14,8 @@
 #define DNI_LINE 8
 
 int insertarUsuario(sqlite3 *db, Usuario u);
+
+int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
 
 int insertarAdmin(sqlite3 *db, Administrador *a);
 

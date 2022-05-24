@@ -1,46 +1,63 @@
 #ifndef _CLIENTE_H_
 #define _CLIENTE_H_
-#include "menu.h"
-#define MAX_LINE 30
+
 #define DNI_LINE 8
+#define MAX_LINE 30
+#include "usuario.h"
+#include "cuota.h"
+#include "polideportivo.h"
 
-typedef struct
+
+class Cliente: public Usuario
 {
-    char* nombreUsuario [MAX_LINE];
-    char* contrasenya [MAX_LINE];
+    private:
+        char nombreUsuario [MAX_LINE];
+        char contrasenya [MAX_LINE];
 
-}Cliente;
+    public:
+        Cliente(); //vacío
+        Cliente(); //por defecto (falta por hacer)
+        Cliente(); //copia (falta por hacer)
+        ~Cliente(); //destructor (falta por hacer)
 
-//CLIENTE MENU
+        void limpiarEntrada(char *str, int max_line);
 
-char cMostrarMenuGestPoli1();
+        void leerPolideportivos(Polideportivo* p[], char* fichero);
 
-Usuario cMostrarMenuRegUsu();
+        char cMostrarMenuGestPoli1();
 
-Cliente cMostrarMenuIniSes();
+        Usuario cMostrarMenuRegUsu();
 
-char cMostrarMenuMenuPrinc();
+        Cliente cMostrarMenuIniSes();
 
-char cMostrarMenuGestReserv();
+        char cMostrarMenuMenuPrinc();
 
-char cMostrarMenuModifDat();
+        char cMostrarMenuGestReserv();
 
-    Usuario cMostrarMenuModifDatDir();
+        char cMostrarMenuModifDat();
 
-    Usuario cMostrarMenuModifDatTCout();
+            Usuario cMostrarMenuModifDatDir();
 
-    Usuario cMostrarMenuModifDatNomUsu();
+            Usuario cMostrarMenuModifDatTCout();
 
-    Usuario cMostrarMenuModifDatContr();
+            Usuario cMostrarMenuModifDatNomUsu();
 
-char cMostrarMenuContactPoli();
+            Usuario cMostrarMenuModifDatContr();
 
-//CLIENTE CONTROL
+        char cMostrarMenuContactPoli();
 
-int cGestionPolideportivos();
+        //CLIENTE CONTROL
 
-int cRegistroUsuario();
+        int cGestionPolideportivos();
 
-int cIniciarSesion();
+        int cRegistroUsuario();
+
+        int cIniciarSesion();
+
+
+
+};
+
+
 
 #endif

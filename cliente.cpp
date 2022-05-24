@@ -3,7 +3,7 @@
 #include <string.h>
 #include "sqlite3.h"
 #include <stdlib.h>
-#include "administrador.h"
+#include "adminServer.h"
 #include "BaseDatos.h"
 
 using namespace std;
@@ -253,19 +253,17 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     sqlite3 *db;
     Usuario *u;
     char linea [MAX_LINE];
-    char nombreDeUsuario;
+    char* nombreDeUsuario;
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
 
-    
+    selectUsuario(db, *u, nombreDeUsuario);
 
     cout<<"\nNueva direccion: "<<endl;
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
     cout<<"\nDireccion actualizada\n"<<endl;
-
-    insertarUsuario(db, *u);
 
     return *u;
 }
@@ -286,6 +284,7 @@ Usuario Cliente::cMostrarMenuModifDatTCout()
     return *u;
 }
 */
+
 Usuario Cliente::cMostrarMenuModifDatNomUsu()
 {
     Usuario *u;
@@ -295,8 +294,8 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
     cout<<"\nNuevo nombre de usuario: "<<endl;
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
-    printf("\nNombre de usuario actualizado\n");
-    *u->nombreUsuario = insertarUsuario(db, u->nombreUsuario);
+    cout<<"\nNombre de usuario actualizado\n"<<endl;
+    insertarUsuario(db, *u);
 
     return *u;
 }
@@ -309,9 +308,9 @@ Usuario Cliente::cMostrarMenuModifDatContr()
     char linea [MAX_LINE];
     printf("\nNueva contrasenya: ");
     fgets(u->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(*u->contrasenya, MAX_LINE);
+    limpiarEntrada(u->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
-    *u->contrasenya = insertarUsuario(db, u->contrasenya);
+    insertarUsuario(db, *u);
 
     return *u;
 }
