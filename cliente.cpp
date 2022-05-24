@@ -258,7 +258,7 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
 
-    selectUsuario(db, *u, nombreDeUsuario);
+    selectUsuario(db, u, nombreDeUsuario);
 
     cout<<"\nNueva direccion: "<<endl;
     fgets(u->direccion, MAX_LINE, stdin);
@@ -306,7 +306,7 @@ Usuario Cliente::cMostrarMenuModifDatContr()
     sqlite3 *db;
 
     char linea [MAX_LINE];
-    printf("\nNueva contrasenya: ");
+    cout<<"\nNueva contrasenya: "<<endl;
     fgets(u->contrasenya, MAX_LINE, stdin);
     limpiarEntrada(u->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
