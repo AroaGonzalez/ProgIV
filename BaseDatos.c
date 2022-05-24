@@ -103,6 +103,47 @@ int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario) {
 	return SQLITE_OK;
 }
 
+int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "select Nombre, Contrasenya from Administrador";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("SQL query prepared (SELECT)\n");
+
+	printf("\n");
+	printf("\n");
+	printf("Administradores:\n");
+	do {
+		result = sqlite3_step(stmt) ;
+		if (result == SQLITE_ROW) {
+			*a->nombreUsuario = sqlite3_column_text(stmt, 0);
+			*a->contrasenya = sqlite3_column_text(stmt, 1);
+			printf("Nombre: %s, contrasenya: %s", *a->nombreUsuario, *a->contrasenya);
+		}
+	} while (result == SQLITE_ROW);
+
+	printf("\n");
+	printf("\n");
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		printf("Error finalizing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("Prepared statement finalized (SELECT)\n");
+
+	return SQLITE_OK;
+}
+
 int insertarAdmin(sqlite3 *db, Administrador *a) {
 	sqlite3_stmt *stmt;
 
