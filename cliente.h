@@ -4,15 +4,13 @@
 #define DNI_LINE 8
 #define MAX_LINE 30
 
+#include "usuario.h"
 #include "cuota.h"
 #include "polideportivo.h"
 
-extern "C"{
-    #include "usuario.h"
-}
-
 class Cliente: public Usuario
 {
+
     private:
         char nombreUsuario [MAX_LINE];
         char contrasenya [MAX_LINE];
@@ -58,7 +56,5 @@ class Cliente: public Usuario
         int cIniciarSesion();
 
 };
-
-
 
 #endif

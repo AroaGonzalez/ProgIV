@@ -4,7 +4,9 @@
     "prueba7.h": "c",
     "main8.C": "cpp",
     "cuota.h": "c",
-    "usuario.h": "c"
+    "usuario.h": "c",
+    "cliente.h": "c",
+    "polideportivo.h": "c"
   },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",

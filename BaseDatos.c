@@ -1,30 +1,36 @@
 #include "BaseDatos.h"
 #include <string.h>
 
-int insertarUsuario(sqlite3 *db, Usuario u){
+#include "cliente.h"
+#include "usuario.h"
+#include "adminServer.h"
+
+
+
+int insertarUsuario(sqlite3 *db, Usuario *u){
 	sqlite3_stmt *stmt;
 
 	char sql[50] = "INSERT INTO USUARIO VALUES(";
 	
-	strcat(sql, u.DNI);
+	strcat(sql, u->DNI);
 	strcat(sql, ",");
-	strcat(sql, u.nombre);
+	strcat(sql, u->nombre);
 	strcat(sql, ",");
-	strcat(sql, u.apellido);
+	strcat(sql, u->apellido);
 	strcat(sql, ",");
-	strcat(sql, u.fNac);
+	strcat(sql, u->fNac);
 	strcat(sql, ",");
-	strcat(sql, u.genero);
+	strcat(sql, u->genero);
 	strcat(sql, ",");
-	strcat(sql, u.direccion);
+	strcat(sql, u->direccion);
 	strcat(sql, ",");
-	strcat(sql, u.tel);
+	strcat(sql, u->tel);
 	strcat(sql, ",");
-	strcat(sql, u.nombreUsuario);
+	strcat(sql, u->nombreUsuario);
 	strcat(sql, ",");
-	strcat(sql, u.contrasenya);
+	strcat(sql, u->contrasenya);
 	strcat(sql, ",");
-	strcat(sql, u.cuota);
+	strcat(sql, u->cuota);
 	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
@@ -147,10 +153,14 @@ int insertarAdmin(sqlite3 *db, Administrador *a) {
 	return SQLITE_OK;
 }
 
+
 int insertarCliente(sqlite3 *db, Cliente *c) {
 	sqlite3_stmt *stmt;
-
-	char sql[] = "select Nombre, Contrasenya from Cliente";
+	char sql[] = "INSERT INTO Cliente VALUES(";
+	strcat(sql, c->nombreUsuario);
+	strcat(sql, ",");
+	strcat(sql, c->contrasenya);
+	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -163,15 +173,34 @@ int insertarCliente(sqlite3 *db, Cliente *c) {
 
 	printf("\n");
 	printf("\n");
-	printf("Clientes:\n");
-	do {
-		result = sqlite3_step(stmt) ;
-		if (result == SQLITE_ROW) {
-			*c->nombreUsuario = sqlite3_column_text(stmt, 0);
-			*c->contrasenya = sqlite3_column_text(stmt, 1);
-			printf("Nombre: %s, contrasenya: %s", *c->nombreUsuario, *c->contrasenya);
-		}
-	} while (result == SQLITE_ROW);
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		printf("Error finalizing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("Prepared statement finalized (SELECT)\n");
+
+	return SQLITE_OK;
+}
+
+int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario) {
+	sqlite3_stmt *stmt;
+	
+	char sql[50] = "select Nombre, Contrasenya from Cliente where nombreUsuario = '";
+	strcat(sql, nombreUsuario);
+	strcat(sql, "';");
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		printf("Error preparing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("SQL query prepared (SELECT)\n");
 
 	printf("\n");
 	printf("\n");
@@ -192,6 +221,17 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select Cod, Hora, Tipo, Precio, Cod_poli from Reserva";
+	char sql[] = "INSERT INTO Reserva VALUES(";
+	strcat(sql, r->Cod);
+	strcat(sql, ",");
+	strcat(sql, r->Hora);
+	strcat(sql, ",");
+	strcat(sql, r->Tipo);
+	strcat(sql, ",");
+	strcat(sql, r->Precio);
+	strcat(sql, ",");
+	strcat(sql, r->Cod_poli);
+	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -201,21 +241,6 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 	}
 
 	printf("SQL query prepared (SELECT)\n");
-
-	printf("\n");
-	printf("\n");
-	printf("Reservas:\n");
-	do {
-		result = sqlite3_step(stmt) ;
-		if (result == SQLITE_ROW) {
-			*r->Cod = sqlite3_column_text(stmt, 0);
-			*r->Hora = sqlite3_column_int(stmt, 1);
-			*r->Tipo = sqlite3_column_text(stmt, 2);
-			*r->Precio = sqlite3_column_double(stmt, 3);
-			*r->Cod_poli = sqlite3_column_int(stmt, 4);
-			printf("Cod: %i, hora: %i, tipo: %c, precio: %f, cod_poli: %i", *r->Cod, *r->Hora, *r->Tipo, *r->Precio, *r->Cod_poli);
-		}
-	} while (result == SQLITE_ROW);
 
 	printf("\n");
 	printf("\n");

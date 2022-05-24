@@ -6,10 +6,13 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
 
+extern "C"{
+    #include "usuario.h"
+}
+
 using namespace std;
 
 
-namespace containers{
     void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
     {
         FILE* file = fopen(fichero, "r");
@@ -187,7 +190,7 @@ Cliente Cliente::cMostrarMenuIniSes()
     limpiarEntrada(linea, MAX_LINE);
     
     printf("\nPulsa enter para continuar ");
-    insertarUsuario(db, *c);
+    insertarCliente(db, c);
 
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
@@ -371,5 +374,4 @@ int Cliente::cIniciarSesion(void)
 
     cMostrarMenuIniSes();
 
-}
 }

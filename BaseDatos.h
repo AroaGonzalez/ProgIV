@@ -13,13 +13,15 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-int insertarUsuario(sqlite3 *db, Usuario u);
+int insertarUsuario(sqlite3 *db, Usuario *u);
 
 int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
 
 int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
 
 int insertarAdmin(sqlite3 *db, Administrador *a);
+
+int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
 
 int insertarCliente(sqlite3 *db, Cliente *c);
 
