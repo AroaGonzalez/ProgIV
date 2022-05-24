@@ -114,33 +114,33 @@ Usuario Cliente::cMostrarMenuRegUsu()
     Usuario *u;
     char linea [MAX_LINE];
 
-    printf("\n======================================\n");
-    printf("REGISTRO DE USUARIO\n");
-    printf("======================================\n\n");
-    printf("Rellene los siguientes parametros\n");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"REGISTRO DE USUARIO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
     
-    printf("-> Nombre: ");
+    cout<<"-> Nombre: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(u->nombre, MAX_LINE);
     
 
-    printf("\n-> Apellido: ");
+    cout<<"\n-> Apellido: "<<endl;
     fgets(u->apellido, MAX_LINE, stdin);
     limpiarEntrada(u->apellido, MAX_LINE);
     
-    printf("\n-> DNI: ");
+    cout<<"\n-> DNI: "<<endl;
     fgets(u->DNI, MAX_LINE, stdin);
     limpiarEntrada(u->DNI, MAX_LINE);
 
-    printf("\n-> Fecha nacimiento: ");
+    cout<<"\n-> Fecha nacimiento: "<<endl;
     fgets(u->fNac, MAX_LINE, stdin);
     limpiarEntrada(u->fNac, MAX_LINE);
 
-    printf("\n-> Genero: ");
+    cout<<"\n-> Genero: "<<endl;
     fgets(u->genero, MAX_LINE, stdin);
     limpiarEntrada(u->genero, MAX_LINE);
     
-    printf("\n-> Direccion: ");
+    cout<<"\n-> Direccion: "<<endl;
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
     
@@ -150,16 +150,16 @@ Usuario Cliente::cMostrarMenuRegUsu()
     *u->cuota = insertarUsuario(db, u->cuota);
     */
    
-    printf("\n-> Nombre de usuario: ");
+    cout<<"\n-> Nombre de usuario: "<<endl;
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
     
-    printf("\n-> Contrasenya: ");
+    cout<<"\n-> Contrasenya: "<<endl;
     fgets(u->contrasenya, MAX_LINE, stdin);
     limpiarEntrada(u->contrasenya, MAX_LINE);
    
-    printf("\nUsuario creado correctamente, pulsa enter para continuar ");
-    insertarUsuario(db, *u);
+    cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
+    insertarUsuario(db, u);
     
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
@@ -176,20 +176,20 @@ Cliente Cliente::cMostrarMenuIniSes()
 
     char linea [MAX_LINE];
 
-    printf("\n======================================\n");
-    printf("INICIO DE SESION\n");
-    printf("======================================\n\n");
-    printf("Rellene los siguientes parametros\n\n");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"INICIO DE SESION\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n\n"<<endl;
     
-    printf("-> Nombre de usuario: ");
+    cout<<"-> Nombre de usuario: "<<endl;
     fgets(c->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(c->nombreUsuario, MAX_LINE);
     
-    printf("\n-> Contrasenya: ");
+    cout<<"\n-> Contrasenya: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     
-    printf("\nPulsa enter para continuar ");
+    cout<<"\nPulsa enter para continuar "<<endl;
     insertarCliente(db, c);
 
     fgets(linea, MAX_LINE, stdin);
@@ -296,12 +296,17 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
     Usuario *u;
     sqlite3 *db;
     char linea [MAX_LINE];
+    char* nuevoNombreDeUsuario;
 
     cout<<"\nNuevo nombre de usuario: "<<endl;
+    cin>>nuevoNombreDeUsuario;
+
+    selectUsuario(db, u, nuevoNombreDeUsuario);
+    *u->nombreUsuario = *nuevoNombreDeUsuario;
+
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
     cout<<"\nNombre de usuario actualizado\n"<<endl;
-    insertarUsuario(db, *u);
 
     return *u;
 }
@@ -310,13 +315,18 @@ Usuario Cliente::cMostrarMenuModifDatContr()
 {
     Usuario *u;
     sqlite3 *db;
+    char* nuevaContrasenya;
 
     char linea [MAX_LINE];
     cout<<"\nNueva contrasenya: "<<endl;
+    cin>>nuevaContrasenya;
+
+    selectUsuario(db, u, nuevaContrasenya);
+    *u->contrasenya = *nuevaContrasenya;
+
     fgets(u->contrasenya, MAX_LINE, stdin);
     limpiarEntrada(u->contrasenya, MAX_LINE);
     printf("\nContrasenya actualizada\n");
-    insertarUsuario(db, *u);
 
     return *u;
 }
@@ -324,11 +334,11 @@ Usuario Cliente::cMostrarMenuModifDatContr()
 char Cliente::cMostrarMenuContactPoli()
 {
     char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("CONTACTAR CON OTROS POLIDEPORTIVOS\n");
-    printf("======================================\n\n");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"CONTACTAR CON OTROS POLIDEPORTIVOS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
     
-    printf("-> Nombre del polideportivo: ");
+    cout<<"-> Nombre del polideportivo: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
 
