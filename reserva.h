@@ -1,5 +1,5 @@
-#ifndef _POLIDEPORTIVO_H_
-#define _POLIDEPORTIVO_H_
+#ifndef RESERVA_H
+#define RESERVA_H
 
 #define MAX_LINE 30
 

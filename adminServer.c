@@ -4,6 +4,7 @@
 #include <string.h>
 #define MAX_LINE 30
 
+
 void limpiarEntrada(char *str, int max_line)
 {
     if((strlen(str) == max_line-1) && (str[max_line-2] != '\n'))

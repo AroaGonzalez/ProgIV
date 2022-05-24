@@ -11,8 +11,8 @@
 class Cliente: public Usuario
 {
     private:
-        char* nombreUsuario [MAX_LINE];
-        char* contrasenya [MAX_LINE];
+        char nombreUsuario [MAX_LINE];
+        char contrasenya [MAX_LINE];
 
     public:
         Cliente(); //vacío

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel)
+void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char* instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel)
 {
 
 
@@ -14,14 +14,14 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaci
 
     for (int i = 0; i < strlen(*p->instalaciones); i++)
     {
-        if (*p->instalaciones[i] == '#')
+        if (p->instalaciones[i] == '#')
         {
             numInst++;
         }
     }
     numInst++;
 
-    p->instalaciones = (char**) malloc(sizeof(char*)*numInst);
+    p->instalaciones = (char*) malloc(sizeof(char)*numInst);
 
     char c1;
     int charIndex1 = 0;

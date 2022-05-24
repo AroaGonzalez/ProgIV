@@ -4,83 +4,86 @@
 #include "sqlite3.h"
 #include <stdlib.h>
 #include "administrador.h"
+#include "BaseDatos.h"
+
 using namespace std;
 
 
-
-void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
-{
-    FILE* file = fopen(fichero, "r");
-
-    int contlinea;
-    int charIndex;
-    char **lineas;
-    char c;
-    Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
-
-    int puntoComa = 0;
-
-    while ((c=fgetc(file)) != EOF)
+namespace containers{
+    void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
     {
+        FILE* file = fopen(fichero, "r");
 
-        if (c == '\n')
+        int contlinea;
+        int charIndex;
+        char **lineas;
+        char c;
+        Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
+
+        int puntoComa = 0;
+
+        while ((c=fgetc(file)) != EOF)
         {
-            poli = p[contlinea];
-            contlinea++;
-            charIndex = 0;
-            puntoComa = 0;
 
-        }else if (c != ';')
-        {
-            
-            lineas[contlinea][charIndex] = c;
-            charIndex++;
-    
-        }else if(c == ';')
-        {
-            InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
-            
-            puntoComa++;
-            if (puntoComa == 1)
+            if (c == '\n')
             {
-                p[contlinea]->ref = lineas;
+                poli = p[contlinea];
+                contlinea++;
+                charIndex = 0;
+                puntoComa = 0;
 
-            }else if (puntoComa == 2)
+            }else if (c != ';')
             {
-                p[contlinea]->nombre = lineas;
-
-            }else if (puntoComa == 3)
-            {
-                p[contlinea]->instalaciones = lineas;
-
-            }else if (puntoComa == 4)
-            {
-                p[contlinea]->direccion = lineas;
-
-            }else if (puntoComa == 5)
-            {
-                p[contlinea]->municipio = lineas;
-
-            }else if (puntoComa == 6)
-            {
-                p[contlinea]->codMunicipio = lineas;
-
-            }else if (puntoComa == 7)
-            {
-                p[contlinea]->provincia = lineas;
-
-            }else if (puntoComa == 8)
-            {
-                p[contlinea]->codProv = lineas;
-
-            }else if (puntoComa == 9)
-            {
-                p[contlinea]->tel = lineas;
-            }
-
-        }
+                
+                lineas[contlinea][charIndex] = c;
+                charIndex++;
         
-    }
+            }else if(c == ';')
+            {
+                InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
+                
+                puntoComa++;
+                if (puntoComa == 1)
+                {
+                    p[contlinea]->ref = lineas[0];
+
+                }else if (puntoComa == 2)
+                {
+                    p[contlinea]->nombre = lineas[1];
+
+                }else if (puntoComa == 3)
+                {
+                    p[contlinea]->instalaciones = lineas[2];
+
+                }else if (puntoComa == 4)
+                {
+                    p[contlinea]->direccion = lineas[3];
+
+                }else if (puntoComa == 5)
+                {
+                    p[contlinea]->municipio = lineas[4];
+
+                }else if (puntoComa == 6)
+                {
+                    p[contlinea]->codMunicipio = lineas[5];
+
+                }else if (puntoComa == 7)
+                {
+                    p[contlinea]->provincia = lineas[6];
+
+                }else if (puntoComa == 8)
+                {
+                    p[contlinea]->codProv = lineas[7];
+
+                }else if (puntoComa == 9)
+                {
+                    p[contlinea]->tel = lineas[8];
+                }
+
+            }
+            
+        }
+    
 
     fclose(file);
 }
@@ -116,51 +119,48 @@ Usuario Cliente::cMostrarMenuRegUsu()
     printf("-> Nombre: ");
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(u->nombre, MAX_LINE);
-    *u->nombre = insertarUsuario(db, linea);
+    
 
     printf("\n-> Apellido: ");
     fgets(u->apellido, MAX_LINE, stdin);
     limpiarEntrada(u->apellido, MAX_LINE);
-    *u->apellido = insertarUsuario(db, u->apellido);
     
     printf("\n-> DNI: ");
     fgets(u->DNI, MAX_LINE, stdin);
     limpiarEntrada(u->DNI, MAX_LINE);
-    *u->DNI = insertarUsuario(db, u->DNI);
 
     printf("\n-> Fecha nacimiento: ");
     fgets(u->fNac, MAX_LINE, stdin);
     limpiarEntrada(u->fNac, MAX_LINE);
-    *u->fNac = insertarUsuario(db, u->fNac);
 
     printf("\n-> Genero: ");
     fgets(u->genero, MAX_LINE, stdin);
     limpiarEntrada(u->genero, MAX_LINE);
-    *u->genero = insertarUsuario(db, u->genero);
     
     printf("\n-> Direccion: ");
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
-    *u->direccion = insertarUsuario(db, u->direccion);
     
     /*printf("\n-> Tipo de cuota: ");
     fgets(u->cuota, MAX_LINE, stdin);
     limpiarEntrada(u->cuota, MAX_LINE);
     *u->cuota = insertarUsuario(db, u->cuota);
     */
+   
     printf("\n-> Nombre de usuario: ");
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
-    *u->nombreUsuario = insertarUsuario(db, u->nombreUsuario);
     
     printf("\n-> Contrasenya: ");
     fgets(u->contrasenya, MAX_LINE, stdin);
     limpiarEntrada(u->contrasenya, MAX_LINE);
-    *u->contrasenya = insertarUsuario(db, u->contrasenya);
-
+   
     printf("\nUsuario creado correctamente, pulsa enter para continuar ");
+    insertarUsuario(db, *u);
+    
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
+    
     
     return *u;
 
@@ -181,14 +181,14 @@ Cliente Cliente::cMostrarMenuIniSes()
     printf("-> Nombre de usuario: ");
     fgets(c->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(c->nombreUsuario, MAX_LINE);
-    *c->nombreUsuario = insertarUsuario(db, c->nombreUsuario);
     
     printf("\n-> Contrasenya: ");
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
-    *c->contrasenya = insertarUsuario(db, c->contrasenya);
-
+    
     printf("\nPulsa enter para continuar ");
+    insertarUsuario(db, *c);
+
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
 
@@ -198,16 +198,16 @@ Cliente Cliente::cMostrarMenuIniSes()
 char Cliente::cMostrarMenuMenuPrinc()
 {
     char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("MENU PRINCIPAL\n");
-    printf("======================================\n\n");
-    printf("Seleccione una opcion: \n\n");
-    printf("1. Gestionar reservas\n");
-    printf("2. Modificar datos personales\n");
-    printf("3. Contactar con otros polideportivos\n");
-    printf("4. Gestionar polideportivos\n");
-    printf("5. Volver\n\n");
-    printf("Opcion: ");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MENU PRINCIPAL\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione una opcion: \n\n"<<endl;
+    cout<<"1. Gestionar reservas\n"<<endl;
+    cout<<"2. Modificar datos personales\n"<<endl;
+    cout<<"3. Contactar con otros polideportivos\n"<<endl;
+    cout<<"4. Gestionar polideportivos\n"<<endl;
+    cout<<"5. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     return *linea;
@@ -216,13 +216,13 @@ char Cliente::cMostrarMenuMenuPrinc()
 char Cliente::cMostrarMenuGestReserv()
 {
     char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("GESTIONAR RESERVAS\n");
-    printf("======================================\n\n");
-    printf("1. Reservar espacio deportivo\n");
-    printf("2. Anular reserva\n");
-    printf("3. Volver\n\n");
-    printf("Opcion: ");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"GESTIONAR RESERVAS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"1. Reservar espacio deportivo\n"<<endl;
+    cout<<"2. Anular reserva\n"<<endl;
+    cout<<"3. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     return *linea;
@@ -231,17 +231,17 @@ char Cliente::cMostrarMenuGestReserv()
 char Cliente::cMostrarMenuModifDat()
 {
     char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("MODIFICAR DATOS PERSONALES\n");
-    printf("======================================\n\n");
-    printf("Seleccione el dato que quiera modificar:\n\n");
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MODIFICAR DATOS PERSONALES\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione el dato que quiera modificar:\n\n"<<endl;
     
-    printf("1. Direccion\n");
-    printf("2. Tipo de cuota\n");
-    printf("3. Nombre de usuario\n");
-    printf("4. Contrasenya\n");
-    printf("5. Volver\n\n");
-    printf("Opcion: ");
+    cout<<"1. Direccion\n"<<endl;
+    cout<<"2. Tipo de cuota\n"<<endl;
+    cout<<"3. Nombre de usuario\n"<<endl;
+    cout<<"4. Contrasenya\n"<<endl;
+    cout<<"5. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
 
@@ -253,15 +253,23 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     sqlite3 *db;
     Usuario *u;
     char linea [MAX_LINE];
+    char nombreDeUsuario;
 
-    printf("\nNueva direccion: ");
+    cout<<"\nEscriba el nombre del usuario: "<<endl;
+    cin>>nombreDeUsuario;
+
+    
+
+    cout<<"\nNueva direccion: "<<endl;
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
-    printf("\nDireccion actualizada\n");
-    *u->direccion = insertarUsuario(db, u->direccion);
+    cout<<"\nDireccion actualizada\n"<<endl;
+
+    insertarUsuario(db, *u);
 
     return *u;
 }
+
  /*
 Usuario Cliente::cMostrarMenuModifDatTCout()
 {
@@ -284,7 +292,7 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
     sqlite3 *db;
     char linea [MAX_LINE];
 
-    printf("\nNuevo nombre de usuario: ");
+    cout<<"\nNuevo nombre de usuario: "<<endl;
     fgets(u->nombreUsuario, MAX_LINE, stdin);
     limpiarEntrada(u->nombreUsuario, MAX_LINE);
     printf("\nNombre de usuario actualizado\n");
@@ -361,4 +369,5 @@ int Cliente::cIniciarSesion(void)
 
     cMostrarMenuIniSes();
 
+}
 }

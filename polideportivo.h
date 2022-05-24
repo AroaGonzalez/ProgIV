@@ -7,7 +7,7 @@ typedef struct
 {
     char *ref;
     char *nombre;
-    char **instalaciones;
+    char *instalaciones;
     char *direccion;
     char *municipio;
     char* codMunicipio;
@@ -18,7 +18,7 @@ typedef struct
 
 
 //POLIDEPORTIVO
-void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char** instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel);
+void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char* instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel);
 
 
 #endif
