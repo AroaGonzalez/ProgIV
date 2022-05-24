@@ -254,6 +254,7 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     Usuario *u;
     char linea [MAX_LINE];
     char* nombreDeUsuario;
+    char* nuevaDireccion;
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
@@ -261,6 +262,8 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     selectUsuario(db, u, nombreDeUsuario);
 
     cout<<"\nNueva direccion: "<<endl;
+    cin>>nuevaDireccion;
+    *u->direccion = *nuevaDireccion; //EN DUDA!!!!!!!!!!!!!!!!!!!!!!1
     fgets(u->direccion, MAX_LINE, stdin);
     limpiarEntrada(u->direccion, MAX_LINE);
     cout<<"\nDireccion actualizada\n"<<endl;
