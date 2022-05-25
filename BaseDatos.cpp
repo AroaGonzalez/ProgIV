@@ -5,7 +5,9 @@
 #include "usuario.h"
 #include "adminServer.h"
 
+#include <iostream>
 
+using namespace std;
 
 int insertarUsuario(sqlite3 *db, Usuario *u){
 	sqlite3_stmt *stmt;
@@ -14,35 +16,33 @@ int insertarUsuario(sqlite3 *db, Usuario *u){
 	
 	strcat(sql, u->getNombre());
 	strcat(sql, ",");
-	strcat(sql, u->apellido);
+	strcat(sql, u->getApe());
 	strcat(sql, ",");
-	strcat(sql, u->fNac);
+	strcat(sql, u->getFnac());
 	strcat(sql, ",");
-	strcat(sql, u->genero);
+	strcat(sql, u->getGenero());
 	strcat(sql, ",");
-	strcat(sql, u->DNI);
+	strcat(sql, u->getDni());
 	strcat(sql, ",");
-	strcat(sql, u->direccion);
+	strcat(sql, u->getDir());
 	strcat(sql, ",");
-	strcat(sql, u->tel);
+	strcat(sql, u->getTel());
 	strcat(sql, ",");
-	strcat(sql, u->nombreUsuario);
+	strcat(sql, u->getNombreUsuario());
 	strcat(sql, ",");
-	strcat(sql, u->contrasenya);
-	strcat(sql, ",");
-	strcat(sql, u->cuota);
+	strcat(sql, u->getContrasenya());
 	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("SQL query prepared (SELECT)\n");
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
 
-	printf("\n");
+	cout<<"\n"<<endl;
 	printf("\n");
 
 	result = sqlite3_finalize(stmt);
@@ -61,7 +61,7 @@ int insertarUsuario(sqlite3 *db, Usuario *u){
 int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario) {
 	sqlite3_stmt *stmt;
 
-	char sql[50] = "select DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota from Usuario where nombreUsuario = '";
+	char sql[] = "select DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota from Usuario where nombreUsuario = '";
 	strcat(sql, nombreUsuario);
 	strcat(sql, "';");
 
@@ -92,7 +92,7 @@ int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario) {
 int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario) {
 	sqlite3_stmt *stmt;
 
-	char sql[50] = "select Nombre, Contrasenya from Administrador where nombreUsuario = '";
+	char sql[] = "select Nombre, Contrasenya from Administrador where nombreUsuario = '";
 	strcat(sql, nombreUsuario);
 	strcat(sql, "';");
 
