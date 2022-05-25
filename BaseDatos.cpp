@@ -12,15 +12,15 @@ int insertarUsuario(sqlite3 *db, Usuario *u){
 
 	char sql[50] = "INSERT INTO USUARIO VALUES(";
 	
-	strcat(sql, u->DNI);
-	strcat(sql, ",");
-	strcat(sql, u->nombre);
+	strcat(sql, u->getNombre());
 	strcat(sql, ",");
 	strcat(sql, u->apellido);
 	strcat(sql, ",");
 	strcat(sql, u->fNac);
 	strcat(sql, ",");
 	strcat(sql, u->genero);
+	strcat(sql, ",");
+	strcat(sql, u->DNI);
 	strcat(sql, ",");
 	strcat(sql, u->direccion);
 	strcat(sql, ",");

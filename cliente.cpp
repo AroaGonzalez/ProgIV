@@ -111,7 +111,8 @@ char Cliente::cMostrarMenuGestPoli1()
 Usuario Cliente::cMostrarMenuRegUsu()
 {
     sqlite3 *db;
-    Usuario *u;
+    Usuario u(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
+
     char linea [MAX_LINE];
 
     cout<<"\n======================================\n"<<endl;
@@ -119,45 +120,44 @@ Usuario Cliente::cMostrarMenuRegUsu()
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros\n"<<endl;
     
+    char* nombreU;
     cout<<"-> Nombre: "<<endl;
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(u->nombre, MAX_LINE);
-    
+    cin>>nombreU;
 
+    char* apellidoU;
     cout<<"\n-> Apellido: "<<endl;
-    fgets(u->apellido, MAX_LINE, stdin);
-    limpiarEntrada(u->apellido, MAX_LINE);
-    
+    cin>> apellidoU;
+
+    char* DNIU;
     cout<<"\n-> DNI: "<<endl;
-    fgets(u->DNI, MAX_LINE, stdin);
-    limpiarEntrada(u->DNI, MAX_LINE);
+    cin>>DNIU;
 
+    char* telU;
+    cout<<"\n-> Telefono: "<<endl;
+    cin>>telU;
+
+    char* FNacU;
     cout<<"\n-> Fecha nacimiento: "<<endl;
-    fgets(u->fNac, MAX_LINE, stdin);
-    limpiarEntrada(u->fNac, MAX_LINE);
+    cin>>FNacU;
 
+    char* generoU;
     cout<<"\n-> Genero: "<<endl;
-    fgets(u->genero, MAX_LINE, stdin);
-    limpiarEntrada(u->genero, MAX_LINE);
-    
+    cin>>generoU;
+
+    char* dirU;
     cout<<"\n-> Direccion: "<<endl;
-    fgets(u->direccion, MAX_LINE, stdin);
-    limpiarEntrada(u->direccion, MAX_LINE);
-    
-    /*printf("\n-> Tipo de cuota: ");
-    fgets(u->cuota, MAX_LINE, stdin);
-    limpiarEntrada(u->cuota, MAX_LINE);
-    *u->cuota = insertarUsuario(db, u->cuota);
-    */
+    cin>>dirU;
    
+    char* nomUsuU;
     cout<<"\n-> Nombre de usuario: "<<endl;
-    fgets(u->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(u->nombreUsuario, MAX_LINE);
+    cin>>nomUsuU;
     
+    char* conU;
     cout<<"\n-> Contrasenya: "<<endl;
-    fgets(u->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(u->contrasenya, MAX_LINE);
-   
+    cin>>conU;
+
+    Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
+
     cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
     insertarUsuario(db, u);
     
