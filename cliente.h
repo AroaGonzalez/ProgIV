@@ -4,7 +4,7 @@
 
 #include "polideportivo.h"
 
-class Cliente: public Usuario
+class Cliente
 {
 
     private:
@@ -12,10 +12,15 @@ class Cliente: public Usuario
         char* contrasenya;
 
     public:
-        Cliente(); //vacío
-        Cliente(); //por defecto (falta por hacer)
-        Cliente(); //copia (falta por hacer)
-        ~Cliente(); //destructor (falta por hacer)
+
+        Cliente(char* nombreUsuario, char* contrasenya); 
+        Cliente(const Usuario &u); 
+        Virtual ~Cliente();
+
+        char* getNombreUsuario();
+        char* setNombreUsu(char* nombreUsu);
+        char* getContrasenya();
+        char* setContrasenya(char* contrasenya);
 
         void limpiarEntrada(char *str, int max_line);
 

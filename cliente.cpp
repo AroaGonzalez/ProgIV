@@ -5,88 +5,122 @@
 #include <stdlib.h>
 #include "adminServer.h"
 #include "BaseDatos.h"
+#include "usuario.h"
 
-extern "C"{
-    #include "usuario.h"
-}
 
 using namespace std;
 
+Cliente::Cliente(char* nombreUsuario, char* contrasenya)
+{
+    this->nombreUsuario = nombreUsuario;
+    this->contrasenya = contrasenya;
+}
 
-    void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
+Cliente::Cliente(const Cliente &c)
+{
+    this->nombreUsuario = c.nombreUsuario;
+    this->contrasenya = c.contrasenya;
+}
+
+Cliente::~Cliente()
+{
+
+}
+
+char* Usuario::getNombreUsuario()
+{
+    return this->nombreUsuario;
+}
+
+char* Usuario::setNombreUsu(char* nombreUsu)
+{
+    this->nombreUsuario = nombreUsu;
+}
+
+char* Usuario::getContrasenya()
+{
+    return this->contrasenya;
+}
+
+char* Usuario::setContrasenya(char* contrasenya)
+{
+    this->contrasenya = contrasenya;
+}
+
+void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
+{
+    FILE* file = fopen(fichero, "r");
+
+    int contlinea;
+    int charIndex;
+    char **lineas;
+    char c;
+    Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
+
+    int puntoComa = 0;
+
+    while ((c=fgetc(file)) != EOF)
     {
-        FILE* file = fopen(fichero, "r");
 
-        int contlinea;
-        int charIndex;
-        char **lineas;
-        char c;
-        Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
-
-        int puntoComa = 0;
-
-        while ((c=fgetc(file)) != EOF)
+        if (c == '\n')
         {
+            poli = p[contlinea];
+            contlinea++;
+            charIndex = 0;
+            puntoComa = 0;
 
-            if (c == '\n')
-            {
-                poli = p[contlinea];
-                contlinea++;
-                charIndex = 0;
-                puntoComa = 0;
-
-            }else if (c != ';')
-            {
-                
-                lineas[contlinea][charIndex] = c;
-                charIndex++;
-        
-            }else if(c == ';')
-            {
-                InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
-                
-                puntoComa++;
-                if (puntoComa == 1)
-                {
-                    p[contlinea]->ref = lineas[0];
-
-                }else if (puntoComa == 2)
-                {
-                    p[contlinea]->nombre = lineas[1];
-
-                }else if (puntoComa == 3)
-                {
-                    p[contlinea]->instalaciones = lineas[2];
-
-                }else if (puntoComa == 4)
-                {
-                    p[contlinea]->direccion = lineas[3];
-
-                }else if (puntoComa == 5)
-                {
-                    p[contlinea]->municipio = lineas[4];
-
-                }else if (puntoComa == 6)
-                {
-                    p[contlinea]->codMunicipio = lineas[5];
-
-                }else if (puntoComa == 7)
-                {
-                    p[contlinea]->provincia = lineas[6];
-
-                }else if (puntoComa == 8)
-                {
-                    p[contlinea]->codProv = lineas[7];
-
-                }else if (puntoComa == 9)
-                {
-                    p[contlinea]->tel = lineas[8];
-                }
-
-            }
+        }else if (c != ';')
+        {
             
-        }
+            lineas[contlinea][charIndex] = c;
+            charIndex++;
     
+        }else if(c == ';')
+        {
+            InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
+            
+            puntoComa++;
+            if (puntoComa == 1)
+            {
+                p[contlinea]->ref = lineas[0];
+
+            }else if (puntoComa == 2)
+            {
+                p[contlinea]->nombre = lineas[1];
+
+            }else if (puntoComa == 3)
+            {
+                p[contlinea]->instalaciones = lineas[2];
+
+            }else if (puntoComa == 4)
+            {
+                p[contlinea]->direccion = lineas[3];
+
+            }else if (puntoComa == 5)
+            {
+                p[contlinea]->municipio = lineas[4];
+
+            }else if (puntoComa == 6)
+            {
+                p[contlinea]->codMunicipio = lineas[5];
+
+            }else if (puntoComa == 7)
+            {
+                p[contlinea]->provincia = lineas[6];
+
+            }else if (puntoComa == 8)
+            {
+                p[contlinea]->codProv = lineas[7];
+
+            }else if (puntoComa == 9)
+            {
+                p[contlinea]->tel = lineas[8];
+            }
+
+        }
+        
+    }
+
 
     fclose(file);
 }
@@ -165,7 +199,7 @@ Usuario Cliente::cMostrarMenuRegUsu()
     limpiarEntrada(linea, MAX_LINE);
     
     
-    return *u;
+    return u;
 
 }
 
