@@ -6,8 +6,11 @@
 #include "adminServer.h"
 
 #include <iostream>
+#include <string.h>
 
 using namespace std;
+
+
 
 int insertarUsuario(sqlite3 *db, Usuario *u){
 	sqlite3_stmt *stmt;
@@ -32,6 +35,7 @@ int insertarUsuario(sqlite3 *db, Usuario *u){
 	strcat(sql, ",");
 	strcat(sql, u->getContrasenya());
 	strcat(sql, ");");
+	
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -58,11 +62,11 @@ int insertarUsuario(sqlite3 *db, Usuario *u){
 
 }
 
-int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario) {
+int selectUsuario(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select DNI, Nombre, Apellidos, Fecha, Genero, Direccion, Tel, nombreUsuario, Contrasenya, Cod_cuota from Usuario where nombreUsuario = '";
-	strcat(sql, nombreUsuario);
+	strcat(sql, u->getNombreUsuario());
 	strcat(sql, "';");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
@@ -164,24 +168,24 @@ int insertarCliente(sqlite3 *db, Cliente *c) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("SQL query prepared (SELECT)\n");
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
 
-	printf("\n");
-	printf("\n");
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
 
 	result = sqlite3_finalize(stmt);
 	if (result != SQLITE_OK) {
-		printf("Error finalizing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("Prepared statement finalized (SELECT)\n");
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
 
 	return SQLITE_OK;
 }
@@ -189,30 +193,30 @@ int insertarCliente(sqlite3 *db, Cliente *c) {
 int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario) {
 	sqlite3_stmt *stmt;
 	
-	char sql[50] = "select Nombre, Contrasenya from Cliente where nombreUsuario = '";
+	char sql[] = "select Nombre, Contrasenya from Cliente where nombreUsuario = '";
 	strcat(sql, nombreUsuario);
 	strcat(sql, "';");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("SQL query prepared (SELECT)\n");
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
 
-	printf("\n");
-	printf("\n");
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
 
 	result = sqlite3_finalize(stmt);
 	if (result != SQLITE_OK) {
-		printf("Error finalizing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("Prepared statement finalized (SELECT)\n");
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
 
 	return SQLITE_OK;
 }
@@ -220,7 +224,6 @@ int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario) {
 int crearReserva(sqlite3 *db, Reserva *r) {
 	sqlite3_stmt *stmt;
 
-	char sql[] = "select Cod, Hora, Tipo, Precio, Cod_poli from Reserva";
 	char sql[] = "INSERT INTO Reserva VALUES(";
 	strcat(sql, r->Cod);
 	strcat(sql, ",");
@@ -235,24 +238,24 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("SQL query prepared (SELECT)\n");
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
 
-	printf("\n");
-	printf("\n");
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
 
 	result = sqlite3_finalize(stmt);
 	if (result != SQLITE_OK) {
-		printf("Error finalizing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("Prepared statement finalized (SELECT)\n");
-
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
 	return SQLITE_OK;
 }

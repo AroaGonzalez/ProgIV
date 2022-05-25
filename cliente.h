@@ -15,7 +15,7 @@ class Cliente
 
         Cliente(char* nombreUsuario, char* contrasenya); 
         Cliente(const Usuario &u); 
-        Virtual ~Cliente();
+        virtual ~Cliente();
 
         char* getNombreUsuario();
         char* setNombreUsu(char* nombreUsu);

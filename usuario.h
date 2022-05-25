@@ -1,8 +1,5 @@
 #ifndef _USUARIO_H_
 #define _USUARIO_H_
-#define DNI_LINE 9
-#define MAX_LINE 30
-#define TEL_MAX 9
 
 
 class Usuario
@@ -41,7 +38,7 @@ class Usuario
         char* getNombreUsuario();
         char* setNombreUsu(char* nombreUsu);
         char* getContrasenya();
-        char* setContrasenya(char* contrasenya)
+        char* setContrasenya(char* contrasenya);
         
 };
 

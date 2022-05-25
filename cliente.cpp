@@ -132,7 +132,7 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"GESTION DE POLIDEPORTIVOS DE EUSKADI\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Bienvenido al programa que administra el servidor\n"<<endl;
-    cout<<"Bienvenido al programa que administra el servidor\n"<<endl;
+
     cout<<"1. Iniciar sesion\n"<<endl;
     cout<<"2. Registrar usuario\n"<<endl;
     cout<<"3. Salir\n\n"<<endl;
@@ -142,11 +142,10 @@ char Cliente::cMostrarMenuGestPoli1()
     return *linea;
 }
 
+Usuario* listaUsu[];
 Usuario Cliente::cMostrarMenuRegUsu()
 {
     sqlite3 *db;
-    Usuario u(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
-
     char linea [MAX_LINE];
 
     cout<<"\n======================================\n"<<endl;
@@ -198,17 +197,28 @@ Usuario Cliente::cMostrarMenuRegUsu()
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     
+    //PREGUNTAAAAAAAAAAR
+	for (int i = 0; i < sizeof(*listaUsu); i++)
+	{
+		if(i == sizeof(*listaUsu))
+		{
+			*listaUsu[sizeof(u)+1] = u;
+		}
+	}
     
     return u;
 
 }
 
+
+
 Cliente Cliente::cMostrarMenuIniSes()
 {
     Cliente *c;
     sqlite3 *db;
+    char* nombreDeUsuario;
+    char* contrasenya;
 
-    char linea [MAX_LINE];
 
     cout<<"\n======================================\n"<<endl;
     cout<<"INICIO DE SESION\n"<<endl;
@@ -216,18 +226,16 @@ Cliente Cliente::cMostrarMenuIniSes()
     cout<<"Rellene los siguientes parametros\n\n"<<endl;
     
     cout<<"-> Nombre de usuario: "<<endl;
-    fgets(c->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(c->nombreUsuario, MAX_LINE);
+    cin>>nombreDeUsuario;
+    c->setNombreUsu(nombreDeUsuario);
+    selectCliente(db, c, c->getNombreUsuario());
     
     cout<<"\n-> Contrasenya: "<<endl;
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    cin>>contrasenya;
+    c->setContrasenya(contrasenya);
+    selectCliente(db, c, c->getContrasenya());
     
-    cout<<"\nPulsa enter para continuar "<<endl;
-    insertarCliente(db, c);
-
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    cout<<"\nPulsa enter para continuar "<<endl;  
 
     return *c;
 }
@@ -295,35 +303,16 @@ Usuario Cliente::cMostrarMenuModifDatDir()
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
-
-    selectUsuario(db, u, nombreDeUsuario);
+    u->setNombreUsu(nombreDeUsuario);
+    selectUsuario(db, u, u->getNombreUsuario());
 
     cout<<"\nNueva direccion: "<<endl;
     cin>>nuevaDireccion;
-    *u->direccion = *nuevaDireccion; //EN DUDA!!!!!!!!!!!!!!!!!!!!!!1
-    fgets(u->direccion, MAX_LINE, stdin);
-    limpiarEntrada(u->direccion, MAX_LINE);
+    u->setDir(nuevaDireccion); //EN DUDA!!!!!!!!!!!!!!!!!!!!!!
     cout<<"\nDireccion actualizada\n"<<endl;
 
     return *u;
 }
-
- /*
-Usuario Cliente::cMostrarMenuModifDatTCout()
-{
-    sqlite3 *db;
-    Usuario *u;
-   
-    char linea [MAX_LINE];
-    printf("\nNuevo tipo de cuota: ");
-    fgets(u->cuota, MAX_LINE, stdin);
-    limpiarEntrada(u->cuota, MAX_LINE);
-    printf("\nTipo de cuota actualizado\n");
-    *u->cuota = insertarUsuario(db, u->cuota);
-
-    return *u;
-}
-*/
 
 Usuario Cliente::cMostrarMenuModifDatNomUsu()
 {
@@ -331,15 +320,18 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
     sqlite3 *db;
     char linea [MAX_LINE];
     char* nuevoNombreDeUsuario;
+    char* nombreDeUsuario;
+
+    cout<<"\nEscriba el nombre del usuario: "<<endl;
+    cin>>nombreDeUsuario;
+    u->setNombreUsu(nombreDeUsuario);
+
+    selectUsuario(db, u, u->getNombreUsuario());
 
     cout<<"\nNuevo nombre de usuario: "<<endl;
     cin>>nuevoNombreDeUsuario;
+    u->setNombreUsu(nuevoNombreDeUsuario);
 
-    selectUsuario(db, u, nuevoNombreDeUsuario);
-    *u->nombreUsuario = *nuevoNombreDeUsuario;
-
-    fgets(u->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(u->nombreUsuario, MAX_LINE);
     cout<<"\nNombre de usuario actualizado\n"<<endl;
 
     return *u;
@@ -350,17 +342,20 @@ Usuario Cliente::cMostrarMenuModifDatContr()
     Usuario *u;
     sqlite3 *db;
     char* nuevaContrasenya;
+    char* nombreDeUsuario;
 
-    char linea [MAX_LINE];
+    cout<<"\nEscriba el nombre del usuario: "<<endl;
+    cin>>nombreDeUsuario;
+    u->setNombreUsu(nombreDeUsuario);
+
+    selectUsuario(db, u, u->getNombreUsuario());
+
+
     cout<<"\nNueva contrasenya: "<<endl;
     cin>>nuevaContrasenya;
+    u->setContrasenya(nuevaContrasenya);
 
-    selectUsuario(db, u, nuevaContrasenya);
-    *u->contrasenya = *nuevaContrasenya;
-
-    fgets(u->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(u->contrasenya, MAX_LINE);
-    printf("\nContrasenya actualizada\n");
+    cout<<"\nContrasenya actualizada\n"<<endl;
 
     return *u;
 }
@@ -377,7 +372,7 @@ char Cliente::cMostrarMenuContactPoli()
     limpiarEntrada(linea, MAX_LINE);
 
     int telef = 666666666;    
-    printf("\nEl numero telefonico del polideportivo es: %i", telef);
+    cout<<"\nEl numero telefonico del polideportivo es: "<< telef<<endl;
 
     return *linea;}
 
