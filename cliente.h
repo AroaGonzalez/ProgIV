@@ -51,7 +51,7 @@ class Cliente
 
         //CLIENTE CONTROL
 
-        static int cGestionPolideportivos();
+        static int cGestionPolideportivos(char opcion);
 
         static int cRegistroUsuario();
 

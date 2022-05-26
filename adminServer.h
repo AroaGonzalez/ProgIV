@@ -3,7 +3,7 @@
 #include "menu.h"
 #include "usuario.h"
 
-class Administrador
+class Administrador:public Usuario
 {
     private:
         char* nombreUsuario;
