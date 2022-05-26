@@ -11,6 +11,8 @@
 
 using namespace std;
 
+Administrador::Administrador(){}
+
 Administrador::Administrador(char* nombreUsuario, char* contrasenya)
 {
     this->nombreUsuario = nombreUsuario;
@@ -23,7 +25,6 @@ Administrador::Administrador(const Administrador &a)
 }
 Administrador::~Administrador()
 {
-
 }
 
 char* Administrador::getNombreUsuario()
