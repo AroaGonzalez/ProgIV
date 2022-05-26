@@ -10,7 +10,7 @@ class Administrador
         char* contrasenya;
     
     public:
-
+        Administrador();
         Administrador(char* nombreUsuario, char* contrasenya); 
         Administrador(const Administrador &a); 
         virtual ~Administrador();
