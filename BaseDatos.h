@@ -16,6 +16,11 @@
 class BaseDatos
 {
     public:
+        //hay que hacer constructores
+        //BaseDatos(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
+        //BaseDatos(const BaseDatos &bd);
+        //virtual ~BaseDatos();
+
         static int insertarUsuario(sqlite3 *db, Usuario *u);
 
         static int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);

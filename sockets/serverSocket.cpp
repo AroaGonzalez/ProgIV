@@ -2,6 +2,8 @@
 
 #include <stdio.h>
 #include <winsock2.h>
+#include <string.h>
+#include <iostream>
 #include "adminServer.h"
 #include "BaseDatos.h"
 #include "cliente.h"
@@ -9,6 +11,7 @@
 #include "polideportivo.h"
 #include "reserva.h"
 #include "usuario.h"
+using namespace std;
 
 
 #define SERVER_IP "127.0.0.1"
@@ -22,6 +25,13 @@ int main(int argc, char *argv[]) {
 	struct sockaddr_in server;
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
+
+	//BaseDatos db("BaseDeDatos.db");
+
+	Cliente c("a", "s");
+	Polideportivo p;
+
+	int optionDB;
 
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
@@ -82,42 +92,92 @@ int main(int argc, char *argv[]) {
 
 	//SEND and RECEIVE data
 	printf("Waiting for incoming messages from client... \n");
-	do {
-		int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		if (bytes > 0) {
-			if (strcmp(recvBuff, "iniS") == 0) {//LOGIN
-				printf("Receiving message... \n");
-				printf("Data received: %s \n", recvBuff);
+	do{
+		char option1;
+		char userName[15];
+		char passW[15];
+		char response[10] = "Accepted";
+		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+		sscanf(recvBuff, "%i", &option1);
+		switch (option1)
+		{
+		case 1:
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the User Name
+			sprintf(userName, "%s", recvBuff); //saves the user name
 
-				printf("Sending reply... \n");
-				strcpy(sendBuff, "ACK -> "); //la respuesta aqui
-				strcat(sendBuff, recvBuff);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-				printf("Data sent: %s \n", sendBuff);
-			}else if (strcmp(recvBuff, "regUsu") == 0) {
-				printf("Receiving message... \n");
-				printf("Data received: %s \n", recvBuff);
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
+			sprintf(passW, "%s", recvBuff); //saves the password
+			
+			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
+				sprintf(sendBuff, "%s", response);
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Accepted" al cliente como respuesta a su petición
+				
+				do{
+					recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva solicitud del cliente
+					sscanf(recvBuff, "%i", &optionDB);
+					switch (optionDB)
+					{
+					case 1: //insertar usuario
+						sscanf(recv(comm_socket, recvBuff, sizeof(recvBuff), 0)); //REC EL HOTEL
+						sscanf(recvBuff, "%s %s %d %s %s %f", p.codMunicipio, p.codProv,
+								p.direccion, &p.instalaciones, p.municipio, p.nombre,
+								p.provincia, p.ref, p.tel);
+						break;
+					
+					default:
+						break;
+					}
 
-				printf("Sending reply... \n");
-				strcpy(sendBuff, "ACK -> "); //la respuesta aqui
-				strcat(sendBuff, recvBuff);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-				printf("Data sent: %s \n", sendBuff);
-			}else if (strcmp(recvBuff, "gestR") == 0) {//MENU PRINCIPAL
-				printf("Receiving message... \n");
-				printf("Data received: %s \n", recvBuff);
 
-				printf("Sending reply... \n");
-				strcpy(sendBuff, "ACK -> "); //la respuesta aqui
-				strcat(sendBuff, recvBuff);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-				printf("Data sent: %s \n", sendBuff);
-			}
-		if (strcmp(recvBuff, "endConn") == 0)//LAST MESSAGE, ASKING FOR CLOSING CONNECTION
+
+				}
+				
+				
+				}
+			
+			break;
+		
+		default:
 			break;
 		}
-	} while (1);
+		
+			if(strcmp(recvBuff, "")){
 
+					int bytes = recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+					if (bytes > 0) {
+						if (strcmp(recvBuff, "iniS") == 0) {//LOGIN
+							printf("Receiving message... \n");
+							printf("Data received: %s \n", recvBuff);
+
+							printf("Sending reply... \n");
+							strcpy(sendBuff, "ACK -> "); //la respuesta aqui
+							strcat(sendBuff, recvBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							printf("Data sent: %s \n", sendBuff);
+						}else if (strcmp(recvBuff, "regUsu") == 0) {
+							printf("Receiving message... \n");
+							printf("Data received: %s \n", recvBuff);
+
+							printf("Sending reply... \n");
+							strcpy(sendBuff, "ACK -> "); //la respuesta aqui
+							strcat(sendBuff, recvBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							printf("Data sent: %s \n", sendBuff);
+						}else if (strcmp(recvBuff, "gestR") == 0) {//MENU PRINCIPAL
+							printf("Receiving message... \n");
+							printf("Data received: %s \n", recvBuff);
+
+							printf("Sending reply... \n");
+							strcpy(sendBuff, "ACK -> "); //la respuesta aqui
+							strcat(sendBuff, recvBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							printf("Data sent: %s \n", sendBuff);
+						}
+				//if (strcmp(recvBuff, "endConn") == 0)//LAST MESSAGE, ASKING FOR CLOSING CONNECTION
+				//	break;
+				//}
+			}
+	}
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();
