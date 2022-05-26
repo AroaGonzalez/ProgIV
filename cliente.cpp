@@ -139,7 +139,7 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
-    cGestionPolideportivos(linea);
+
     return linea;
 }
 
@@ -360,7 +360,7 @@ char Cliente::cMostrarMenuContactPoli()
     return linea;
 }
 
-int Cliente::cGestionPolideportivos(char opcion)
+int Cliente::cGestionPolideportivos()
 {
     char opcion;
 
