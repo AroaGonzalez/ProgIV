@@ -10,8 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_LINE 30
-#define DNI_LINE 8
+
 
 class BaseDatos
 {
@@ -34,6 +33,10 @@ class BaseDatos
         static int insertarCliente(sqlite3 *db, Cliente *c);
 
         static int crearReserva(sqlite3 *db, Reserva *r);
+
+        static int selectMaxRef(sqlite3 *db, char* ref);
+
+        static int borrarPoli(sqlite3 *db, char* nombre);
 };
 
 

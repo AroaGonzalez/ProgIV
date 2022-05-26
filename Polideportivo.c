@@ -62,3 +62,5 @@ void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char* instalacio
     free(p->tel);
 
 }
+
+

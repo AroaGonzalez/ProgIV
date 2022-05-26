@@ -1,5 +1,6 @@
 #ifndef _CLIENTE_H_
 #define _CLIENTE_H_
+#include "usuario.h"
 
 
 #include "polideportivo.h"
@@ -12,9 +13,9 @@ class Cliente
         char* contrasenya;
 
     public:
-
+        Cliente();
         Cliente(char* nombreUsuario, char* contrasenya); 
-        Cliente(const Usuario &u); 
+        Cliente(const Cliente &c); 
         virtual ~Cliente();
 
         char* getNombreUsuario();
@@ -28,9 +29,9 @@ class Cliente
 
         static char cMostrarMenuGestPoli1();
 
-        static Usuario cMostrarMenuRegUsu();
+        static void cMostrarMenuRegUsu();
 
-        static Cliente cMostrarMenuIniSes();
+        static void cMostrarMenuIniSes();
 
         static char cMostrarMenuMenuPrinc();
 

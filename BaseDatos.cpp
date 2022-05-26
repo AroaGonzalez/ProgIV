@@ -93,6 +93,37 @@ int selectUsuario(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 	return SQLITE_OK;
 }
 
+int selectMaxRef(sqlite3 *db, char* ref) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "select MAX(Ref) from  Polideportivo";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
+
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	strcpy(ref, sql);
+
+	return SQLITE_OK;
+}
+
 int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario) {
 	sqlite3_stmt *stmt;
 
@@ -128,9 +159,9 @@ int insertarAdmin(sqlite3 *db, Administrador *a) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "INSERT INTO ADMINISTRADOR VALUES(";
-	strcat(sql, a->nombreUsuario);
+	strcat(sql, a->getNombreUsuario());
 	strcat(sql, ",");
-	strcat(sql, a->contrasenya);
+	strcat(sql, a->getContrasenya());
 	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
@@ -235,6 +266,37 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 	strcat(sql, ",");
 	strcat(sql, r->Cod_poli);
 	strcat(sql, ");");
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
+
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	return SQLITE_OK;
+}
+
+static int borrarPoli(sqlite3 *db, char* nombre) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "Delete from Polideportivo where Nombre = '";
+	strcat(sql, nombre);
+	strcat(sql, "';");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {

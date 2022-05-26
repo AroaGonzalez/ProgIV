@@ -16,7 +16,7 @@ class Usuario
         char* contrasenya;
     
     public:
-
+        Usuario();
         Usuario(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
         Usuario(const Usuario &u);
         virtual ~Usuario();

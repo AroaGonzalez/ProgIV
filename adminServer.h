@@ -2,36 +2,55 @@
 #define _ADMINSERVER_H_
 #include "menu.h"
 #include "usuario.h"
-#define MAX_LINE 30
-#define DNI_LINE 8
 
-typedef struct
+class Administrador
 {
-    char nombreUsuario [MAX_LINE];
-    char contrasenya [MAX_LINE];
+    private:
+        char* nombreUsuario;
+        char* contrasenya;
+    
+    public:
+        Administrador();
+        Administrador(char* nombreUsuario, char* contrasenya); 
+        Administrador(const Administrador &a); 
+        virtual ~Administrador();
 
-}Administrador;
+        char* getNombreUsuario();
+        char* setNombreUsu(char* nombreUsu);
+        char* getContrasenya();
+        char* setContrasenya(char* contrasenya);
 
-//ADMINSERVER MENU
+        static char sMostrarMenuGestPoli1();
 
-char sMostrarMenuGestPoli1();
+        static void sMostrarMenuRegUsu();
 
-Usuario sMostrarMenuRegUsu();
+        static char sMostrarMenuIniSes();
 
-char sMostrarMenuIniSes();
+        static char sMostrarMenuMenuPrinc();
 
-char sMostrarMenuMenuPrinc();
+        static char sMostrarMenuImportDat();
 
-char sMostrarMenuImportDat();
+        static void sMostrarMenuBorrarBD();
 
-char sMostrarMenuBorrarBD();
+        //ADMINSERVER CONTROL
 
-//ADMINSERVER CONTROL
+        static int sGestionPolideportivos();
 
-int sGestionPolideportivos();
+        static int sRegistroUsuario();
 
-int sRegistroUsuario();
+        static int sIniciarSesion();
 
-int sIniciarSesion();
+        static char gMostrarMenuGestPoli2();
+
+        static void gMostrarMenuListPoli();
+
+        static void gMostrarMenuListPoliMuni();
+
+        static void gMostrarMenuAnyadirPoli();
+
+        static char gMostrarMenuModifPoli();
+
+        static void gMostrarMenuBorrarPoli();
+};
 
 #endif
