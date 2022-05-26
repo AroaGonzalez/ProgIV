@@ -13,7 +13,7 @@ class Cliente
         char* contrasenya;
 
     public:
-
+        Cliente();
         Cliente(char* nombreUsuario, char* contrasenya); 
         Cliente(const Cliente &c); 
         virtual ~Cliente();
