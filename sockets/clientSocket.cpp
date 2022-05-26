@@ -2,6 +2,16 @@
 
 #include <stdio.h>
 #include <winsock2.h>
+#include "adminServer.h"
+#include "BaseDatos.h"
+#include "cliente.h"
+#include "cuota.h"
+#include "menu.h"
+#include "polideportivo.h"
+#include "reserva.h"
+#include "usuario.h"
+
+
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
