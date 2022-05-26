@@ -9,6 +9,8 @@
 
 using namespace std;
 
+Cliente::Cliente(){}
+
 Cliente::Cliente(char* nombreUsuario, char* contrasenya)
 {
     this->nombreUsuario = nombreUsuario;
