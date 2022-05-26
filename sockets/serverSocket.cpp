@@ -7,7 +7,6 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
 #include "cliente.h"
-#include "menu.h"
 #include "polideportivo.h"
 #include "reserva.h"
 #include "usuario.h"
@@ -108,7 +107,8 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
 			sprintf(passW, "%s", recvBuff); //saves the password
 			
-			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
+			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT"))
+			{ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
 				sprintf(sendBuff, "%s", response);
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Accepted" al cliente como respuesta a su petición
 				
@@ -132,9 +132,9 @@ int main(int argc, char *argv[]) {
 
 
 				}
+					
 				
-				
-				}
+			}
 			
 			break;
 		
@@ -179,6 +179,7 @@ int main(int argc, char *argv[]) {
 				//}
 			}
 	}
+	
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();

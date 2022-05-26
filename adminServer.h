@@ -1,6 +1,6 @@
 #ifndef _ADMINSERVER_H_
 #define _ADMINSERVER_H_
-#include "menu.h"
+
 #include "usuario.h"
 
 class Administrador

@@ -1,6 +1,6 @@
 #ifndef BASEDATOS_H
 #define BASEDATOS_H
-#include "menu.h"
+
 #include "sqlite3.h"
 #include "usuario.h"
 #include "adminServer.h"
@@ -15,10 +15,6 @@
 class BaseDatos
 {
     public:
-        //hay que hacer constructores
-        //BaseDatos(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
-        //BaseDatos(const BaseDatos &bd);
-        //virtual ~BaseDatos();
 
         static int insertarUsuario(sqlite3 *db, Usuario *u);
 
