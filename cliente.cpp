@@ -139,11 +139,15 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
+<<<<<<< Updated upstream
 
+=======
+    cGestionPolideportivos();
+>>>>>>> Stashed changes
     return linea;
 }
 
-void Cliente::cMostrarMenuRegUsu()
+char Cliente::cMostrarMenuRegUsu()
 {
     sqlite3 *db;
 
@@ -197,7 +201,7 @@ void Cliente::cMostrarMenuRegUsu()
 
 
 
-void Cliente::cMostrarMenuIniSes()
+char Cliente::cMostrarMenuIniSes()
 {
     Cliente *c;
     sqlite3 *db;
@@ -382,3 +386,102 @@ int Cliente::cGestionPolideportivos()
     }while(opcion != '3');
 }
 
+int Cliente::cIniciarSesion()
+{
+    
+    //en este no son opciones, es coger datos y luego me lleva a:
+    
+}
+
+int Cliente::cMenuPrincipal()
+{
+    char opcion;
+
+    do{
+        opcion = cMostrarMenuMenuPrinc();
+        switch (opcion)
+        {
+        case '1':
+            cModifDatos();
+            break;
+
+        case '2':
+            cContactarPolideportivos();
+            break;
+
+        case '3':
+            cContactarPolideportivos();
+            break;
+
+        case '4':
+            cGestionPolideportivos();
+            break;
+
+        default:
+            break;
+        }
+    }while(opcion != '3');
+}
+int Cliente::cGestionarReservas()
+{}
+
+int Cliente::cModifDatos()
+{}
+
+int Cliente::cContactarPolideportivos()
+{}
+
+int Cliente::cReservarEspacioDeportivo()
+{}
+
+int Cliente::cAnularReserva()
+{}
+
+int Cliente::cVisualizacionGeneral()
+{}
+
+int Cliente::cVisualizacionPorMunicipio()
+{}
+
+int Cliente::cAnyadirPolideportivo()
+{}
+
+int Cliente::cModificarPolideportivo()
+{}
+
+int Cliente::cEliminarPolideportivo()
+{}
+
+int Cliente::cGestionarPolideportivos()
+{
+    char opcion;
+
+    do{
+        opcion = cMostrarMenuMenuPrinc();
+        switch (opcion)
+        {
+        case '1':
+            cVisualizacionGeneral();
+            break;
+
+        case '2':
+            cVisualizacionPorMunicipio();
+            break;
+
+        case '3':
+            cAnyadirPolideportivo();
+            break;
+
+        case '4':
+            cModificarPolideportivo();
+            break;
+
+        case '5':
+            cEliminarPolideportivo();
+            break;
+
+        default:
+            break;
+        }
+    }while(opcion != '3');
+}

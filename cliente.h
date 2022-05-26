@@ -29,9 +29,9 @@ class Cliente
 
         static char cMostrarMenuGestPoli1();
 
-        static void cMostrarMenuRegUsu();
+        static char cMostrarMenuRegUsu();
 
-        static void cMostrarMenuIniSes();
+        static char cMostrarMenuIniSes();
 
         static char cMostrarMenuMenuPrinc();
 
@@ -56,6 +56,31 @@ class Cliente
         static int cRegistroUsuario();
 
         static int cIniciarSesion();
+
+        static int cMenuPrincipal();
+
+        static int cGestionarReservas();
+
+        static int cModifDatos();
+
+        static int cContactarPolideportivos();
+
+        static int cReservarEspacioDeportivo();
+
+        static int cAnularReserva();
+
+        static int cVisualizacionGeneral();
+
+        static int cVisualizacionPorMunicipio();
+
+        static int cAnyadirPolideportivo();
+
+        static int cModificarPolideportivo();
+
+        static int cEliminarPolideportivo();
+
+        static int cGestionarPolideportivos();
+
 
 };
 

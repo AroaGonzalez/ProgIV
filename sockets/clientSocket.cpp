@@ -80,6 +80,8 @@ int main(int argc, char *argv[]) {
 	//recv(s, recvBuff, sizeof(recvBuff), 0);
 	//cout << "Data received: "<< recvBuff << "\n" << endl;
 
+
+	
 	Cliente::cMostrarMenuIniSes();
 
 	//registrar usario
@@ -117,7 +119,7 @@ int main(int argc, char *argv[]) {
 	//menu modificar datos
 	Cliente::cMostrarMenuModifDat();
 
-	//menu m
+	//menu modificar dat dir
 	Cliente::cMostrarMenuModifDatDir();
 
 	cout << "Sending request registrar usuario... \n" << endl;

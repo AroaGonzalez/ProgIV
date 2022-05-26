@@ -15,7 +15,7 @@ using namespace std;
 #define DNI_LINE 8
 
 
-int main1 (void)
+int menuLogIn (void)
 {
 
     char linea;
@@ -52,7 +52,7 @@ int main(void)
     Servidor c;
 
     do{
-        opcion = main1();
+        opcion = menuLogIn();
         switch (opcion)
         {
         case '1':
