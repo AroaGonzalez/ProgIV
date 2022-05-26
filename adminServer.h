@@ -44,7 +44,9 @@ class Administrador
 
         void gMostrarMenuListPoli();
 
-        char gMostrarMenuListPoliMuni();
+        void gMostrarMenuListPoliMuni();
+
+        void gMostrarMenuAnyadirPoli();
 };
 
 #endif

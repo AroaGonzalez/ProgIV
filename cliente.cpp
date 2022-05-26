@@ -188,7 +188,7 @@ void Cliente::cMostrarMenuRegUsu()
     Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
 
     cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
-    BaseDatos::insertarUsuario(db, u);
+    BaseDatos::insertarUsuario(db, &u);
     
 }
 

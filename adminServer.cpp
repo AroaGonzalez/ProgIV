@@ -228,16 +228,17 @@ void Administrador::gMostrarMenuListPoliMuni()
 
 }
 
-char gMostrarMenuAnyadirPoli()
+void Administrador::gMostrarMenuAnyadirPoli()
 {
-    char* linea;
     cout<<"\n======================================\n"<<endl;
     cout<<"ANYADIR POLIDEPORTIVO\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros:\n"<<endl;
     
     char* ref;
+    sqlite3 *db;
 
+    BaseDatos::selectMaxRef(db, ref);
 
     char* nombreP;
     cout<<"-> Nombre: "<<endl;
@@ -271,20 +272,19 @@ char gMostrarMenuAnyadirPoli()
     cout<<"\n-> Telefono: "<<endl;
     cin>>tel;
 
-    Polideportivo p(ref, nombreP, instalaciones,)
+    Polideportivo p;
+    InicializarPoli(&p, ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
     cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
     
-
-    return *linea;
 }
 
 char gMostrarMenuModifPoli()
 {
-    char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("MODIFICAR POLIDEPORTIVO\n");
-    printf("======================================\n\n");
-    printf("Rellene los siguientes parametros:\n\n");
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MODIFICAR POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros:\n\n"<<endl;
     
     printf("1. Nombre\n");
     printf("2. Instalaciones(separadas por #)\n");
@@ -295,11 +295,10 @@ char gMostrarMenuModifPoli()
     printf("7. Codigo de provincia\n");
     printf("8. Telefono\n");
     printf("9. Volver\n\n");
-    printf("Opcion: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    printf("Opcion: (numero)");
+    cin>>linea
 
-    return *linea;
+    return linea;
 }
 
 char gMostrarMenuBorrarPoli()

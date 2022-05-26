@@ -29,6 +29,8 @@ class BaseDatos
         static int insertarCliente(sqlite3 *db, Cliente *c);
 
         static int crearReserva(sqlite3 *db, Reserva *r);
+
+        static int selectMaxRef(sqlite3 *db, char* ref);
 };
 
 

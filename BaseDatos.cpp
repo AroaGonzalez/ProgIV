@@ -93,12 +93,10 @@ int selectUsuario(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 	return SQLITE_OK;
 }
 
-int selectMaxRef(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
+int selectMaxRef(sqlite3 *db, char* ref) {
 	sqlite3_stmt *stmt;
 
-	char sql[] = "select MAX(Ref) from Usuario where nombreUsuario = '";
-	strcat(sql, u->getNombreUsuario());
-	strcat(sql, "';");
+	char sql[] = "select MAX(Ref) from  Polideportivo";
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -120,6 +118,8 @@ int selectMaxRef(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 	}
 
 	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	strcpy(ref, sql);
 
 	return SQLITE_OK;
 }
