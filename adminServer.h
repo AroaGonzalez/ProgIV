@@ -20,33 +20,37 @@ class Administrador
         char* getContrasenya();
         char* setContrasenya(char* contrasenya);
 
-        char sMostrarMenuGestPoli1();
+        static char sMostrarMenuGestPoli1();
 
-        void sMostrarMenuRegUsu();
+        static void sMostrarMenuRegUsu();
 
-        char sMostrarMenuIniSes();
+        static char sMostrarMenuIniSes();
 
-        char sMostrarMenuMenuPrinc();
+        static char sMostrarMenuMenuPrinc();
 
-        char sMostrarMenuImportDat();
+        static char sMostrarMenuImportDat();
 
-        void sMostrarMenuBorrarBD();
+        static void sMostrarMenuBorrarBD();
 
         //ADMINSERVER CONTROL
 
-        int sGestionPolideportivos();
+        static int sGestionPolideportivos();
 
-        int sRegistroUsuario();
+        static int sRegistroUsuario();
 
-        int sIniciarSesion();
+        static int sIniciarSesion();
 
-        char gMostrarMenuGestPoli2();
+        static char gMostrarMenuGestPoli2();
 
-        void gMostrarMenuListPoli();
+        static void gMostrarMenuListPoli();
 
-        void gMostrarMenuListPoliMuni();
+        static void gMostrarMenuListPoliMuni();
 
-        void gMostrarMenuAnyadirPoli();
+        static void gMostrarMenuAnyadirPoli();
+
+        static char gMostrarMenuModifPoli();
+
+        static void gMostrarMenuBorrarPoli();
 };
 
 #endif

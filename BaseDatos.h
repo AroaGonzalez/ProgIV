@@ -31,6 +31,8 @@ class BaseDatos
         static int crearReserva(sqlite3 *db, Reserva *r);
 
         static int selectMaxRef(sqlite3 *db, char* ref);
+
+        static int borrarPoli(sqlite3 *db, char* nombre);
 };
 
 

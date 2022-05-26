@@ -159,9 +159,9 @@ int insertarAdmin(sqlite3 *db, Administrador *a) {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "INSERT INTO ADMINISTRADOR VALUES(";
-	strcat(sql, a->nombreUsuario);
+	strcat(sql, a->getNombreUsuario());
 	strcat(sql, ",");
-	strcat(sql, a->contrasenya);
+	strcat(sql, a->getContrasenya());
 	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
@@ -288,5 +288,36 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 
 	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
 	
+	return SQLITE_OK;
+}
+
+static int borrarPoli(sqlite3 *db, char* nombre) {
+	sqlite3_stmt *stmt;
+
+	char sql[] = "select Nombre from  Polideportivo";
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
+
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	delete(sql);
+
 	return SQLITE_OK;
 }

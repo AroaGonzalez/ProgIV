@@ -278,7 +278,7 @@ void Administrador::gMostrarMenuAnyadirPoli()
     
 }
 
-char gMostrarMenuModifPoli()
+char Administrador::gMostrarMenuModifPoli()
 {
     char linea;
     cout<<"\n======================================\n"<<endl;
@@ -286,54 +286,63 @@ char gMostrarMenuModifPoli()
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros:\n\n"<<endl;
     
-    printf("1. Nombre\n");
-    printf("2. Instalaciones(separadas por #)\n");
-    printf("3. Direccion\n");
-    printf("4. Municipio\n");
-    printf("5. Codigo de municipio\n");
-    printf("6. Provincia\n");
-    printf("7. Codigo de provincia\n");
-    printf("8. Telefono\n");
-    printf("9. Volver\n\n");
-    printf("Opcion: (numero)");
-    cin>>linea
+    cout<<"1. Nombre\n"<<endl;
+    cout<<"2. Instalaciones(separadas por #)\n"<<endl;
+    cout<<"3. Direccion\n"<<endl;
+    cout<<"4. Municipio\n"<<endl;
+    cout<<"5. Codigo de municipio\n"<<endl;
+    cout<<"6. Provincia\n"<<endl;
+    cout<<"7. Codigo de provincia\n"<<endl;
+    cout<<"8. Telefono\n"<<endl;
+    cout<<"9. Volver\n\n"<<endl;
+    cout<<"Opcion: (numero)"<<endl;
+    cin>>linea;
 
     return linea;
 }
 
-char gMostrarMenuBorrarPoli()
+void Administrador::gMostrarMenuBorrarPoli()
 {
-    char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("ELIMINAR POLIDEPORTIVO\n");
-    printf("======================================\n\n");
-    printf("\nEscriba el nombre del polideportivo a eliminar: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
-    printf("\nEstas seguro de que quieres borrar el polideportivo? [s/n]: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
-    printf("\nPolideportivo eliminado, pulse enter para continuar\n");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
-    return *linea;
+    Polideportivo *p;
+    char* nombreP;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"ELIMINAR POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+
+    cout<<"\nEscriba el nombre del polideportivo a eliminar: "<<endl;
+    cin>>nombreP;
+
+
+    char* resp;
+    cout<<"\nEstas seguro de que quieres borrar el polideportivo? [s/n]: "<<endl;
+    cin>>resp;
+
+    sqlite3 *db;
+    if (resp == "s")
+    {
+        BaseDatos::borrarPoli(db, nombreP);
+    }
+    
+
+    cout<<"\nPolideportivo eliminado, pulse enter para continuar\n"<<endl;
+    
 }
 
 
-int sGestionPolideportivos(void)
+int Administrador::sGestionPolideportivos(void)
 {
     char opcion;
 
     do{
-        opcion = sMostrarMenuGestPoli1();
+        opcion = Administrador::sMostrarMenuGestPoli1();
         switch (opcion)
         {
         case '1':
-            sIniciarSesion();
+            Administrador::sIniciarSesion();
             break;
 
         case '2':
-            sRegistroUsuario();
+            Administrador::sRegistroUsuario();
             break;
 
         default:
@@ -344,17 +353,17 @@ int sGestionPolideportivos(void)
 
 
 
-int sRegistroUsuario(void)
+int Administrador::sRegistroUsuario(void)
 {
 
-    sMostrarMenuRegUsu();
+    Administrador::sMostrarMenuRegUsu();
 
 }
 
-int sIniciarSesion(void)
+int Administrador::sIniciarSesion(void)
 {
 
-    sMostrarMenuIniSes();
+    Administrador::sMostrarMenuIniSes();
 
 }
 
