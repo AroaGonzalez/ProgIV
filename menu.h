@@ -5,8 +5,6 @@
 void limpiarEntrada(char *str, int max_line);
 
 
-
-
 //SERVIDOR
 
 void mostrarMenuServerEspera();
