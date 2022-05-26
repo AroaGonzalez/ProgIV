@@ -294,7 +294,9 @@ int crearReserva(sqlite3 *db, Reserva *r) {
 static int borrarPoli(sqlite3 *db, char* nombre) {
 	sqlite3_stmt *stmt;
 
-	char sql[] = "select Nombre from  Polideportivo";
+	char sql[] = "Delete from Polideportivo where Nombre = '";
+	strcat(sql, nombre);
+	strcat(sql, "';");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
 	if (result != SQLITE_OK) {
@@ -317,7 +319,5 @@ static int borrarPoli(sqlite3 *db, char* nombre) {
 
 	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
 	
-	delete(sql);
-
 	return SQLITE_OK;
 }
