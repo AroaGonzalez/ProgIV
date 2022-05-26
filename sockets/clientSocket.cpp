@@ -67,22 +67,24 @@ int main(int argc, char *argv[]) {
 	//iniciar sesion
 
 
-	cout << "Introduzca su nombre de usuario: \n" << endl;
-	cin >> nombre;
-	cout << "Introduzca su contrasenya: \n" << endl;
-	cin >> contrasenya;
+	//cout << "Introduzca su nombre de usuario: \n" << endl;
+	//cin >> nombre;
+	//cout << "Introduzca su contrasenya: \n" << endl;
+	//cin >> contrasenya;
+//
+	//cout << "Sending request iniciar sesion... \n" << endl;
+	//sprintf(sendBuff, "%s, %s", nombre, contrasenya); // introducimos nombre y contrasenya
+	//send(s, sendBuff, sizeof(sendBuff), 0); // enviamos al servidor
+//
+	//cout << "Receiving iniciar sesion... \n" << endl;
+	//recv(s, recvBuff, sizeof(recvBuff), 0);
+	//cout << "Data received: "<< recvBuff << "\n" << endl;
 
-	cout << "Sending request iniciar sesion... \n" << endl;
-	sprintf(sendBuff, "%s, %s", nombre, contrasenya); // introducimos nombre y contrasenya
-	send(s, sendBuff, sizeof(sendBuff), 0); // enviamos al servidor
-
-	cout << "Receiving iniciar sesion... \n" << endl;
-	recv(s, recvBuff, sizeof(recvBuff), 0);
-	cout << "Data received: "<< recvBuff << "\n" << endl;
-
+	Cliente::cMostrarMenuIniSes();
 
 	//registrar usario
 
+	Cliente::cMostrarMenuRegUsu();
 	//cout << "Introduzca su nombre real: \n" << endl;
 	//cin >> nombre;
 	//cout << "Introduzca su nueva contrasenya: \n" << endl;
@@ -103,9 +105,20 @@ int main(int argc, char *argv[]) {
 	//cin >> contrasenya;
 
 	
+	//gestionar polideportivos
+	Cliente::cMostrarMenuGestPoli1();
 
+	//mostrar meny principal
+	Cliente::cMostrarMenuMenuPrinc();
 
+	//mostrar menu de gestion de reservas
+	Cliente::cMostrarMenuGestReserv();
 
+	//menu modificar datos
+	Cliente::cMostrarMenuModifDat();
+
+	//menu m
+	Cliente::cMostrarMenuModifDatDir();
 
 	cout << "Sending request registrar usuario... \n" << endl;
 	strcpy(sendBuff, "regUsu");

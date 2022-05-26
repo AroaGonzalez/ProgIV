@@ -139,6 +139,7 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
+    cGestionPolideportivos(linea);
     return linea;
 }
 
@@ -356,10 +357,10 @@ char Cliente::cMostrarMenuContactPoli()
     int telef = 666666666;    
     cout<<"\nEl numero telefonico del polideportivo es: "<< telef<<endl;
 
-    return linea;}
+    return linea;
+}
 
-
-int Cliente::cGestionPolideportivos()
+int Cliente::cGestionPolideportivos(char opcion)
 {
     char opcion;
 
@@ -381,18 +382,3 @@ int Cliente::cGestionPolideportivos()
     }while(opcion != '3');
 }
 
-
-
-int Cliente::cRegistroUsuario(void)
-{
-
-    cMostrarMenuRegUsu();
-
-}
-
-int Cliente::cIniciarSesion(void)
-{
-
-    cMostrarMenuIniSes();
-
-}
