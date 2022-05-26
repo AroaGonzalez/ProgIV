@@ -1,25 +1,26 @@
 #ifndef _CLIENTE_H_
 #define _CLIENTE_H_
 
-#define DNI_LINE 8
-#define MAX_LINE 30
 
-#include "usuario.h"
-#include "cuota.h"
 #include "polideportivo.h"
 
-class Cliente: public Usuario
+class Cliente
 {
 
     private:
-        char nombreUsuario [MAX_LINE];
-        char contrasenya [MAX_LINE];
+        char* nombreUsuario;
+        char* contrasenya;
 
     public:
-        Cliente(); //vacío
-        Cliente(); //por defecto (falta por hacer)
-        Cliente(); //copia (falta por hacer)
-        ~Cliente(); //destructor (falta por hacer)
+
+        Cliente(char* nombreUsuario, char* contrasenya); 
+        Cliente(const Usuario &u); 
+        virtual ~Cliente();
+
+        char* getNombreUsuario();
+        char* setNombreUsu(char* nombreUsu);
+        char* getContrasenya();
+        char* setContrasenya(char* contrasenya);
 
         void limpiarEntrada(char *str, int max_line);
 

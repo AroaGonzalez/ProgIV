@@ -5,88 +5,122 @@
 #include <stdlib.h>
 #include "adminServer.h"
 #include "BaseDatos.h"
+#include "usuario.h"
 
-extern "C"{
-    #include "usuario.h"
-}
 
 using namespace std;
 
+Cliente::Cliente(char* nombreUsuario, char* contrasenya)
+{
+    this->nombreUsuario = nombreUsuario;
+    this->contrasenya = contrasenya;
+}
 
-    void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
+Cliente::Cliente(const Cliente &c)
+{
+    this->nombreUsuario = c.nombreUsuario;
+    this->contrasenya = c.contrasenya;
+}
+
+Cliente::~Cliente()
+{
+
+}
+
+char* Usuario::getNombreUsuario()
+{
+    return this->nombreUsuario;
+}
+
+char* Usuario::setNombreUsu(char* nombreUsu)
+{
+    this->nombreUsuario = nombreUsu;
+}
+
+char* Usuario::getContrasenya()
+{
+    return this->contrasenya;
+}
+
+char* Usuario::setContrasenya(char* contrasenya)
+{
+    this->contrasenya = contrasenya;
+}
+
+void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
+{
+    FILE* file = fopen(fichero, "r");
+
+    int contlinea;
+    int charIndex;
+    char **lineas;
+    char c;
+    Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
+
+    int puntoComa = 0;
+
+    while ((c=fgetc(file)) != EOF)
     {
-        FILE* file = fopen(fichero, "r");
 
-        int contlinea;
-        int charIndex;
-        char **lineas;
-        char c;
-        Polideportivo* poli = (Polideportivo*) malloc(sizeof(Polideportivo)*4618);
-
-        int puntoComa = 0;
-
-        while ((c=fgetc(file)) != EOF)
+        if (c == '\n')
         {
+            poli = p[contlinea];
+            contlinea++;
+            charIndex = 0;
+            puntoComa = 0;
 
-            if (c == '\n')
-            {
-                poli = p[contlinea];
-                contlinea++;
-                charIndex = 0;
-                puntoComa = 0;
-
-            }else if (c != ';')
-            {
-                
-                lineas[contlinea][charIndex] = c;
-                charIndex++;
-        
-            }else if(c == ';')
-            {
-                InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
-                
-                puntoComa++;
-                if (puntoComa == 1)
-                {
-                    p[contlinea]->ref = lineas[0];
-
-                }else if (puntoComa == 2)
-                {
-                    p[contlinea]->nombre = lineas[1];
-
-                }else if (puntoComa == 3)
-                {
-                    p[contlinea]->instalaciones = lineas[2];
-
-                }else if (puntoComa == 4)
-                {
-                    p[contlinea]->direccion = lineas[3];
-
-                }else if (puntoComa == 5)
-                {
-                    p[contlinea]->municipio = lineas[4];
-
-                }else if (puntoComa == 6)
-                {
-                    p[contlinea]->codMunicipio = lineas[5];
-
-                }else if (puntoComa == 7)
-                {
-                    p[contlinea]->provincia = lineas[6];
-
-                }else if (puntoComa == 8)
-                {
-                    p[contlinea]->codProv = lineas[7];
-
-                }else if (puntoComa == 9)
-                {
-                    p[contlinea]->tel = lineas[8];
-                }
-
-            }
+        }else if (c != ';')
+        {
             
-        }
+            lineas[contlinea][charIndex] = c;
+            charIndex++;
     
+        }else if(c == ';')
+        {
+            InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
+            
+            puntoComa++;
+            if (puntoComa == 1)
+            {
+                p[contlinea]->ref = lineas[0];
+
+            }else if (puntoComa == 2)
+            {
+                p[contlinea]->nombre = lineas[1];
+
+            }else if (puntoComa == 3)
+            {
+                p[contlinea]->instalaciones = lineas[2];
+
+            }else if (puntoComa == 4)
+            {
+                p[contlinea]->direccion = lineas[3];
+
+            }else if (puntoComa == 5)
+            {
+                p[contlinea]->municipio = lineas[4];
+
+            }else if (puntoComa == 6)
+            {
+                p[contlinea]->codMunicipio = lineas[5];
+
+            }else if (puntoComa == 7)
+            {
+                p[contlinea]->provincia = lineas[6];
+
+            }else if (puntoComa == 8)
+            {
+                p[contlinea]->codProv = lineas[7];
+
+            }else if (puntoComa == 9)
+            {
+                p[contlinea]->tel = lineas[8];
+            }
+
+        }
+        
+    }
+
 
     fclose(file);
 }
@@ -98,7 +132,7 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"GESTION DE POLIDEPORTIVOS DE EUSKADI\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Bienvenido al programa que administra el servidor\n"<<endl;
-    cout<<"Bienvenido al programa que administra el servidor\n"<<endl;
+
     cout<<"1. Iniciar sesion\n"<<endl;
     cout<<"2. Registrar usuario\n"<<endl;
     cout<<"3. Salir\n\n"<<endl;
@@ -108,10 +142,10 @@ char Cliente::cMostrarMenuGestPoli1()
     return *linea;
 }
 
+Usuario* listaUsu[];
 Usuario Cliente::cMostrarMenuRegUsu()
 {
     sqlite3 *db;
-    Usuario *u;
     char linea [MAX_LINE];
 
     cout<<"\n======================================\n"<<endl;
@@ -119,62 +153,72 @@ Usuario Cliente::cMostrarMenuRegUsu()
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros\n"<<endl;
     
+    char* nombreU;
     cout<<"-> Nombre: "<<endl;
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(u->nombre, MAX_LINE);
-    
+    cin>>nombreU;
 
+    char* apellidoU;
     cout<<"\n-> Apellido: "<<endl;
-    fgets(u->apellido, MAX_LINE, stdin);
-    limpiarEntrada(u->apellido, MAX_LINE);
-    
+    cin>> apellidoU;
+
+    char* DNIU;
     cout<<"\n-> DNI: "<<endl;
-    fgets(u->DNI, MAX_LINE, stdin);
-    limpiarEntrada(u->DNI, MAX_LINE);
+    cin>>DNIU;
 
+    char* telU;
+    cout<<"\n-> Telefono: "<<endl;
+    cin>>telU;
+
+    char* FNacU;
     cout<<"\n-> Fecha nacimiento: "<<endl;
-    fgets(u->fNac, MAX_LINE, stdin);
-    limpiarEntrada(u->fNac, MAX_LINE);
+    cin>>FNacU;
 
+    char* generoU;
     cout<<"\n-> Genero: "<<endl;
-    fgets(u->genero, MAX_LINE, stdin);
-    limpiarEntrada(u->genero, MAX_LINE);
-    
+    cin>>generoU;
+
+    char* dirU;
     cout<<"\n-> Direccion: "<<endl;
-    fgets(u->direccion, MAX_LINE, stdin);
-    limpiarEntrada(u->direccion, MAX_LINE);
-    
-    /*printf("\n-> Tipo de cuota: ");
-    fgets(u->cuota, MAX_LINE, stdin);
-    limpiarEntrada(u->cuota, MAX_LINE);
-    *u->cuota = insertarUsuario(db, u->cuota);
-    */
+    cin>>dirU;
    
+    char* nomUsuU;
     cout<<"\n-> Nombre de usuario: "<<endl;
-    fgets(u->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(u->nombreUsuario, MAX_LINE);
+    cin>>nomUsuU;
     
+    char* conU;
     cout<<"\n-> Contrasenya: "<<endl;
-    fgets(u->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(u->contrasenya, MAX_LINE);
-   
+    cin>>conU;
+
+    Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
+
     cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
     insertarUsuario(db, u);
     
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     
+    //PREGUNTAAAAAAAAAAR
+	for (int i = 0; i < sizeof(*listaUsu); i++)
+	{
+		if(i == sizeof(*listaUsu))
+		{
+			*listaUsu[sizeof(u)+1] = u;
+		}
+	}
     
-    return *u;
+    return u;
 
 }
+
+
 
 Cliente Cliente::cMostrarMenuIniSes()
 {
     Cliente *c;
     sqlite3 *db;
+    char* nombreDeUsuario;
+    char* contrasenya;
 
-    char linea [MAX_LINE];
 
     cout<<"\n======================================\n"<<endl;
     cout<<"INICIO DE SESION\n"<<endl;
@@ -182,18 +226,16 @@ Cliente Cliente::cMostrarMenuIniSes()
     cout<<"Rellene los siguientes parametros\n\n"<<endl;
     
     cout<<"-> Nombre de usuario: "<<endl;
-    fgets(c->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(c->nombreUsuario, MAX_LINE);
+    cin>>nombreDeUsuario;
+    c->setNombreUsu(nombreDeUsuario);
+    selectCliente(db, c, c->getNombreUsuario());
     
     cout<<"\n-> Contrasenya: "<<endl;
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    cin>>contrasenya;
+    c->setContrasenya(contrasenya);
+    selectCliente(db, c, c->getContrasenya());
     
-    cout<<"\nPulsa enter para continuar "<<endl;
-    insertarCliente(db, c);
-
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    cout<<"\nPulsa enter para continuar "<<endl;  
 
     return *c;
 }
@@ -261,35 +303,16 @@ Usuario Cliente::cMostrarMenuModifDatDir()
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
-
-    selectUsuario(db, u, nombreDeUsuario);
+    u->setNombreUsu(nombreDeUsuario);
+    selectUsuario(db, u, u->getNombreUsuario());
 
     cout<<"\nNueva direccion: "<<endl;
     cin>>nuevaDireccion;
-    *u->direccion = *nuevaDireccion; //EN DUDA!!!!!!!!!!!!!!!!!!!!!!1
-    fgets(u->direccion, MAX_LINE, stdin);
-    limpiarEntrada(u->direccion, MAX_LINE);
+    u->setDir(nuevaDireccion); //EN DUDA!!!!!!!!!!!!!!!!!!!!!!
     cout<<"\nDireccion actualizada\n"<<endl;
 
     return *u;
 }
-
- /*
-Usuario Cliente::cMostrarMenuModifDatTCout()
-{
-    sqlite3 *db;
-    Usuario *u;
-   
-    char linea [MAX_LINE];
-    printf("\nNuevo tipo de cuota: ");
-    fgets(u->cuota, MAX_LINE, stdin);
-    limpiarEntrada(u->cuota, MAX_LINE);
-    printf("\nTipo de cuota actualizado\n");
-    *u->cuota = insertarUsuario(db, u->cuota);
-
-    return *u;
-}
-*/
 
 Usuario Cliente::cMostrarMenuModifDatNomUsu()
 {
@@ -297,15 +320,18 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
     sqlite3 *db;
     char linea [MAX_LINE];
     char* nuevoNombreDeUsuario;
+    char* nombreDeUsuario;
+
+    cout<<"\nEscriba el nombre del usuario: "<<endl;
+    cin>>nombreDeUsuario;
+    u->setNombreUsu(nombreDeUsuario);
+
+    selectUsuario(db, u, u->getNombreUsuario());
 
     cout<<"\nNuevo nombre de usuario: "<<endl;
     cin>>nuevoNombreDeUsuario;
+    u->setNombreUsu(nuevoNombreDeUsuario);
 
-    selectUsuario(db, u, nuevoNombreDeUsuario);
-    *u->nombreUsuario = *nuevoNombreDeUsuario;
-
-    fgets(u->nombreUsuario, MAX_LINE, stdin);
-    limpiarEntrada(u->nombreUsuario, MAX_LINE);
     cout<<"\nNombre de usuario actualizado\n"<<endl;
 
     return *u;
@@ -316,17 +342,20 @@ Usuario Cliente::cMostrarMenuModifDatContr()
     Usuario *u;
     sqlite3 *db;
     char* nuevaContrasenya;
+    char* nombreDeUsuario;
 
-    char linea [MAX_LINE];
+    cout<<"\nEscriba el nombre del usuario: "<<endl;
+    cin>>nombreDeUsuario;
+    u->setNombreUsu(nombreDeUsuario);
+
+    selectUsuario(db, u, u->getNombreUsuario());
+
+
     cout<<"\nNueva contrasenya: "<<endl;
     cin>>nuevaContrasenya;
+    u->setContrasenya(nuevaContrasenya);
 
-    selectUsuario(db, u, nuevaContrasenya);
-    *u->contrasenya = *nuevaContrasenya;
-
-    fgets(u->contrasenya, MAX_LINE, stdin);
-    limpiarEntrada(u->contrasenya, MAX_LINE);
-    printf("\nContrasenya actualizada\n");
+    cout<<"\nContrasenya actualizada\n"<<endl;
 
     return *u;
 }
@@ -343,7 +372,7 @@ char Cliente::cMostrarMenuContactPoli()
     limpiarEntrada(linea, MAX_LINE);
 
     int telef = 666666666;    
-    printf("\nEl numero telefonico del polideportivo es: %i", telef);
+    cout<<"\nEl numero telefonico del polideportivo es: "<< telef<<endl;
 
     return *linea;}
 

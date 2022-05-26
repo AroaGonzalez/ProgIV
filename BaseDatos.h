@@ -13,18 +13,23 @@
 #define MAX_LINE 30
 #define DNI_LINE 8
 
-int insertarUsuario(sqlite3 *db, Usuario *u);
+class BaseDatos
+{
+    public:
+        int insertarUsuario(sqlite3 *db, Usuario *u);
 
-int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
+        int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
 
-int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
+        int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
 
-int insertarAdmin(sqlite3 *db, Administrador *a);
+        int insertarAdmin(sqlite3 *db, Administrador *a);
 
-int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
+        int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
 
-int insertarCliente(sqlite3 *db, Cliente *c);
+        int insertarCliente(sqlite3 *db, Cliente *c);
 
-int crearReserva(sqlite3 *db, Reserva *r);
+        int crearReserva(sqlite3 *db, Reserva *r);
+};
+
 
 #endif
