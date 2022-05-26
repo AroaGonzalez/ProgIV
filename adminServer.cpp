@@ -236,6 +236,9 @@ char gMostrarMenuAnyadirPoli()
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros:\n"<<endl;
     
+    char* ref;
+
+
     char* nombreP;
     cout<<"-> Nombre: "<<endl;
     cin>>nombreP;
@@ -244,33 +247,33 @@ char gMostrarMenuAnyadirPoli()
     cout<<"\n-> Instalaciones: "<<endl;
     cin>>instalaciones;
     
+    char* dirP;
     cout<<"\n-> Direccion: "<<endl;
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    cin>>dirP;
     
-    printf("\n-> Municipio: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* muni;
+    cout<<"\n-> Municipio: "<<endl;
+    cin>>muni;
     
-    printf("\n-> Codigo del municipio: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* codM;
+    cout<<"\n-> Codigo del municipio: "<<endl;
+    cin>>codM;
     
-    printf("\n-> Provincia(1 -> Araba, 2 -> Bizkaia, 3 -> Gipuzkoa): ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* prov;
+    cout<<"\n-> Provincia(1 -> Araba, 2 -> Bizkaia, 3 -> Gipuzkoa): "<<endl;
+    cin>>prov;
 
-    printf("\n-> Codigo de provincia: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* codProv;
+    cout<<"\n-> Codigo de provincia: "<<endl;
+    cin>>codProv;
 
-    printf("\n-> Telefono: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* tel;
+    cout<<"\n-> Telefono: "<<endl;
+    cin>>tel;
 
-    printf("\nPolideportivo anyadido, pulse enter para continuar");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    Polideportivo p(ref, nombreP, instalaciones,)
+    cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
+    
 
     return *linea;
 }
