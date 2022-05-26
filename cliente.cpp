@@ -139,11 +139,7 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
-<<<<<<< Updated upstream
-
-=======
-    cGestionPolideportivos();
->>>>>>> Stashed changes
+    cGestionPolideportivos(linea);
     return linea;
 }
 
@@ -364,9 +360,9 @@ char Cliente::cMostrarMenuContactPoli()
     return linea;
 }
 
-int Cliente::cGestionPolideportivos()
+int Cliente::cGestionPolideportivos(char opcion)
 {
-    char opcion;
+    
 
     do{
         opcion = cMostrarMenuGestPoli1();
@@ -393,9 +389,9 @@ int Cliente::cIniciarSesion()
     
 }
 
-int Cliente::cMenuPrincipal()
+int Cliente::cMenuPrincipal(char opcion)
 {
-    char opcion;
+    
 
     do{
         opcion = cMostrarMenuMenuPrinc();
@@ -414,7 +410,7 @@ int Cliente::cMenuPrincipal()
             break;
 
         case '4':
-            cGestionPolideportivos();
+            cGestionPolideportivos(opcion);
             break;
 
         default:

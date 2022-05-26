@@ -51,13 +51,13 @@ class Cliente
 
         //CLIENTE CONTROL
 
-        static int cGestionPolideportivos();
+        static int cGestionPolideportivos(char opcion);
 
         static int cRegistroUsuario();
 
         static int cIniciarSesion();
 
-        static int cMenuPrincipal();
+        static int cMenuPrincipal(char opcion);
 
         static int cGestionarReservas();
 
