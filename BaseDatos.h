@@ -1,6 +1,6 @@
 #ifndef BASEDATOS_H
 #define BASEDATOS_H
-#include "menu.h"
+
 #include "sqlite3.h"
 #include "usuario.h"
 #include "adminServer.h"
@@ -15,6 +15,7 @@
 class BaseDatos
 {
     public:
+
         static int insertarUsuario(sqlite3 *db, Usuario *u);
 
         static int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
