@@ -28,9 +28,9 @@ class Cliente
 
         static char cMostrarMenuGestPoli1();
 
-        static Usuario cMostrarMenuRegUsu();
+        static void cMostrarMenuRegUsu();
 
-        static Cliente cMostrarMenuIniSes();
+        static void cMostrarMenuIniSes();
 
         static char cMostrarMenuMenuPrinc();
 

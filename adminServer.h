@@ -2,36 +2,49 @@
 #define _ADMINSERVER_H_
 #include "menu.h"
 #include "usuario.h"
-#define MAX_LINE 30
-#define DNI_LINE 8
 
-typedef struct
+class Administrador
 {
-    char nombreUsuario [MAX_LINE];
-    char contrasenya [MAX_LINE];
+    private:
+        char* nombreUsuario;
+        char* contrasenya;
+    
+    public:
 
-}Administrador;
+        Administrador(char* nombreUsuario, char* contrasenya); 
+        Administrador(const Administrador &a); 
+        virtual ~Administrador();
 
-//ADMINSERVER MENU
+        char* getNombreUsuario();
+        char* setNombreUsu(char* nombreUsu);
+        char* getContrasenya();
+        char* setContrasenya(char* contrasenya);
 
-char sMostrarMenuGestPoli1();
+        char sMostrarMenuGestPoli1();
 
-Usuario sMostrarMenuRegUsu();
+        void sMostrarMenuRegUsu();
 
-char sMostrarMenuIniSes();
+        char sMostrarMenuIniSes();
 
-char sMostrarMenuMenuPrinc();
+        char sMostrarMenuMenuPrinc();
 
-char sMostrarMenuImportDat();
+        char sMostrarMenuImportDat();
 
-char sMostrarMenuBorrarBD();
+        void sMostrarMenuBorrarBD();
 
-//ADMINSERVER CONTROL
+        //ADMINSERVER CONTROL
 
-int sGestionPolideportivos();
+        int sGestionPolideportivos();
 
-int sRegistroUsuario();
+        int sRegistroUsuario();
 
-int sIniciarSesion();
+        int sIniciarSesion();
+
+        char gMostrarMenuGestPoli2();
+
+        void gMostrarMenuListPoli();
+
+        char gMostrarMenuListPoliMuni();
+};
 
 #endif

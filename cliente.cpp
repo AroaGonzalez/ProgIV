@@ -7,7 +7,6 @@
 #include "BaseDatos.h"
 #include "usuario.h"
 
-
 using namespace std;
 
 Cliente::Cliente(char* nombreUsuario, char* contrasenya)
@@ -141,8 +140,7 @@ char Cliente::cMostrarMenuGestPoli1()
     return linea;
 }
 
-Usuario* listaUsu[];
-Usuario Cliente::cMostrarMenuRegUsu()
+void Cliente::cMostrarMenuRegUsu()
 {
     sqlite3 *db;
 
@@ -190,24 +188,13 @@ Usuario Cliente::cMostrarMenuRegUsu()
     Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
 
     cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
-    BaseDatos::insertarUsuario(db, &u);
+    BaseDatos::insertarUsuario(db, u);
     
-    //PREGUNTAAAAAAAAAAR
-	for (int i = 0; i < sizeof(*listaUsu); i++)
-	{
-		if(i == sizeof(*listaUsu))
-		{
-			*listaUsu[sizeof(u)+1] = u;
-		}
-	}
-    
-    return u;
-
 }
 
 
 
-Cliente Cliente::cMostrarMenuIniSes()
+void Cliente::cMostrarMenuIniSes()
 {
     Cliente *c;
     sqlite3 *db;
@@ -232,7 +219,6 @@ Cliente Cliente::cMostrarMenuIniSes()
     
     cout<<"\nPulsa enter para continuar "<<endl;  
 
-    return *c;
 }
 
 char Cliente::cMostrarMenuMenuPrinc()
