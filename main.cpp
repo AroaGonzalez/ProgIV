@@ -54,7 +54,7 @@ int main(void)
         switch (opcion)
         {
         case '1':
-            sGestionPolideportivos();
+            Administrador::sGestionPolideportivos();
             break;
 
         case '2':

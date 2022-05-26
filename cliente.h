@@ -1,5 +1,6 @@
 #ifndef _CLIENTE_H_
 #define _CLIENTE_H_
+#include "usuario.h"
 
 
 #include "polideportivo.h"
@@ -14,7 +15,7 @@ class Cliente
     public:
 
         Cliente(char* nombreUsuario, char* contrasenya); 
-        Cliente(const Usuario &u); 
+        Cliente(const Cliente &c); 
         virtual ~Cliente();
 
         char* getNombreUsuario();

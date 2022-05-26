@@ -10,8 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define MAX_LINE 30
-#define DNI_LINE 8
+
 
 class BaseDatos
 {
