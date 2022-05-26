@@ -118,10 +118,11 @@ int main(int argc, char *argv[]) {
 					switch (optionDB)
 					{
 					case 1: //insertar usuario
-						sscanf(recv(comm_socket, recvBuff, sizeof(recvBuff), 0)); //REC EL HOTEL
-						sscanf(recvBuff, "%s %s %d %s %s %f", p.codMunicipio, p.codProv,
+						recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive los valores separados por #
+						sscanf(recvBuff, "%s#%s#%d#%s#%s#%f", p.codMunicipio, p.codProv,
 								p.direccion, &p.instalaciones, p.municipio, p.nombre,
 								p.provincia, p.ref, p.tel);
+								
 						break;
 					
 					default:
