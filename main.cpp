@@ -5,6 +5,7 @@
 #include "reserva.h"
 #include "polideportivo.h"
 #include "BaseDatos.h"
+#include "servidor.h"
 
 #include <iostream>
 using namespace std;
@@ -48,6 +49,8 @@ int main(void)
 
     char opcion;
 
+    Servidor c;
+
     do{
         opcion = main1();
         switch (opcion)
@@ -57,7 +60,7 @@ int main(void)
             break;
 
         case '2':
-            mostrarMenuServerEspera();
+            Servidor::mostrarMenuServerEspera();
             break;
         
         case '3':
