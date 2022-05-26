@@ -16,19 +16,19 @@
 class BaseDatos
 {
     public:
-        int insertarUsuario(sqlite3 *db, Usuario *u);
+        static int insertarUsuario(sqlite3 *db, Usuario *u);
 
-        int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
+        static int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
 
-        int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
+        static int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
 
-        int insertarAdmin(sqlite3 *db, Administrador *a);
+        static int insertarAdmin(sqlite3 *db, Administrador *a);
 
-        int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
+        static int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
 
-        int insertarCliente(sqlite3 *db, Cliente *c);
+        static int insertarCliente(sqlite3 *db, Cliente *c);
 
-        int crearReserva(sqlite3 *db, Reserva *r);
+        static int crearReserva(sqlite3 *db, Reserva *r);
 };
 
 

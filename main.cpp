@@ -18,21 +18,20 @@ using namespace std;
 int main1 (void)
 {
 
-    char linea [5];
-    printf("\n======================================\n");
-    printf("PROYECTO PROG IV (NOMBRE PROVISIONAL XD)\n");
-    printf("======================================\n\n");
-    printf("Como deseas entrar? ");
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"PROYECTO PROG IV (NOMBRE PROVISIONAL XD)\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Como deseas entrar? (Pulsa numero)"<<endl;
     
-    printf("\n\n1. AdminServer\n");
-    printf("2. Servidor\n");
-    printf("3. Cliente\n");
-    printf("4. Salir\n\n");
-    printf("Opcion: ");
-    fgets(linea, 5, stdin);
-    limpiarEntrada(linea, 5);
+    cout<<"\n\n1. AdminServer\n"<<endl;
+    cout<<"2. Servidor\n"<<endl;
+    cout<<"3. Cliente\n"<<endl;
+    cout<<"4. Salir\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
 
-    return *linea;
+    return linea;
 
 }
 
@@ -42,11 +41,11 @@ int main(void)
 
 	int result = sqlite3_open("test.sqlite", &db);
 	if (result != SQLITE_OK) {
-		printf("Error opening database\n");
+		cout<<"Error opening database\n"<<endl;
 		return result;
 	}
 
-    printf("Database opened\n");
+    cout<<"Database opened\n"<<endl;
 
     char opcion;
 
@@ -63,7 +62,7 @@ int main(void)
             break;
         
         case '3':
-            cGestionPolideportivos();
+            Cliente::cGestionPolideportivos();
             break;
         
         default:
@@ -73,10 +72,10 @@ int main(void)
 
     result = sqlite3_close(db);
 	if (result != SQLITE_OK) {
-		printf("Error opening database\n");
-		printf("%s\n", sqlite3_errmsg(db));
+		cout<<"Error opening database\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
 		return result;
 	}
 
-	printf("Database closed\n") ;
+	cout<<"Database closed\n"<<endl;
 }

@@ -26,35 +26,35 @@ class Cliente
 
         void leerPolideportivos(Polideportivo* p[], char* fichero);
 
-        char cMostrarMenuGestPoli1();
+        static char cMostrarMenuGestPoli1();
 
-        Usuario cMostrarMenuRegUsu();
+        static Usuario cMostrarMenuRegUsu();
 
-        Cliente cMostrarMenuIniSes();
+        static Cliente cMostrarMenuIniSes();
 
-        char cMostrarMenuMenuPrinc();
+        static char cMostrarMenuMenuPrinc();
 
-        char cMostrarMenuGestReserv();
+        static char cMostrarMenuGestReserv();
 
-        char cMostrarMenuModifDat();
+        static char cMostrarMenuModifDat();
 
-            Usuario cMostrarMenuModifDatDir();
+            static Usuario cMostrarMenuModifDatDir();
 
-            Usuario cMostrarMenuModifDatTCout();
+            static Usuario cMostrarMenuModifDatTCout();
 
-            Usuario cMostrarMenuModifDatNomUsu();
+            static Usuario cMostrarMenuModifDatNomUsu();
 
-            Usuario cMostrarMenuModifDatContr();
+            static Usuario cMostrarMenuModifDatContr();
 
-        char cMostrarMenuContactPoli();
+        static char cMostrarMenuContactPoli();
 
         //CLIENTE CONTROL
 
-        int cGestionPolideportivos();
+        static int cGestionPolideportivos();
 
-        int cRegistroUsuario();
+        static int cRegistroUsuario();
 
-        int cIniciarSesion();
+        static int cIniciarSesion();
 
 };
 
