@@ -211,16 +211,18 @@ int main(int argc, char *argv[]) {
 
 				}while(option2 != 0);
 				
-				}else{
-				sprintf(sendBuff, "%s", response0);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
-				}
-			
-			break;
-		
-		default:
-			break;
+			}else{
+			sprintf(sendBuff, "%s", response0);
+			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
+			}
+
+
+				
+					
+				
 		}
+	
+
 
 	}while (option1 != 0);
 	// CLOSING the sockets and cleaning Winsock...
