@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
 								break;
 							}
 						break;
-					}while(option3 != 0);
+						}while(option3 != 0);
 					case 5: //borrar polideportivo
 						recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
 						sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
