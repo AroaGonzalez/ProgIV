@@ -215,37 +215,36 @@ void Administrador::gMostrarMenuListPoli()
     cin>>linea;
 }
 
-char Administrador::gMostrarMenuListPoliMuni()
+void Administrador::gMostrarMenuListPoliMuni()
 {
     char a[] = "Algun Municipio";
-    char linea [MAX_LINE];
+    
     cout<<"\n======================================\n"<<endl;
-    cout<<"LISTADO DE POLIDEPORTIVOS DE [%s]\n", a<<endl;
-    printf("======================================\n\n");
-    printf("AQUI DEBERIA APARECER DATA DE POLIDEPORTIVOS DE UN MUNICIPIO IMPORTADA DE BD");
-    printf("\nPulsa enter para volver ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
-    return *linea;
+    cout<<"LISTADO DE POLIDEPORTIVOS DE"<< a<<"\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"AQUI DEBERIA APARECER DATA DE POLIDEPORTIVOS DE UN MUNICIPIO IMPORTADA DE BD"<<endl;
+    cout<<"\nPulsa enter para volver "<<endl;
+ 
+
 }
 
 char gMostrarMenuAnyadirPoli()
 {
-    char linea [MAX_LINE];
-    printf("\n======================================\n");
-    printf("ANYADIR POLIDEPORTIVO\n");
-    printf("======================================\n\n");
-    printf("Rellene los siguientes parametros:\n");
+    char* linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"ANYADIR POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros:\n"<<endl;
     
-    printf("-> Nombre: ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* nombreP;
+    cout<<"-> Nombre: "<<endl;
+    cin>>nombreP;
     
-    printf("\n-> Instalaciones(separadas por #): ");
-    fgets(linea, MAX_LINE, stdin);
-    limpiarEntrada(linea, MAX_LINE);
+    char* instalaciones;
+    cout<<"\n-> Instalaciones: "<<endl;
+    cin>>instalaciones;
     
-    printf("\n-> Direccion: ");
+    cout<<"\n-> Direccion: "<<endl;
     fgets(linea, MAX_LINE, stdin);
     limpiarEntrada(linea, MAX_LINE);
     
