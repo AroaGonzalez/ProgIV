@@ -261,7 +261,7 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
 			sprintf(centroU, "%s", recvBuff); //saves the users centro
 
-			c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			c(nombreU, apellidoU, dniU, telU, fNacU, generoU, dirU, nombUsuU, passU, centroU);
 			
     		BaseDatos::insertarCliente(db, &c);
 
