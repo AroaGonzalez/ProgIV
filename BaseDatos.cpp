@@ -10,8 +10,6 @@
 
 using namespace std;
 
-
-
 int insertarUsuario(sqlite3 *db, Usuario *u){
 	sqlite3_stmt *stmt;
 

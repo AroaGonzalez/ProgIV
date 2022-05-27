@@ -14,6 +14,7 @@
 
 class BaseDatos
 {
+
     public:
 
         static int insertarUsuario(sqlite3 *db, Usuario *u);

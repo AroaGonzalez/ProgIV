@@ -10,7 +10,10 @@
 
 using namespace std;
 
-//Cliente::Cliente(){}
+Cliente::Cliente()
+{
+    
+}
 
 Cliente::Cliente(int userID):Usuario(nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya)
 {
