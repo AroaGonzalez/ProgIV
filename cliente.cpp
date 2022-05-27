@@ -9,18 +9,26 @@
 
 using namespace std;
 
-Cliente::Cliente(){}
+//Cliente::Cliente(){}
 
-Cliente::Cliente(char* nombreUsuario, char* contrasenya)
+Cliente::Cliente(int userID):Usuario(nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya)
 {
+    this->nombre = nombre;
+    this->apellido = apellido;
+    this->fNac = fNac;
+    this->genero = genero;
+    this->DNI = DNI;
+    this->tel = tel;
+    this->direccion = direccion;
     this->nombreUsuario = nombreUsuario;
     this->contrasenya = contrasenya;
+    this->userID = userID;
+
 }
 
 Cliente::Cliente(const Cliente &c)
 {
-    this->nombreUsuario = c.nombreUsuario;
-    this->contrasenya = c.contrasenya;
+    this->userID = userID;
 }
 
 Cliente::~Cliente()
@@ -28,25 +36,16 @@ Cliente::~Cliente()
 
 }
 
-char* Usuario::getNombreUsuario()
+int Cliente::getUserID()
 {
-    return this->nombreUsuario;
+    return this->userID;
 }
 
-char* Usuario::setNombreUsu(char* nombreUsu)
+int Cliente::setUserID(int userID)
 {
-    this->nombreUsuario = nombreUsu;
+    this->userID = userID;
 }
 
-char* Usuario::getContrasenya()
-{
-    return this->contrasenya;
-}
-
-char* Usuario::setContrasenya(char* contrasenya)
-{
-    this->contrasenya = contrasenya;
-}
 
 void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
 {
@@ -125,6 +124,9 @@ void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
 
     fclose(file);
 }
+
+
+//MENUS VISUALES
 
 char Cliente::cMostrarMenuGestPoli1()
 {
@@ -360,6 +362,18 @@ char Cliente::cMostrarMenuContactPoli()
     return linea;
 }
 
+int Cliente::cImportarDatos()
+{
+    cout<<"Importando datos: \n"<<endl;
+} //no sé si está bien del todo
+
+
+
+
+//MENUS POR DENTRO
+
+
+
 int Cliente::cGestionPolideportivos()
 {
     int opcion;
@@ -486,4 +500,16 @@ int Cliente::cGestionarPolideportivos()
             break;
         }
     }while(opcion != '3');
+}
+
+
+
+
+
+
+
+//NO SÉ QUÉ HABÍA QUE HACER
+int Cliente::cImportarDatos()
+{
+    cImportarDatos();
 }

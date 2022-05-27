@@ -8,20 +8,17 @@
 class Cliente: public Usuario
 {
 
-    private:
-        char* nombreUsuario;
-        char* contrasenya;
+    protected:
+        int userID;
 
     public:
         Cliente();
-        Cliente(char* nombreUsuario, char* contrasenya); 
+        Cliente(int userID); 
         Cliente(const Cliente &c); 
         virtual ~Cliente();
 
-        char* getNombreUsuario();
-        char* setNombreUsu(char* nombreUsu);
-        char* getContrasenya();
-        char* setContrasenya(char* contrasenya);
+        int getUserID();
+        int setUserID(int userID);
 
         void limpiarEntrada(char *str, int max_line);
 
@@ -48,6 +45,10 @@ class Cliente: public Usuario
             static Usuario cMostrarMenuModifDatContr();
 
         static char cMostrarMenuContactPoli();
+
+        static char cMostrarMenuImportarDatos();
+
+        static char cMostrarMenuBorrarBaseDatos();
 
         //CLIENTE CONTROL
 
@@ -80,6 +81,10 @@ class Cliente: public Usuario
         static int cEliminarPolideportivo();
 
         static int cGestionarPolideportivos();
+
+        static int cImportarDatos();
+
+        static int cBorrarBaseDatos();
 
 
 };

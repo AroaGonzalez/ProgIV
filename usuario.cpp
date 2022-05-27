@@ -3,6 +3,11 @@
 #include <iostream>
 using namespace std;
 
+Usuario::Usuario()
+{
+    
+}
+
 Usuario::Usuario(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya)
 {
     this->nombre = nombre;
