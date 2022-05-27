@@ -50,6 +50,9 @@ class Cliente: public Usuario
 
         static char cMostrarMenuBorrarBaseDatos();
 
+        static char cMostrarMenuAnyadirPolideportivo();
+        
+
         //CLIENTE CONTROL
 
         static int cGestionPolideportivos();
@@ -85,8 +88,8 @@ class Cliente: public Usuario
         static int cImportarDatos();
 
         static int cBorrarBaseDatos();
-
-
+        
+        static int cAnyadirPolideportivo();
 };
 
 #endif
