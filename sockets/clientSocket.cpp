@@ -118,6 +118,9 @@ int main(int argc, char *argv[]) {
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 
 				c.cMostrarMenuGestPoli1();
+			case 3:
+				cout << "Cerrando programa... " << endl;
+				op1 = 0;
 			break;
 		}
 
