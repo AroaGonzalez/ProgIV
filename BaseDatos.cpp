@@ -10,28 +10,30 @@
 
 using namespace std;
 
-int insertarUsuario(sqlite3 *db, Usuario *u){
+int insertarCliente(sqlite3 *db, Cliente *c){
 	sqlite3_stmt *stmt;
 
-	char sql[50] = "INSERT INTO USUARIO VALUES(";
+	char sql[50] = "INSERT INTO CLIENTE VALUES(";
 	
-	strcat(sql, u->getNombre());
+	strcat(sql, c->getNombre());
 	strcat(sql, ",");
-	strcat(sql, u->getApe());
+	strcat(sql, c->getApe());
 	strcat(sql, ",");
-	strcat(sql, u->getFnac());
+	strcat(sql, c->getFnac());
 	strcat(sql, ",");
-	strcat(sql, u->getGenero());
+	strcat(sql, c->getGenero());
 	strcat(sql, ",");
-	strcat(sql, u->getDni());
+	strcat(sql, c->getDni());
 	strcat(sql, ",");
-	strcat(sql, u->getDir());
+	strcat(sql, c->getDir());
 	strcat(sql, ",");
-	strcat(sql, u->getTel());
+	strcat(sql, c->getTel());
 	strcat(sql, ",");
-	strcat(sql, u->getNombreUsuario());
+	strcat(sql, c->getNombreUsuario());
 	strcat(sql, ",");
-	strcat(sql, u->getContrasenya());
+	strcat(sql, c->getContrasenya());
+	strcat(sql, ");");
+	strcat(sql, c->getCentro());
 	strcat(sql, ");");
 	
 

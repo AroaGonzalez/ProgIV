@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 	//BaseDatos db("BaseDeDatos.db");
 	sqlite3 *db;
 
-	Cliente c(1);
+	Cliente c("a");
 	Polideportivo p;
 
 	int option1; //for the do and switch
@@ -111,6 +111,7 @@ int main(int argc, char *argv[]) {
 		char dirU[15];
 		char nombUsuU[15];
 		char passU[15];
+		char centroU[15];
 
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		sscanf(recvBuff, "%s", &option1);
@@ -226,6 +227,7 @@ int main(int argc, char *argv[]) {
 			sprintf(sendBuff, "%s", response0);
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
 			}
+			break;
 		case 2:
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the name
 			sprintf(nombreU, "%s", recvBuff); //saves the name
@@ -254,14 +256,21 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
 			sprintf(passU, "%s", recvBuff); //saves the password
 
-			Usuario u(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU);
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
+			sprintf(centroU, "%s", recvBuff); //saves the users centro
+
+			//c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
 			
-    		BaseDatos::insertarUsuario(db, &u);
+    		BaseDatos::insertarCliente(db, &c);
 
-			cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
+			cout<<"\nUsuario creado correctamente"<<endl;
+		
+			break;
+
+		case 3:
+			option1 = 0;
+			break;
 		}
-	
-
 
 	}while (option1 != 0);
 	// CLOSING the sockets and cleaning Winsock...

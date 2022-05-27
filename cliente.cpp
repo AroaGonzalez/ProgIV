@@ -11,10 +11,10 @@ using namespace std;
 
 Cliente::Cliente()
 {
-    
+
 }
 
-Cliente::Cliente(int userID):Usuario(nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya)
+Cliente::Cliente(char* centro):Usuario(nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya)
 {
     this->nombre = nombre;
     this->apellido = apellido;
@@ -25,13 +25,13 @@ Cliente::Cliente(int userID):Usuario(nombre, apellido, fNac, genero, DNI, tel, d
     this->direccion = direccion;
     this->nombreUsuario = nombreUsuario;
     this->contrasenya = contrasenya;
-    this->userID = userID;
+    this->centro = centro;
 
 }
 
 Cliente::Cliente(const Cliente &c)
 {
-    this->userID = userID;
+    this->centro = centro;
 }
 
 Cliente::~Cliente()
@@ -39,14 +39,14 @@ Cliente::~Cliente()
 
 }
 
-int Cliente::getUserID()
+char* Cliente::getCentro()
 {
-    return this->userID;
+    return this->centro;
 }
 
-int Cliente::setUserID(int userID)
+char* Cliente::setCentro(char* centro)
 {
-    this->userID = userID;
+    this->centro = centro;
 }
 
 
@@ -193,10 +193,11 @@ char Cliente::cMostrarMenuRegUsu()
     cout<<"\n-> Contrasenya: "<<endl;
     cin>>conU;
 
-    Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
+    char* centroU;
+    cout<<"\n-> Centro: "<<endl;
+    cin>>centroU;
 
-    cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
-    BaseDatos::insertarUsuario(db, &u);
+
     
 }
 

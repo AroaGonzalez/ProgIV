@@ -9,16 +9,16 @@ class Cliente: public Usuario
 {
 
     protected:
-        int userID;
+        char* centro;
 
     public:
         Cliente();
-        Cliente(int userID); 
+        Cliente(char* centro);
         Cliente(const Cliente &c); 
         virtual ~Cliente();
 
-        int getUserID();
-        int setUserID(int userID);
+        char* getCentro();
+        char* setCentro(char* centro);
 
         void limpiarEntrada(char *str, int max_line);
 
