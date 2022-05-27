@@ -98,8 +98,8 @@ int main(int argc, char *argv[]) {
 	do{
 		char userName[15];
 		char passW[15];
-		char response0[20] = "Rejected, try again";
-		char response1[18] = "Accepted, welcome";
+		int response0 = 0;
+		int response1 = 1;
 		char namePoli[15];
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		sscanf(recvBuff, "%i", &option1);
