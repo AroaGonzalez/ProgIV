@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	
 	//GEST POLI EUSKADI
 
-	int op1, op2;
+	int op1, op2, op3;
 	int respuestaS;
 	do{	
 		op1 = c.cMostrarMenuGestPoli1();
@@ -126,13 +126,50 @@ int main(int argc, char *argv[]) {
 		op2 = c.cMostrarMenuMenuPrinc();
 		sprintf(sendBuff, "%i", op2);
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
-		switch (op1){
-			case 1:
-				c.cImportarDatos; //NO SÉ QUÉ HABRÍA QUE HACER AQUÍ DENTRO
-				
+		do{
+			switch (op2){
+				case 1:
+					c.cImportarDatos;
 
-			break;
-		}
+				case 2:
+					c.cGestionarPolideportivos;
+
+				case 3:
+					c.cBorrarBaseDatos;
+
+				case 4:
+					op2 = 0;
+
+				break;
+			}
+			op3 = c.cGestionarPolideportivos();
+			sprintf(sendBuff, "%i", op3);
+			send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+			do{
+			switch (op3){
+				case 1:
+					c.cVisualizacionGeneral;
+				case 2:
+					c.cVisualizacionPorMunicipio;
+				case 3:
+					c.cAnyadirPolideportivo;
+				case 4:
+
+				case 5:
+					
+
+				case 6:
+					op2 = 0;
+
+				break;
+			}
+
+			}while(op3 != 0);
+
+
+
+		}while(op2 != 0);
+
 
 
 	}while (op1 != 0);

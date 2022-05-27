@@ -6,6 +6,7 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
 #include "usuario.h"
+#include "polideportivo.h"
 
 using namespace std;
 
@@ -150,7 +151,6 @@ char Cliente::cMostrarMenuGestPoli1()
 
 char Cliente::cMostrarMenuRegUsu()
 {
-    sqlite3 *db;
 
     cout<<"\n======================================\n"<<endl;
     cout<<"REGISTRO DE USUARIO\n"<<endl;
@@ -206,7 +206,6 @@ char Cliente::cMostrarMenuRegUsu()
 char Cliente::cMostrarMenuIniSes()
 {
     Cliente *c;
-    sqlite3 *db;
     char* nombreDeUsuario;
     char* contrasenya;
 
@@ -219,14 +218,11 @@ char Cliente::cMostrarMenuIniSes()
     cout<<"-> Nombre de usuario: "<<endl;
     cin>>nombreDeUsuario;
     c->setNombreUsu(nombreDeUsuario);
-    BaseDatos::selectCliente(db, c, c->getNombreUsuario());
     
     cout<<"\n-> Contrasenya: "<<endl;
     cin>>contrasenya;
     c->setContrasenya(contrasenya);
-    BaseDatos::selectCliente(db, c, c->getContrasenya());
     
-    cout<<"\nPulsa enter para continuar "<<endl;  
 
 }
 
@@ -366,15 +362,88 @@ char Cliente::cMostrarMenuContactPoli()
     return linea;
 }
 
-int Cliente::cImportarDatos()
+char Cliente::cMostrarMenuImportarDatos()
+{
+    cout<<"Importando datos,no cierre la aplicación ... \n"<<endl;      
+    
+    
+                                                                    //FALTA ALGO AQUÍ
+
+} 
+
+
+
+
+char Cliente::cMostrarMenuBorrarBaseDatos()
 {
     cout<<"Importando datos: \n"<<endl;
-} //no sé si está bien del todo
+}
+
+
+char Cliente::cMostrarMenuAnyadirPolideportivo()
+{
+    Polideportivo p;
+    
+    char *ref;
+    char *nombre;
+    char *instalaciones;
+    char *direccion;
+    char *municipio;
+    char* codMunicipio;
+    char *provincia;
+    char* codProv;
+    char* tel;
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"ANYADIR POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
+
+    //cout<<"-> Referencia del polideportivo: "<<endl;
+    //cin>>ref;
+    //p->setRef(ref);
+    //
+    //cout<<"\n-> Contrasenya: "<<endl;
+    //cin>>nombre;
+    //p->setNombre(nombre);
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 //MENUS POR DENTRO
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -512,8 +581,20 @@ int Cliente::cGestionarPolideportivos()
 
 
 
-//NO SÉ QUÉ HABÍA QUE HACER
-int Cliente::cImportarDatos()
+
+int Cliente::cImportarDatos()                           //NO SÉ CÓMO HACER EL RESTO
 {
     cImportarDatos();
+
+    cout<<"Datos correctamente importados,pulse cualquier tecla para continuar \n"<<endl;
+}
+
+int Cliente::cBorrarBaseDatos()                           //NO SÉ CÓMO HACER EL RESTO
+{
+    cMostrarMenuBorrarBaseDatos();
+}
+
+int Cliente::cAnyadirPolideportivo()                           //NO SÉ CÓMO HACER EL RESTO
+{
+    cMostrarMenuAnyadirPolideportivo();
 }
