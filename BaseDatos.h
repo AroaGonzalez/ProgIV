@@ -14,7 +14,13 @@
 
 class BaseDatos
 {
+
     public:
+
+        BaseDatos();
+        BaseDatos(); 
+        BaseDatos(const BaseDatos &c); 
+        ~BaseDatos();
 
         static int insertarUsuario(sqlite3 *db, Usuario *u);
 

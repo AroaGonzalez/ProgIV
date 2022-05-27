@@ -101,8 +101,18 @@ int main(int argc, char *argv[]) {
 		int response0 = 0;
 		int response1 = 1;
 		char namePoli[15];
+		char nombreU[15];
+		char apellidoU[15];
+		char dniU[15];
+		char telU[15];
+		char fNacU[15];
+		char generoU[15];
+		char dirU[15];
+		char nombUsuU[15];
+		char passU[15];
+
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		sscanf(recvBuff, "%i", &option1);
+		sscanf(recvBuff, "%s", &option1);
 		switch (option1)
 		{
 		case 1:
@@ -118,7 +128,7 @@ int main(int argc, char *argv[]) {
 				
 				do{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva solicitud del cliente
-					sscanf(recvBuff, "%i", &option2);
+					sscanf(recvBuff, "%s", &option2);
 					switch (option2)
 					{
 					case 1: //visualizar polideportivos
@@ -140,7 +150,7 @@ int main(int argc, char *argv[]) {
 					case 4: //modificar polideportivo
 						do{
 							recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
-							sscanf(recvBuff, "%i", &option3);
+							sscanf(recvBuff, "%s", &option3);
 							switch (option3)
 							{
 							case 1: //modificar nombre
@@ -171,7 +181,7 @@ int main(int argc, char *argv[]) {
 							case 5: //modificar codigo de municipio
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
 								char nCodMuni[15];
-								sprintf(nCodMuni, "%i", recvBuff);
+								sprintf(nCodMuni, "%s", recvBuff);
 								//db.modifPoli();
 								break;
 							case 6: //modificar provincia
@@ -183,13 +193,13 @@ int main(int argc, char *argv[]) {
 							case 7: //modificar codigo de provincia
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
 								char nCodProv[15];
-								sprintf(nCodProv, "%i", recvBuff);
+								sprintf(nCodProv, "%s", recvBuff);
 								//db.modifPoli();
 								break;
 							case 8: //modificar telefono
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
 								char nTel[15];
-								sprintf(nTel, "%i", recvBuff);
+								sprintf(nTel, "%s", recvBuff);
 								//db.modifPoli();
 								break;
 							case 9: //Volver
@@ -215,19 +225,47 @@ int main(int argc, char *argv[]) {
 			sprintf(sendBuff, "%s", response0);
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
 			}
+		case 2:
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the name
+			sprintf(nombreU, "%s", recvBuff); //saves the name
 
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the apellido
+			sprintf(apellidoU, "%s", recvBuff); //saves the apellido
 
-				
-					
-				
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the DNI
+			sprintf(dniU, "%s", recvBuff); //saves the DNI
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the telefono
+			sprintf(telU, "%s", recvBuff); //saves the telefono
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the fecha de nacimiento
+			sprintf(fNacU, "%s", recvBuff); //saves the fecha de nacimiento
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the genero
+			sprintf(generoU, "%s", recvBuff); //saves the genero
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the direccion
+			sprintf(dirU, "%s", recvBuff); //saves the direccion
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the user Name
+			sprintf(nombUsuU, "%s", recvBuff); //saves the user name
+
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
+			sprintf(passU, "%s", recvBuff); //saves the password
+
+			Usuario u(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU);
+			
+    		//BaseDatos::insertarUsuario(db, &u);
+
+			cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
 		}
 	
 
 
-	}while (option1 != 0);
-	// CLOSING the sockets and cleaning Winsock...
-	closesocket(comm_socket);
-	WSACleanup();
+		}while (option1 != 0);
+		// CLOSING the sockets and cleaning Winsock...
+		closesocket(comm_socket);
+		WSACleanup();
 
 	return 0;
 }
