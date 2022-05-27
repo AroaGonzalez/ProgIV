@@ -147,7 +147,7 @@ int main(int argc, char *argv[]) {
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
 								char nNombre[15];
 								sprintf(nNombre, "%s", recvBuff);
-								//db.modifPoli();
+								//db.modifPoli(nNombre);
 								break;
 							case 2: //modificar instalacciones
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva instalaccion
