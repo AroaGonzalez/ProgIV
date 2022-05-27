@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	
 	//GEST POLI EUSKADI
 
-	int op1;
+	int op1, op2;
 	int respuestaS;
 	do{	
 		op1 = c.cMostrarMenuGestPoli1();
@@ -123,6 +123,17 @@ int main(int argc, char *argv[]) {
 				op1 = 0;
 			break;
 		}
+		op2 = c.cMostrarMenuMenuPrinc();
+		sprintf(sendBuff, "%i", op2);
+		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+		switch (op1){
+			case 1:
+				c.cImportarDatos; //NO SÉ QUÉ HABRÍA QUE HACER AQUÍ DENTRO
+				
+
+			break;
+		}
+
 
 	}while (op1 != 0);
 	

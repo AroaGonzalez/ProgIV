@@ -4,7 +4,7 @@
 
 class Usuario
 {
-    private:
+    protected:
         char* nombre;
         char* apellido;
         char* fNac;
@@ -12,12 +12,13 @@ class Usuario
         char* DNI;
         char* tel;
         char* direccion;
-        //char* nombreUsuario;
-        //char* contrasenya;
+        char* nombreUsuario;
+        char* contrasenya;
         //hay que ponerlo luego aqui y quitarlo de cliente y de admin
     
     public:
         Usuario();
+        Usuario(char* nombre, char* contrasenya);
         Usuario(char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
         Usuario(const Usuario &u);
         virtual ~Usuario();
