@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
 	Usuario u;
 	char nombre[20], contrasenya[20], fNac[10], genero[10], DNI[9], tel[9], direccion[20], nombreUsuario[15], contrasenya[20];
 	Cliente c;
+	
 
 	WSADATA wsaData;
 	SOCKET s;
@@ -154,7 +155,7 @@ int main(int argc, char *argv[]) {
 				case 3:
 					c.cAnyadirPolideportivo;
 				case 4:
-
+					
 				case 5:
 					
 
