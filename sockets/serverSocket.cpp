@@ -26,8 +26,9 @@ int main(int argc, char *argv[]) {
 	char sendBuff[512], recvBuff[512];
 
 	//BaseDatos db("BaseDeDatos.db");
+	sqlite3 *db;
 
-	Cliente c("a", "s");
+	Cliente c(1);
 	Polideportivo p;
 
 	int option1; //for the do and switch
@@ -255,19 +256,20 @@ int main(int argc, char *argv[]) {
 
 			Usuario u(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU);
 			
-    		//BaseDatos::insertarUsuario(db, &u);
+    		BaseDatos::insertarUsuario(db, &u);
 
 			cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
 		}
 	
 
 
-		}while (option1 != 0);
-		// CLOSING the sockets and cleaning Winsock...
-		closesocket(comm_socket);
-		WSACleanup();
+	}while (option1 != 0);
+	// CLOSING the sockets and cleaning Winsock...
+	cout << "Cerrando conexión" << endl;
+	closesocket(comm_socket);
+	WSACleanup();
 
-	return 0;
+return 0;
 }
 
 

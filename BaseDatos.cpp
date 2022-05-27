@@ -10,23 +10,6 @@
 
 using namespace std;
 
-BaseDatos()
-{
-
-}
-// BaseDatos()
-// {
-
-// }
-BaseDatos(const BaseDatos &c)
-{
-
-}
-~BaseDatos()
-{
-
-}
-
 int insertarUsuario(sqlite3 *db, Usuario *u){
 	sqlite3_stmt *stmt;
 
