@@ -5,7 +5,7 @@
 
 #include "polideportivo.h"
 
-class Cliente
+class Cliente: public Usuario
 {
 
     private:

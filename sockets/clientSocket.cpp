@@ -61,12 +61,68 @@ int main(int argc, char *argv[]) {
 	cout << "Connection stablished with: %s (%d)\n" << inet_ntoa(server.sin_addr) <<
 			ntohs(server.sin_port) << endl;
 
+
+
+
+
+
 	// SEND and RECEIVE data
 	
+	//GEST POLI EUSKADI
 
-	//iniciar sesion
+	int op1;
+	int respuestaS;
+	do{	
+		op1 = c.cMostrarMenuGestPoli1();
+		sprintf(sendBuff, "%i", op1);
+		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+		switch (op1){
+			case 1:
+				c.cIniciarSesion();
+				sprintf(sendBuff, "%s", c.getNombreUsuario());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre usuarios
+				sprintf(sendBuff, "%s", c.getContrasenya());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviada contrasenya usuarios
+				
+				recv(s, recvBuff, sizeof(recvBuff), 0);
+				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
+				if (respuestaS == 1)
+				{
+					c.cMenuPrincipal;
+				} else { 
+					cout << "acceso denegado, identificación incorrecta"<<endl;
+					c.cMostrarMenuGestPoli1; }
+				
+			case 2:
+				c.cRegistroUsuario();
+				sprintf(sendBuff, "%s", c.getNombre());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre
+				sprintf(sendBuff, "%s", c.getApe());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado apellido
+				sprintf(sendBuff, "%s", c.getDni());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado dni
+				sprintf(sendBuff, "%s", c.getTel());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado telefono
+				sprintf(sendBuff, "%s", c.getFnac());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviada fecha de nacimiento
+				sprintf(sendBuff, "%s", c.getGenero());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado genero
+				sprintf(sendBuff, "%s", c.getDir());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviada direccion
+				sprintf(sendBuff, "%s", c.getNombreUsuario());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre de usuario
+				sprintf(sendBuff, "%s", c.getContrasenya());
+				send(s, sendBuff, sizeof(sendBuff), 0); //enviada contrasenya
 
+				recv(s, recvBuff, sizeof(recvBuff), 0);
+				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 
+				c.cMostrarMenuGestPoli1();
+			break;
+		}
+
+	}while (op1 != 0);
+	
 	//cout << "Introduzca su nombre de usuario: \n" << endl;
 	//cin >> nombre;
 	//cout << "Introduzca su contrasenya: \n" << endl;

@@ -12,8 +12,9 @@ class Usuario
         char* DNI;
         char* tel;
         char* direccion;
-        char* nombreUsuario;
-        char* contrasenya;
+        //char* nombreUsuario;
+        //char* contrasenya;
+        //hay que ponerlo luego aqui y quitarlo de cliente y de admin
     
     public:
         Usuario();
