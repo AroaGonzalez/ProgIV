@@ -385,7 +385,12 @@ int Cliente::cGestionPolideportivos(char opcion)
 int Cliente::cIniciarSesion()
 {
     
-    //en este no son opciones, es coger datos y luego me lleva a:
+    //en este no son opciones, es coger datos:
+    cMostrarMenuIniSes();
+    //y luego me lleva a:
+    cMenuPrincipal();
+
+    //está regu, porque hay que enviarle la info de iniciar sesion a servidor para que se compruebe con la base de datos y decida a dónde ir.
     
 }
 

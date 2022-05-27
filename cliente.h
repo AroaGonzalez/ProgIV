@@ -5,12 +5,10 @@
 
 #include "polideportivo.h"
 
-class Cliente
+class Cliente: public Usuario
 {
 
-    private:
-        char* nombreUsuario;
-        char* contrasenya;
+
 
     public:
         Cliente();
