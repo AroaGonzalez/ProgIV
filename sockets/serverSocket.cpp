@@ -123,6 +123,8 @@ int main(int argc, char *argv[]) {
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
 			sprintf(passW, "%s", recvBuff); //saves the password
+
+			
 			
 			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
 				sprintf(sendBuff, "%s", response1);
@@ -259,7 +261,7 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
 			sprintf(centroU, "%s", recvBuff); //saves the users centro
 
-			//c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
 			
     		BaseDatos::insertarCliente(db, &c);
 
