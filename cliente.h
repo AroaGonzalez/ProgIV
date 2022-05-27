@@ -5,10 +5,12 @@
 
 #include "polideportivo.h"
 
-class Cliente: public Usuario
+class Cliente
 {
 
-
+    private:
+        char* nombreUsuario;
+        char* contrasenya;
 
     public:
         Cliente();
@@ -49,13 +51,13 @@ class Cliente: public Usuario
 
         //CLIENTE CONTROL
 
-        static int cGestionPolideportivos(char opcion);
+        static int cGestionPolideportivos();
 
         static int cRegistroUsuario();
 
         static int cIniciarSesion();
 
-        static int cMenuPrincipal(char opcion);
+        static int cMenuPrincipal();
 
         static int cGestionarReservas();
 
