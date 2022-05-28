@@ -135,7 +135,7 @@ int main(int argc, char *argv[]) {
 
 
 				case 3:
-					c.cBorrarBaseDatos;
+					c.cMostrarMenuBorrarBaseDatos;
 
 				case 4:
 					op2 = 0;
@@ -156,7 +156,7 @@ int main(int argc, char *argv[]) {
 					break; } //me lleva a cMostrarMenuGestPoli1(); de nuevo
 				
 			case 2:
-				c.cRegistroUsuario();
+				c.cMostrarMenuRegUsu();
 				sprintf(sendBuff, "%s", c.getNombre());
 				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre
 				sprintf(sendBuff, "%s", c.getApe());
