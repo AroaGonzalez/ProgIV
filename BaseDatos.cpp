@@ -93,7 +93,8 @@ int selectUsuario(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 	return SQLITE_OK;
 }
 
-int selectMaxRef(sqlite3 *db, char* ref) {
+int selectMaxRef(sqlite3 *db) {
+	char* ref = "0000";
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select MAX(Ref) from  Polideportivo";
@@ -370,14 +371,12 @@ static int insertarPoli(sqlite3 *db, Polideportivo *p)
 	return SQLITE_OK;
 }
 
-static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nombre, char* nuevoNombre)
+static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre)
 {
 	sqlite3_stmt *stmt;
 
 	char sql[] = "UPDATE Polideportivo SET Nombre='";
 	strcat(sql, nuevoNombre);
-	strcat(sql, "' where Nombre = '");
-	strcat(sql, nombre);
 	strcat(sql, "';");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;

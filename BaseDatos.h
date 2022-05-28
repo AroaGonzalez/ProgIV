@@ -31,13 +31,13 @@ class BaseDatos
 
         static int crearReserva(sqlite3 *db, Reserva *r);
 
-        static int selectMaxRef(sqlite3 *db, char* ref);
+        static int selectMaxRef(sqlite3 *db);
 
         static int insertarPoli(sqlite3 *db, Polideportivo *p);
 
         static int borrarPoli(sqlite3 *db, char* nombre);
 
-        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nombre, char* nuevoNombre);
+        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre);
 };
 
 
