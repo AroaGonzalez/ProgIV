@@ -33,6 +33,8 @@ class BaseDatos
 
         static int selectMaxRef(sqlite3 *db, char* ref);
 
+        static int insertarPoli(sqlite3 *db, Polideportivo *p);
+
         static int borrarPoli(sqlite3 *db, char* nombre);
 };
 
