@@ -36,13 +36,13 @@ class Cliente: public Usuario
 
         static char cMostrarMenuModifDat();
 
-            static Usuario cMostrarMenuModifDatDir();
+            static void cMostrarMenuModifDatDir();
 
-            static Usuario cMostrarMenuModifDatTCout();
+            static void cMostrarMenuModifDatTCout();
 
-            static Usuario cMostrarMenuModifDatNomUsu();
+            static void cMostrarMenuModifDatNomUsu();
 
-            static Usuario cMostrarMenuModifDatContr();
+            static void cMostrarMenuModifDatContr();
 
         static char cMostrarMenuContactPoli();
 

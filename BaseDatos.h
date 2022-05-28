@@ -31,9 +31,29 @@ class BaseDatos
 
         static int crearReserva(sqlite3 *db, Reserva *r);
 
-        static int selectMaxRef(sqlite3 *db, char* ref);
+        static int selectMaxRef(sqlite3 *db);
+
+        static int insertarPoli(sqlite3 *db, Polideportivo *p);
 
         static int borrarPoli(sqlite3 *db, char* nombre);
+
+        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre);
+
+        static int cambiarDireccionPoli(sqlite3 *db, Polideportivo *p, char* nuevaDir);
+
+        static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefono);
+
+        static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio);
+
+        static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunicipio);
+
+        static int cambiarProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaProvincia);
+
+        static int cambiarCodProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaCodProvincia);
+
+        static int VisualizarPoli(sqlite3 *db);
+
+        static int borrarBD(sqlite3 *db);
 };
 
 

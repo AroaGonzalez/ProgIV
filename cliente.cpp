@@ -277,7 +277,7 @@ char Cliente::cMostrarMenuModifDat()
     return linea;
 }
 
-Usuario Cliente::cMostrarMenuModifDatDir()
+void Cliente::cMostrarMenuModifDatDir()
 {
     sqlite3 *db;
     Usuario *u;
@@ -295,10 +295,9 @@ Usuario Cliente::cMostrarMenuModifDatDir()
     u->setDir(nuevaDireccion);
     cout<<"\nDireccion actualizada\n"<<endl;
 
-    return *u;
 }
 
-Usuario Cliente::cMostrarMenuModifDatNomUsu()
+void Cliente::cMostrarMenuModifDatNomUsu()
 {
     Usuario *u;
     sqlite3 *db;
@@ -318,10 +317,9 @@ Usuario Cliente::cMostrarMenuModifDatNomUsu()
 
     cout<<"\nNombre de usuario actualizado\n"<<endl;
 
-    return *u;
 }
 
-Usuario Cliente::cMostrarMenuModifDatContr()
+void Cliente::cMostrarMenuModifDatContr()
 {
     Usuario *u;
     sqlite3 *db;
@@ -342,7 +340,7 @@ Usuario Cliente::cMostrarMenuModifDatContr()
 
     cout<<"\nContrasenya actualizada\n"<<endl;
 
-    return *u;
+
 }
 
 char Cliente::cMostrarMenuContactPoli()
