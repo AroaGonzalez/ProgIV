@@ -239,7 +239,7 @@ void Administrador::gMostrarMenuAnyadirPoli()
     char* ref;
     sqlite3 *db;
 
-    BaseDatos::selectMaxRef(db, ref);
+    BaseDatos::selectMaxRef(db);
 
     char* nombreP;
     cout<<"-> Nombre: "<<endl;
