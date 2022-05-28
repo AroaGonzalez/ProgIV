@@ -37,7 +37,7 @@ class BaseDatos
 
         static int borrarPoli(sqlite3 *db, char* nombre);
 
-        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p);
+        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nombre, char* nuevoNombre);
 };
 
 
