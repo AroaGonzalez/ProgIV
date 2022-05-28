@@ -142,6 +142,8 @@ int main(int argc, char *argv[]) {
 					sscanf(recvBuff, "%s", &option2);
 					switch (option2){
 						case 1: //importar desde fichero
+							
+							
 							break;
 						
 						case 2:
@@ -152,16 +154,20 @@ int main(int argc, char *argv[]) {
 								switch (option3)
 								{
 								case 1: //visualizar polideportivos
-									//db.visualizarPoli(); //visualizacion general de todos los Polideportivos
+									BaseDatos::VisualizarPoli(db); //visualizacion general de todos los Polideportivos
+
+									sprintf(sendBuff, "%i", response1);
+									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 									break;
 								case 2: //visualizar polideportivos por municipios
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
 									char nombMuni[15];
 									sprintf(nombMuni, "%s", recvBuff);
-									//db.visualizarPoliMunicipio(nombMuni);
+									//db.visualizarPoliMunicipio(db, nombMuni);
 								break;
 								case 3: //anyadir polideportivo
-									sprintf(refP, "%s", BaseDatos::selectMaxRef(db, )); //saves the referencia
+									sprintf(refP, "%s", BaseDatos::selectMaxRef(db)); //saves the referencia
 									
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo
 									sprintf(nombreP, "%s", recvBuff); //saves the nombre
@@ -189,7 +195,7 @@ int main(int argc, char *argv[]) {
 
 									p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 
-									//BaseDatos.insertarPoli(db, p);
+									BaseDatos::insertarPoli(db, &p);
 
 									sprintf(sendBuff, "%i", response1);
 									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -205,49 +211,71 @@ int main(int argc, char *argv[]) {
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
 											char nNombre[15];
 											sprintf(nNombre, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
-											break;
-										case 2: //modificar instalacciones
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva instalaccion
-											char nInstalaccion[15];
-											sprintf(nInstalaccion, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarNombrePoli(db, &p, nNombre);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 3: //modificar direccion
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive l nueva direccion
 											char nDir[15];
 											sprintf(nDir, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarDireccionPoli(db, &p, nDir);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 4: //modificar municipio
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
 											char nMuni[15];
 											sprintf(nMuni, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarMuniPoli(db, &p, nMuni);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 5: //modificar codigo de municipio
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
 											char nCodMuni[15];
 											sprintf(nCodMuni, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarCodMuniPoli(db, &p, nCodMuni);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 6: //modificar provincia
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
 											char nProv[15];
 											sprintf(nProv, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarProvPoli(db, &p, nProv);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 7: //modificar codigo de provincia
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
 											char nCodProv[15];
 											sprintf(nCodProv, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarCodProvPoli(db, &p, nCodProv);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 8: //modificar telefono
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
 											char nTel[15];
 											sprintf(nTel, "%s", recvBuff);
-											//BaseDatos.modifPoli(db, );
+											BaseDatos::cambiarTelefonoPoli(db, &p, nTel);
+
+											sprintf(sendBuff, "%i", response1);
+											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 											break;
 										case 9: //Volver
 											option4 = 0;
@@ -258,7 +286,11 @@ int main(int argc, char *argv[]) {
 								case 5: //borrar polideportivo
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
 									sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
-									//BaseDatos.borrarPoli(db, namePoli);
+									BaseDatos::borrarPoli(db, namePoli);
+
+									sprintf(sendBuff, "%i", response1);
+									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 									break;
 								case 6: //volver
 									option3 = 0;
