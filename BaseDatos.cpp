@@ -466,3 +466,67 @@ static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefon
 	
 	return SQLITE_OK;
 }
+
+static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio)
+{
+	sqlite3_stmt *stmt;
+
+	char sql[] = "UPDATE Polideportivo SET Municipio='";
+	strcat(sql, nuevoMunicipio);
+	strcat(sql, "';");
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
+
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	return SQLITE_OK;
+}
+
+static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunicipio)
+{
+	sqlite3_stmt *stmt;
+
+	char sql[] = "UPDATE Polideportivo SET Cod_mun='";
+	strcat(sql, nuevoCodMunicipio);
+	strcat(sql, "';");
+
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
+	if (result != SQLITE_OK) {
+		cout<<"Error preparing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"SQL query prepared (SELECT)\n"<<endl;
+
+	cout<<"\n"<<endl;
+	cout<<"\n"<<endl;
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK) {
+		cout<<"Error finalizing statement (SELECT)\n"<<endl;
+		cout<<sqlite3_errmsg(db)<<endl;
+		return result;
+	}
+
+	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
+	
+	return SQLITE_OK;
+}

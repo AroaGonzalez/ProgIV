@@ -42,6 +42,10 @@ class BaseDatos
         static int cambiarDireccionPoli(sqlite3 *db, Polideportivo *p, char* nuevaDir);
 
         static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefono);
+
+        static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio);
+
+        static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunicipio);
 };
 
 
