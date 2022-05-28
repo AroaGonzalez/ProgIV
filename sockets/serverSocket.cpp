@@ -110,6 +110,16 @@ int main(int argc, char *argv[]) {
 		char passU[15];
 		char centroU[15];
 
+		char refP[15];
+    	char nombreP[15];
+    	char instalacionesP[15];
+    	char direccionP[15];
+    	char municipioP[15];
+    	char codMunicipioP[15];
+    	char provinciaP[15];
+    	char codProvP[15];
+    	char telP[15];
+
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		sscanf(recvBuff, "%s", &option1);
 		switch (option1)
@@ -124,7 +134,7 @@ int main(int argc, char *argv[]) {
 			
 			
 			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
-				sprintf(sendBuff, "%s", response1);
+				sprintf(sendBuff, "%i", response1);
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Accepted, welcome" al cliente como respuesta a su petición
 				
 				do{
@@ -151,10 +161,37 @@ int main(int argc, char *argv[]) {
 									//db.visualizarPoliMunicipio(nombMuni);
 								break;
 								case 3: //anyadir polideportivo
+									sprintf(refP, "%s", BaseDatos::selectMaxRef(db, )); //saves the referencia
+									
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo
+									sprintf(nombreP, "%s", recvBuff); //saves the nombre
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive las instalaciones del polideportivo
+									sprintf(instalacionesP, "%s", recvBuff); //saves the instalaciones
+
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
-									//hacerlo iwal a registarUsusario pero con los atributos de la clase Polideportivo
-									//al final hacer un sendBuff para decirle si se ha podido anyadir el Poli bn o no, tal q asi
-									sprintf(sendBuff, "%s", PATATA);
+									sprintf(direccionP, "%s", recvBuff); //saves the direccion
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									sprintf(municipioP, "%s", recvBuff); //saves the municipio
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									sprintf(codMunicipioP, "%s", recvBuff); //saves the codigo municipio
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									sprintf(provinciaP, "%s", recvBuff); //saves the provincia
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									sprintf(codProvP, "%s", recvBuff); //saves the codigo provincia
+
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									sprintf(telP, "%s", recvBuff); //saves the telefono
+
+									p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
+
+									//BaseDatos.insertarPoli(db, p);
+
+									sprintf(sendBuff, "%i", response1);
 									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
 									break;
@@ -168,50 +205,49 @@ int main(int argc, char *argv[]) {
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
 											char nNombre[15];
 											sprintf(nNombre, "%s", recvBuff);
-											//db.modifPoli(nNombre);
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 2: //modificar instalacciones
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva instalaccion
 											char nInstalaccion[15];
 											sprintf(nInstalaccion, "%s", recvBuff);
-											//INSERTAR LA NUEVA INSTALACCION A LA LISTA DE INSTALACCIONES DE UN POLIDEPORTIVO
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 3: //modificar direccion
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive l nueva direccion
 											char nDir[15];
 											sprintf(nDir, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 4: //modificar municipio
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
 											char nMuni[15];
 											sprintf(nMuni, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 5: //modificar codigo de municipio
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
 											char nCodMuni[15];
 											sprintf(nCodMuni, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 6: //modificar provincia
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
 											char nProv[15];
 											sprintf(nProv, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 7: //modificar codigo de provincia
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
 											char nCodProv[15];
 											sprintf(nCodProv, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 8: //modificar telefono
 											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
 											char nTel[15];
 											sprintf(nTel, "%s", recvBuff);
-											//db.modifPoli();
+											//BaseDatos.modifPoli(db, );
 											break;
 										case 9: //Volver
 											option4 = 0;
@@ -222,7 +258,7 @@ int main(int argc, char *argv[]) {
 								case 5: //borrar polideportivo
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
 									sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
-									//db.borrarPoli(namePoli);
+									//BaseDatos.borrarPoli(db, namePoli);
 									break;
 								case 6: //volver
 									option3 = 0;
@@ -243,7 +279,7 @@ int main(int argc, char *argv[]) {
 				}while(option2 != 0);
 				
 			}else{
-			sprintf(sendBuff, "%s", response0);
+			sprintf(sendBuff, "%i", response0);
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
 			}
 			break;
@@ -282,8 +318,7 @@ int main(int argc, char *argv[]) {
 			
     		BaseDatos::insertarCliente(db, &c);
 
-			//DARLE UN OKAY A VIK (SEND 1 if correct)tal que asi
-			sprintf(sendBuff, "%s", PATATA);
+			sprintf(sendBuff, "%i", response1);
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
 			break;
