@@ -51,45 +51,15 @@ class Cliente: public Usuario
         static char cMostrarMenuBorrarBaseDatos();
 
         static char cMostrarMenuAnyadirPolideportivo();
-        
 
-        //CLIENTE CONTROL
+        static char cMostrarMenuGestPoli2();
 
-        static int cGestionPolideportivos();
+        static char cMostraMenuVisualizacionGeneral();
 
-        static int cRegistroUsuario();
+        static char cMostraMenuVisualizacionPorMunicipio();
 
-        static int cIniciarSesion();
+        static char cMostraMenuAnyadirPolideportivo();
 
-        static int cMenuPrincipal();
-
-        static int cGestionarReservas();
-
-        static int cModifDatos();
-
-        static int cContactarPolideportivos();
-
-        static int cReservarEspacioDeportivo();
-
-        static int cAnularReserva();
-
-        static int cVisualizacionGeneral();
-
-        static int cVisualizacionPorMunicipio();
-
-        static int cAnyadirPolideportivo();
-
-        static int cModificarPolideportivo();
-
-        static int cEliminarPolideportivo();
-
-        static int cGestionarPolideportivos();
-
-        static int cImportarDatos();
-
-        static int cBorrarBaseDatos();
-        
-        static int cAnyadirPolideportivo();
 };
 
 #endif

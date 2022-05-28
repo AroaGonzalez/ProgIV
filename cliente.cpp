@@ -145,7 +145,6 @@ char Cliente::cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
-    cGestionPolideportivos();
     return linea;
 }
 
@@ -367,7 +366,7 @@ char Cliente::cMostrarMenuImportarDatos()
     cout<<"Importando datos,no cierre la aplicación ... \n"<<endl;      
     
     
-                                                                    //FALTA ALGO AQUÍ
+                                                                    //FALTA ALGO EN SOCKETS
 
 } 
 
@@ -431,189 +430,41 @@ char Cliente::cMostrarMenuAnyadirPolideportivo()
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//MENUS POR DENTRO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-int Cliente::cGestionPolideportivos()
+static char cMostrarMenuAnyadirPolideportivo()
 {
-    int opcion;
-
-    do{
-        opcion = cMostrarMenuGestPoli1();
-        switch (opcion)
-        {
-        case '1':
-            cIniciarSesion();
-            break;
-
-        case '2':
-            cRegistroUsuario();
-            break;
-
-        default:
-            break;
-        }
-    }while(opcion != '3');
-}
-
-int Cliente::cIniciarSesion()
-{
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"GESTION DE POLIDEPORTIVOS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione la opcion que desee:\n\n"<<endl;
     
-    //en este no son opciones, es coger datos:
-    cMostrarMenuIniSes();
-    //y luego me lleva a:
-    cMenuPrincipal();
+    cout<<"1.- Visualización general\n"<<endl;
+    cout<<"2.- Visualización por municipios\n"<<endl;
+    cout<<"3.- Anyadir polideportivo\n"<<endl;
+    cout<<"4.- Modificar poliderportivo\n"<<endl;
+    cout<<"5.- Eliminar poliderportivo\n\n"<<endl;
+    cout<<"6. Volver"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
 
-    //está regu, porque hay que enviarle la info de iniciar sesion a servidor para que se compruebe con la base de datos y decida a dónde ir.
-    
-}
 
-int Cliente::cMenuPrincipal()
-{
-    
-    int opcion;
-
-    do{
-        opcion = cMostrarMenuMenuPrinc();
-        switch (opcion)
-        {
-        case '1':
-            cModifDatos();
-            break;
-
-        case '2':
-            cContactarPolideportivos();
-            break;
-
-        case '3':
-            cContactarPolideportivos();
-            break;
-
-        case '4':
-            cGestionPolideportivos();
-            break;
-
-        default:
-            break;
-        }
-    }while(opcion != '3');
-}
-int Cliente::cGestionarReservas()
-{}
-
-int Cliente::cModifDatos()
-{}
-
-int Cliente::cContactarPolideportivos()
-{}
-
-int Cliente::cReservarEspacioDeportivo()
-{}
-
-int Cliente::cAnularReserva()
-{}
-
-int Cliente::cVisualizacionGeneral()
-{}
-
-int Cliente::cVisualizacionPorMunicipio()
-{}
-
-int Cliente::cAnyadirPolideportivo()
-{}
-
-int Cliente::cModificarPolideportivo()
-{}
-
-int Cliente::cEliminarPolideportivo()
-{}
-
-int Cliente::cGestionarPolideportivos()
-{
-    char opcion;
-
-    do{
-        opcion = cMostrarMenuMenuPrinc();
-        switch (opcion)
-        {
-        case '1':
-            cVisualizacionGeneral();
-            break;
-
-        case '2':
-            cVisualizacionPorMunicipio();
-            break;
-
-        case '3':
-            cAnyadirPolideportivo();
-            break;
-
-        case '4':
-            cModificarPolideportivo();
-            break;
-
-        case '5':
-            cEliminarPolideportivo();
-            break;
-
-        default:
-            break;
-        }
-    }while(opcion != '3');
+    return linea;
 }
 
 
-
-
-
-
-
-
-int Cliente::cImportarDatos()                           //NO SÉ CÓMO HACER EL RESTO
+static char cMostraMenuVisualizacionGeneral()
 {
-    cImportarDatos();
+    cout<<"Mostrando polideportivos... \n"<<endl;
 
-    cout<<"Datos correctamente importados,pulse cualquier tecla para continuar \n"<<endl;
+
 }
 
-int Cliente::cBorrarBaseDatos()                           //NO SÉ CÓMO HACER EL RESTO
-{
-    cMostrarMenuBorrarBaseDatos();
-}
 
-int Cliente::cAnyadirPolideportivo()                           //NO SÉ CÓMO HACER EL RESTO
+static char cMostraMenuVisualizacionPorMunicipio()
 {
-    cMostrarMenuAnyadirPolideportivo();
+    Polideportivo p;
+    char* municipio;
+    cout<<"-> Inserte nombre del municipio a mostrar: "<<endl;
+    cin>>municipio;
+    //p.     <- habría que hacerlo pero polideportivo está en c
 }

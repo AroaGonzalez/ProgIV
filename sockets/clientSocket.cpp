@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		switch (op1){
 			case 1:
-				c.cIniciarSesion();
+				c.cMostrarMenuIniSes();
 				sprintf(sendBuff, "%s", c.getNombreUsuario());
 				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre usuarios
 				sprintf(sendBuff, "%s", c.getContrasenya());
@@ -97,20 +97,20 @@ int main(int argc, char *argv[]) {
 		do{
 			switch (op2){
 				case 1:
-					c.cImportarDatos;
+					c.cMostrarMenuImportarDatos;
 
 				case 2:
 					
 					
 
 
-					op3 = c.cGestionarPolideportivos();
+					op3 = c.cMostrarMenuGestPoli2();
 					sprintf(sendBuff, "%i", op3);
 					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 					do{
 						switch (op3){
 						case 1:
-							c.cVisualizacionGeneral;
+							c.cMostraMenuVisualizacionGeneral;
 						case 2:
 							c.cVisualizacionPorMunicipio;
 						case 3:
