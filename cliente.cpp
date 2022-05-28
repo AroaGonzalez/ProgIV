@@ -151,14 +151,18 @@ char Cliente::cMostrarMenuGestPoli1()
 char Cliente::cMostrarMenuRegUsu()
 {
 
+    Cliente *c;
+
     cout<<"\n======================================\n"<<endl;
     cout<<"REGISTRO DE USUARIO\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros\n"<<endl;
     
+
     char* nombreU;
     cout<<"-> Nombre: "<<endl;
     cin>>nombreU;
+    c->setNombreUsu(nombreU);       //HACER TODO ASÍ
 
     char* apellidoU;
     cout<<"\n-> Apellido: "<<endl;
@@ -224,6 +228,9 @@ char Cliente::cMostrarMenuIniSes()
     
 
 }
+
+
+
 
 char Cliente::cMostrarMenuMenuPrinc()
 {

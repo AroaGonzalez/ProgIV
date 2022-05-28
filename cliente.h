@@ -30,6 +30,8 @@ class Cliente: public Usuario
 
         static char cMostrarMenuIniSes();
 
+        static char cMostrarMenuRegUsu();
+
         static char cMostrarMenuMenuPrinc();
 
         static char cMostrarMenuGestReserv();
