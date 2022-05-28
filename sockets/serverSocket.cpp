@@ -152,16 +152,16 @@ int main(int argc, char *argv[]) {
 								switch (option3)
 								{
 								case 1: //visualizar polideportivos
-									//db.visualizarPoli(); //visualizacion general de todos los Polideportivos
+									//DataBase.visualizarPoli(db); //visualizacion general de todos los Polideportivos
 									break;
 								case 2: //visualizar polideportivos por municipios
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
 									char nombMuni[15];
 									sprintf(nombMuni, "%s", recvBuff);
-									//db.visualizarPoliMunicipio(nombMuni);
+									//db.visualizarPoliMunicipio(db, nombMuni);
 								break;
 								case 3: //anyadir polideportivo
-									sprintf(refP, "%s", BaseDatos::selectMaxRef(db, )); //saves the referencia
+									sprintf(refP, "%s", BaseDatos::selectMaxRef(db)); //saves the referencia
 									
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo
 									sprintf(nombreP, "%s", recvBuff); //saves the nombre
