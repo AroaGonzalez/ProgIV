@@ -50,6 +50,8 @@ class BaseDatos
         static int cambiarProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaProvincia);
 
         static int cambiarCodProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaCodProvincia);
+
+        static int VisualizarPoli(sqlite3 *db);
 };
 
 
