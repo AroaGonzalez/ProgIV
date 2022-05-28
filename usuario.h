@@ -14,7 +14,6 @@ class Usuario
         char* direccion;
         char* nombreUsuario;
         char* contrasenya;
-        //hay que ponerlo luego aqui y quitarlo de cliente y de admin
     
     public:
         Usuario();

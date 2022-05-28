@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
 	//BaseDatos db("BaseDeDatos.db");
 	sqlite3 *db;
 
-	Cliente c("a");
+	Cliente c();
 	Polideportivo p;
 
 	int option1, option2, option3, option4; //for the do and switch
@@ -301,7 +301,7 @@ int main(int argc, char *argv[]) {
 							}while(option3 != 0);
 						
 						case 3: //Borrar base de datos
-
+							//BaseDatos::eliminarBaseDatos(db);
 							break;
 
 						case 4:
@@ -312,7 +312,7 @@ int main(int argc, char *argv[]) {
 				
 			}else{
 			sprintf(sendBuff, "%i", response0);
-			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Rejected, try again" al cliente como respuesta a su petición
+			send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia 0 al cliente como respuesta a su petición
 			}
 			break;
 		case 2:
