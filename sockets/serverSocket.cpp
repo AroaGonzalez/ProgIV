@@ -31,10 +31,7 @@ int main(int argc, char *argv[]) {
 	Cliente c("a");
 	Polideportivo p;
 
-	int option1; //for the do and switch
-	int option2; //for the do and switch
-	int option3; //for the do and switch
-
+	int option1, option2, option3, option4; //for the do and switch
 	
 
 	printf("\nInitialising Winsock...\n");
@@ -133,96 +130,116 @@ int main(int argc, char *argv[]) {
 				do{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva solicitud del cliente
 					sscanf(recvBuff, "%s", &option2);
-					switch (option2)
-					{
-					case 1: //visualizar polideportivos
-						//db.visualizarPoli(); //visualizacion general de todos los Polideportivos
-						break;
-					case 2: //visualizar polideportivos por municipios
-						recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
-						char nombMuni[15];
-						sprintf(nombMuni, "%s", recvBuff);
-						//db.visualizarPoliMunicipio(nombMuni);
-					 break;
-					case 3: //insertar polideportivo
-						recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive los valores separados por #
-						sscanf(recvBuff, "%s#%s#%d#%s#%s#%f", p.codMunicipio, p.codProv,
-								p.direccion, &p.instalaciones, p.municipio, p.nombre,
-								p.provincia, p.ref, p.tel);
-								//db.insertarPoli();
-						break;
-					case 4: //modificar polideportivo
-						do{
-							recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
-							sscanf(recvBuff, "%s", &option3);
-							switch (option3)
-							{
-							case 1: //modificar nombre
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
-								char nNombre[15];
-								sprintf(nNombre, "%s", recvBuff);
-								//db.modifPoli(nNombre);
-								break;
-							case 2: //modificar instalacciones
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva instalaccion
-								char nInstalaccion[15];
-								sprintf(nInstalaccion, "%s", recvBuff);
-								//INSERTAR LA NUEVA INSTALACCION A LA LISTA DE INSTALACCIONES DE UN POLIDEPORTIVO
-								//db.modifPoli();
-								break;
-							case 3: //modificar direccion
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive l nueva direccion
-								char nDir[15];
-								sprintf(nDir, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 4: //modificar municipio
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
-								char nMuni[15];
-								sprintf(nMuni, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 5: //modificar codigo de municipio
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
-								char nCodMuni[15];
-								sprintf(nCodMuni, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 6: //modificar provincia
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
-								char nProv[15];
-								sprintf(nProv, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 7: //modificar codigo de provincia
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
-								char nCodProv[15];
-								sprintf(nCodProv, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 8: //modificar telefono
-								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
-								char nTel[15];
-								sprintf(nTel, "%s", recvBuff);
-								//db.modifPoli();
-								break;
-							case 9: //Volver
-								option3 = 0;
-								break;
-							}
-						break;
-						}while(option3 != 0);
-					case 5: //borrar polideportivo
-						recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
-						sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
-						//db.borrarPoli(namePoli);
-						break;
-					case 6:
-						option2 = 0;
-						break;
-					
-					}
+					switch (option2){
+						case 1: //importar desde fichero
+							break;
+						
+						case 2:
 
+							do{
+								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva solicitud del cliente
+								sscanf(recvBuff, "%s", &option2);
+								switch (option3)
+								{
+								case 1: //visualizar polideportivos
+									//db.visualizarPoli(); //visualizacion general de todos los Polideportivos
+									break;
+								case 2: //visualizar polideportivos por municipios
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
+									char nombMuni[15];
+									sprintf(nombMuni, "%s", recvBuff);
+									//db.visualizarPoliMunicipio(nombMuni);
+								break;
+								case 3: //anyadir polideportivo
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
+									//hacerlo iwal a registarUsusario pero con los atributos de la clase Polideportivo
+									//al final hacer un sendBuff para decirle si se ha podido anyadir el Poli bn o no, tal q asi
+									sprintf(sendBuff, "%s", PATATA);
+									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
+									break;
+								case 4: //modificar polideportivo
+									do{
+										recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
+										sscanf(recvBuff, "%s", &option3);
+										switch (option4)
+										{
+										case 1: //modificar nombre
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
+											char nNombre[15];
+											sprintf(nNombre, "%s", recvBuff);
+											//db.modifPoli(nNombre);
+											break;
+										case 2: //modificar instalacciones
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva instalaccion
+											char nInstalaccion[15];
+											sprintf(nInstalaccion, "%s", recvBuff);
+											//INSERTAR LA NUEVA INSTALACCION A LA LISTA DE INSTALACCIONES DE UN POLIDEPORTIVO
+											//db.modifPoli();
+											break;
+										case 3: //modificar direccion
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive l nueva direccion
+											char nDir[15];
+											sprintf(nDir, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 4: //modificar municipio
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
+											char nMuni[15];
+											sprintf(nMuni, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 5: //modificar codigo de municipio
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
+											char nCodMuni[15];
+											sprintf(nCodMuni, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 6: //modificar provincia
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
+											char nProv[15];
+											sprintf(nProv, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 7: //modificar codigo de provincia
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
+											char nCodProv[15];
+											sprintf(nCodProv, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 8: //modificar telefono
+											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
+											char nTel[15];
+											sprintf(nTel, "%s", recvBuff);
+											//db.modifPoli();
+											break;
+										case 9: //Volver
+											option4 = 0;
+											break;
+										}
+									break;
+									}while(option4 != 0);
+								case 5: //borrar polideportivo
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
+									sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
+									//db.borrarPoli(namePoli);
+									break;
+								case 6: //volver
+									option3 = 0;
+									break;
+								
+								}
+
+							}while(option3 != 0);
+						
+						case 3: //Borrar base de datos
+
+							break;
+
+						case 4:
+							option2 = 0;
+							break;
+					}
 				}while(option2 != 0);
 				
 			}else{
@@ -265,8 +282,10 @@ int main(int argc, char *argv[]) {
 			
     		BaseDatos::insertarCliente(db, &c);
 
-			cout<<"\nUsuario creado correctamente"<<endl;
-		
+			//DARLE UN OKAY A VIK (SEND 1 if correct)tal que asi
+			sprintf(sendBuff, "%s", PATATA);
+			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
 			break;
 
 		case 3:

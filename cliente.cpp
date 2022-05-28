@@ -384,30 +384,49 @@ char Cliente::cMostrarMenuAnyadirPolideportivo()
 {
     Polideportivo p;
     
-    char *ref;
-    char *nombre;
-    char *instalaciones;
-    char *direccion;
-    char *municipio;
-    char* codMunicipio;
-    char *provincia;
-    char* codProv;
-    char* tel;
+    
 
     cout<<"\n======================================\n"<<endl;
     cout<<"ANYADIR POLIDEPORTIVO\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Rellene los siguientes parametros\n"<<endl;
 
-    //cout<<"-> Referencia del polideportivo: "<<endl;
-    //cin>>ref;
-    //p->setRef(ref);
-    //
-    //cout<<"\n-> Contrasenya: "<<endl;
-    //cin>>nombre;
-    //p->setNombre(nombre);
 
+    char *ref;
+    cout<<"-> Referencia del polideportivo: "<<endl;
+    cin>>ref;
+    
+    char *nombre;
+    cout<<"\n-> Nombre del polideportivo: "<<endl;
+    cin>>nombre;
+    
+    char *instalaciones;
+    cout<<"\n-> Instalaciones del polideportivo: "<<endl;
+    cin>>instalaciones;
 
+    char *direccion;
+    cout<<"\n-> Direccion del polideportivo: "<<endl;
+    cin>>direccion;
+
+    char *municipio;
+    cout<<"\n-> Municipio al que pertenece el polideportivo: "<<endl;
+    cin>>municipio;
+
+    char* codMunicipio;
+    cout<<"\n-> Codigo del Municipio al que pertenece el polideportivo: "<<endl;
+    cin>>codMunicipio;
+
+    char *provincia;
+    cout<<"\n-> Provincia a la que pertenece el polideportivo: "<<endl;
+    cin>>provincia;
+
+    char* codProv;
+    cout<<"\n-> Codigo de provincia del polideportivo: "<<endl;
+    cin>>codProv;
+
+    char* tel;
+    cout<<"\n-> Telefono del polideportivo: "<<endl;
+    cin>>tel;
 
 
 }

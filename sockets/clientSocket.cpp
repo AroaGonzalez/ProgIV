@@ -89,10 +89,71 @@ int main(int argc, char *argv[]) {
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 				if (respuestaS == 1)
 				{
-					c.cMenuPrincipal;
+					
+					
+					op2 = c.cMostrarMenuMenuPrinc();
+		sprintf(sendBuff, "%i", op2);
+		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+		do{
+			switch (op2){
+				case 1:
+					c.cImportarDatos;
+
+				case 2:
+					
+					
+
+
+					op3 = c.cGestionarPolideportivos();
+					sprintf(sendBuff, "%i", op3);
+					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+					do{
+						switch (op3){
+						case 1:
+							c.cVisualizacionGeneral;
+						case 2:
+							c.cVisualizacionPorMunicipio;
+						case 3:
+							c.cAnyadirPolideportivo; //HACER EN CLASE CLIENTE LO MISMO QUE EN REGISTRARUSUARIO
+						case 4:
+
+						case 5:
+
+
+						case 6:
+							op2 = 0;
+
+						break;
+						}
+
+					}while(op3 != 0);
+
+
+
+
+
+
+
+				case 3:
+					c.cBorrarBaseDatos;
+
+				case 4:
+					op2 = 0;
+
+				break;
+			}
+			
+
+
+
+		}while(op2 != 0);
+
+
+
+
 				} else { 
 					cout << "acceso denegado, identificación incorrecta"<<endl;
-					c.cMostrarMenuGestPoli1; }
+					break; } //me lleva a cMostrarMenuGestPoli1(); de nuevo
 				
 			case 2:
 				c.cRegistroUsuario();
@@ -118,58 +179,19 @@ int main(int argc, char *argv[]) {
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 
-				c.cMostrarMenuGestPoli1();
+				if (respuestaS == 1)
+				{
+					cout<< "Cliente registrado correctamente."<<endl;
+				} else {cout<< "Registro de cliente fallido."<<endl;}
+				
+				break; //me devuelve a gestpoli1();
 			case 3:
 				cout << "Cerrando programa... " << endl;
 				op1 = 0;
 			break;
+			
 		}
-		op2 = c.cMostrarMenuMenuPrinc();
-		sprintf(sendBuff, "%i", op2);
-		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
-		do{
-			switch (op2){
-				case 1:
-					c.cImportarDatos;
-
-				case 2:
-					c.cGestionarPolideportivos;
-
-				case 3:
-					c.cBorrarBaseDatos;
-
-				case 4:
-					op2 = 0;
-
-				break;
-			}
-			op3 = c.cGestionarPolideportivos();
-			sprintf(sendBuff, "%i", op3);
-			send(s, sendBuff, sizeof(sendBuff), 0); //se envia
-			do{
-			switch (op3){
-				case 1:
-					c.cVisualizacionGeneral;
-				case 2:
-					c.cVisualizacionPorMunicipio;
-				case 3:
-					c.cAnyadirPolideportivo;
-				case 4:
-					
-				case 5:
-					
-
-				case 6:
-					op2 = 0;
-
-				break;
-			}
-
-			}while(op3 != 0);
-
-
-
-		}while(op2 != 0);
+		
 
 
 
