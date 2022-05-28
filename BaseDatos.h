@@ -36,6 +36,8 @@ class BaseDatos
         static int insertarPoli(sqlite3 *db, Polideportivo *p);
 
         static int borrarPoli(sqlite3 *db, char* nombre);
+
+        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p);
 };
 
 
