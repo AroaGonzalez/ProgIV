@@ -56,11 +56,18 @@ class Cliente: public Usuario
 
         static char cMostrarMenuGestPoli2();
 
-        static char cMostraMenuVisualizacionGeneral();
+        static char cMostrarMenuVisualizacionGeneral();
 
-        static char cMostraMenuVisualizacionPorMunicipio();
+        static char cMostrarMenuVisualizacionPorMunicipio();
 
-        static char cMostraMenuAnyadirPolideportivo();
+        static char cMostrarMenuAnyadirPolideportivo();
+
+        static char cMostrarMenuModificarPolideportivo();
+
+        static char cMostrarMenuEliminarPolideportivo();
+
+
+
 
 };
 

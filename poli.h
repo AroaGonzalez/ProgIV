@@ -28,7 +28,7 @@ class Polideportivo{
 
         Polideportivo(const Polideportivo &p); 
 
-        virtual ~Polideportivo();
+        ~Polideportivo();
 
         char* getNombre();
         char* setNombre(char* nombre);

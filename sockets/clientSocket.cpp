@@ -110,16 +110,15 @@ int main(int argc, char *argv[]) {
 					do{
 						switch (op3){
 						case 1:
-							c.cMostraMenuVisualizacionGeneral;
+							c.cMostrarMenuVisualizacionGeneral;
 						case 2:
-							c.cVisualizacionPorMunicipio;
+							c.cMostrarMenuVisualizacionPorMunicipio;
 						case 3:
-							c.cAnyadirPolideportivo; //HACER EN CLASE CLIENTE LO MISMO QUE EN REGISTRARUSUARIO
+							c.cMostrarMenuAnyadirPolideportivo;
 						case 4:
-
+							c.cMostrarMenuModificarPolideportivo;
 						case 5:
-
-
+							c.cMostrarMenuEliminarPolideportivo;
 						case 6:
 							op2 = 0;
 

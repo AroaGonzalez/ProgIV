@@ -55,7 +55,7 @@ Polideportivo::Polideportivo(const Polideportivo &p)
 
 Polideportivo::~Polideportivo()
 {
-
+    //delete[] Polideportivo;
 }
 
 

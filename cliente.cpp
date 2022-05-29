@@ -6,7 +6,7 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
 #include "usuario.h"
-#include "polideportivo.h"
+#include "poli.h"
 
 using namespace std;
 
@@ -167,39 +167,47 @@ char Cliente::cMostrarMenuRegUsu()
     char* apellidoU;
     cout<<"\n-> Apellido: "<<endl;
     cin>> apellidoU;
+    c->setApe(apellidoU);
 
     char* DNIU;
     cout<<"\n-> DNI: "<<endl;
     cin>>DNIU;
+    c->setDni(DNIU);
 
     char* telU;
     cout<<"\n-> Telefono: "<<endl;
     cin>>telU;
+    c->setTel(telU);
 
     char* FNacU;
     cout<<"\n-> Fecha nacimiento: "<<endl;
     cin>>FNacU;
+    c->setFnac(FNacU);
 
     char* generoU;
     cout<<"\n-> Genero: "<<endl;
     cin>>generoU;
+    c->setGenero(generoU);
 
     char* dirU;
     cout<<"\n-> Direccion: "<<endl;
     cin>>dirU;
+    c->setDir(dirU);
    
     char* nomUsuU;
     cout<<"\n-> Nombre de usuario: "<<endl;
     cin>>nomUsuU;
+    c->setNombreUsu(nomUsuU);
     
     char* conU;
     cout<<"\n-> Contrasenya: "<<endl;
     cin>>conU;
+    c->setContrasenya(conU);
 
     char* centroU;
     cout<<"\n-> Centro: "<<endl;
     cin>>centroU;
-
+    c->setCentro(centroU);
 
     
 }
@@ -399,6 +407,8 @@ char Cliente::cMostrarMenuAnyadirPolideportivo()
     char *ref;
     cout<<"-> Referencia del polideportivo: "<<endl;
     cin>>ref;
+    //p->set        ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR 
+    
     
     char *nombre;
     cout<<"\n-> Nombre del polideportivo: "<<endl;
@@ -457,7 +467,7 @@ static char cMostrarMenuAnyadirPolideportivo()
 }
 
 
-static char cMostraMenuVisualizacionGeneral()
+static char cMostrarMenuVisualizacionGeneral()
 {
     cout<<"Mostrando polideportivos... \n"<<endl;
 
@@ -471,5 +481,15 @@ static char cMostraMenuVisualizacionPorMunicipio()
     char* municipio;
     cout<<"-> Inserte nombre del municipio a mostrar: "<<endl;
     cin>>municipio;
-    //p.     <- habría que hacerlo pero polideportivo está en c
+    //p.                                                                  <- habría que hacerlo pero polideportivo está en c
+}
+
+static char cMostrarMenuModificarPolideportivo()
+{
+                                                                            //NO SÉ CÓMO QUEREMOS HACER PARA MODIFICARLO :(
+}
+
+static char cMostrarMenuEliminarPolideportivo()
+{
+                                                                            //NO SÉ CÓMO QUEREMOS HACER PARA ELIMINARLO :(
 }

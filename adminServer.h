@@ -13,7 +13,7 @@ class Administrador:public Usuario
         Administrador();
         Administrador(char* nombreUsuario, char* contrasenya); 
         Administrador(const Administrador &a); 
-        virtual ~Administrador();
+        ~Administrador();
 
         char* getNombreUsuario();
         char* setNombreUsu(char* nombreUsu);
