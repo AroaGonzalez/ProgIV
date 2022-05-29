@@ -1,4 +1,4 @@
-#include "poli.h" //cambiarts
+#include "polideportivo.h" 
 #include <iostream>
 #include <string.h>
 #include "sqlite3.h"

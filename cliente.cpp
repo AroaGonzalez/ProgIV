@@ -6,7 +6,7 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
 #include "usuario.h"
-#include "poli.h"
+#include "polideportivo.h"
 
 using namespace std;
 
@@ -294,69 +294,64 @@ char Cliente::cMostrarMenuModifDat()
 
 void Cliente::cMostrarMenuModifDatDir()
 {
-    sqlite3 *db;
-    Usuario *u;
+    Cliente *c;
 
     char* nombreDeUsuario;
     char* nuevaDireccion;
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
-    u->setNombreUsu(nombreDeUsuario);
-    BaseDatos::selectUsuario(db, u, u->getNombreUsuario());
+    c->setNombreUsu(nombreDeUsuario);
 
     cout<<"\nNueva direccion: "<<endl;
     cin>>nuevaDireccion;
-    u->setDir(nuevaDireccion);
+    c->setDir(nuevaDireccion);
     cout<<"\nDireccion actualizada\n"<<endl;
 
 }
 
 void Cliente::cMostrarMenuModifDatNomUsu()
 {
-    Usuario *u;
-    sqlite3 *db;
+    Usuario *c;
 
     char* nuevoNombreDeUsuario;
     char* nombreDeUsuario;
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
-    u->setNombreUsu(nombreDeUsuario);
-
-    BaseDatos::selectUsuario(db, u, u->getNombreUsuario());
+    c->setNombreUsu(nombreDeUsuario);
 
     cout<<"\nNuevo nombre de usuario: "<<endl;
     cin>>nuevoNombreDeUsuario;
-    u->setNombreUsu(nuevoNombreDeUsuario);
-
+    c->setNombreUsu(nuevoNombreDeUsuario);
     cout<<"\nNombre de usuario actualizado\n"<<endl;
 
 }
 
 void Cliente::cMostrarMenuModifDatContr()
 {
-    Usuario *u;
-    sqlite3 *db;
+    Usuario *c;
 
     char* nuevaContrasenya;
     char* nombreDeUsuario;
 
     cout<<"\nEscriba el nombre del usuario: "<<endl;
     cin>>nombreDeUsuario;
-    u->setNombreUsu(nombreDeUsuario);
-
-    BaseDatos::selectUsuario(db, u, u->getNombreUsuario());
+    c->setNombreUsu(nombreDeUsuario);
 
 
     cout<<"\nNueva contrasenya: "<<endl;
     cin>>nuevaContrasenya;
-    u->setContrasenya(nuevaContrasenya);
+    c->setContrasenya(nuevaContrasenya);
 
     cout<<"\nContrasenya actualizada\n"<<endl;
 
 
 }
+
+
+
+
 
 char Cliente::cMostrarMenuContactPoli()
 {
@@ -394,7 +389,7 @@ char Cliente::cMostrarMenuBorrarBaseDatos()
 
 char Cliente::cMostrarMenuAnyadirPolideportivo()
 {
-    Polideportivo p;
+    Polideportivo *p;
     
     
 
@@ -407,7 +402,7 @@ char Cliente::cMostrarMenuAnyadirPolideportivo()
     char *ref;
     cout<<"-> Referencia del polideportivo: "<<endl;
     cin>>ref;
-    //p->set        ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR ERROR 
+    //p->set
     
     
     char *nombre;
@@ -477,11 +472,11 @@ static char cMostrarMenuVisualizacionGeneral()
 
 static char cMostraMenuVisualizacionPorMunicipio()
 {
-    Polideportivo p;
+    Polideportivo *p;
     char* municipio;
     cout<<"-> Inserte nombre del municipio a mostrar: "<<endl;
     cin>>municipio;
-    //p.                                                                  <- habría que hacerlo pero polideportivo está en c
+    p->setNombre();                                                                //<- habría que hacerlo pero polideportivo está en c
 }
 
 static char cMostrarMenuModificarPolideportivo()
