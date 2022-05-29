@@ -40,7 +40,7 @@ class Cliente: public Usuario
 
             static void cMostrarMenuModifDatDir();
 
-            static void cMostrarMenuModifDatTCout();
+            static void cMostrarMenuModifDatTCout();    //NO SÉ QUÉ ES ESTO, JOPE :c
 
             static void cMostrarMenuModifDatNomUsu();
 
@@ -63,6 +63,12 @@ class Cliente: public Usuario
         static char cMostrarMenuAnyadirPolideportivo();
 
         static char cMostrarMenuModificarPolideportivo();
+
+            static void cMostrarMenuModifPoliRef();
+
+            static void cMostrarMenuModifPoliInst();
+
+            static void cMostrarMenuModifPoliTel();
 
         static char cMostrarMenuEliminarPolideportivo();
 

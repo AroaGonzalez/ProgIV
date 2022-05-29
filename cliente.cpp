@@ -491,7 +491,82 @@ static char cMostrarMenuModificarPolideportivo()
                                                                             //NO SÉ CÓMO QUEREMOS HACER PARA MODIFICARLO :(
 }
 
+
+static void cMostrarMenuModifPoliRef(){
+
+    Polideportivo *p;
+
+    char* ref;
+    char* refNueva;
+
+    cout<<"\nEscriba el codigo de referencia del polideportivo: "<<endl;
+    cin>>ref;
+    p->setRef(ref);
+
+    cout<<"\nNuevo codigo de referencia del polideportivo: "<<endl;
+    cin>>refNueva;
+    p->setRef(refNueva);
+    cout<<"\nCodigo de referencia del polideportivo actualizado\n"<<endl;
+
+
+}
+
+
+static void cMostrarMenuModifPoliInst(){
+
+    Polideportivo *p;
+
+    char* ref;
+    char* instalaciones;
+
+    cout<<"\nEscriba el codigo de referencia del polideportivo: "<<endl;
+    cin>>ref;
+    p->setRef(ref);
+
+    cout<<"\nNuevas instalaciones del polideportivo: "<<endl;
+    cin>>instalaciones;
+    p->setInstalaciones(instalaciones);
+    cout<<"\nInstalaciones del polideportivo actualizado\n"<<endl;
+
+
+}
+
+
+static void cMostrarMenuModifPoliTel(){
+
+    Polideportivo *p;
+
+    char* ref;
+    char* tel;
+
+    cout<<"\nEscriba el codigo de referencia del polideportivo: "<<endl;
+    cin>>ref;
+    p->setRef(ref);
+
+    cout<<"\nNuevo telefono del polideportivo: "<<endl;
+    cin>>tel;
+    p->setTel(tel);
+    cout<<"\nTelefono del polideportivo actualizado\n"<<endl;
+
+
+}
+
+
+
+
+
+
+
 static char cMostrarMenuEliminarPolideportivo()
 {
-                                                                            //NO SÉ CÓMO QUEREMOS HACER PARA ELIMINARLO :(
+
+    Polideportivo *p;
+
+    char* ref;
+
+    cout<<"\nEscriba el codigo de referencia del polideportivo a eliminar: "<<endl;
+    cin>>ref;
+    p->setRef(ref);
+
+
 }
