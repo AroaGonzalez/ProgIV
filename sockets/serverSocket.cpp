@@ -28,8 +28,11 @@ int main(int argc, char *argv[]) {
 	//BaseDatos db("BaseDeDatos.db");
 	sqlite3 *db;
 
-	Cliente c("a");
+	Cliente c;
 	Polideportivo p;
+	//Cliente c("a");
+	//Polideportivo p("a","a","a","a","a","a","a","a","a");
+
 
 	int option1, option2, option3, option4; //for the do and switch
 	
@@ -112,7 +115,7 @@ int main(int argc, char *argv[]) {
 
 		char refP[15];
     	char nombreP[15];
-    	char instalacionesP[15];
+    	char instalacionesP[100];
     	char direccionP[15];
     	char municipioP[15];
     	char codMunicipioP[15];
@@ -193,7 +196,8 @@ int main(int argc, char *argv[]) {
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
 									sprintf(telP, "%s", recvBuff); //saves the telefono
 
-									p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
+									Polideportivo p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
+									//p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 
 									BaseDatos::insertarPoli(db, &p);
 
@@ -350,7 +354,8 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
 			sprintf(centroU, "%s", recvBuff); //saves the users centro
 
-			c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			Cliente c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			//c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
 			
     		BaseDatos::insertarCliente(db, &c);
 
