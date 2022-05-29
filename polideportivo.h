@@ -30,6 +30,9 @@ class Polideportivo{
 
         ~Polideportivo();
 
+        char* getRef();
+        char* setRef(char* nombre);
+
         char* getNombre();
         char* setNombre(char* nombre);
 
@@ -55,7 +58,7 @@ class Polideportivo{
         char* setTel(char* tel);
 
 
-        
+        void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char* instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel);
 
 
 };

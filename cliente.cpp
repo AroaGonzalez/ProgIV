@@ -402,40 +402,47 @@ char Cliente::cMostrarMenuAnyadirPolideportivo()
     char *ref;
     cout<<"-> Referencia del polideportivo: "<<endl;
     cin>>ref;
-    //p->set
-    
+    p->setRef(ref);
     
     char *nombre;
     cout<<"\n-> Nombre del polideportivo: "<<endl;
     cin>>nombre;
+    p->setNombre(nombre);
     
     char *instalaciones;
     cout<<"\n-> Instalaciones del polideportivo: "<<endl;
     cin>>instalaciones;
+    p->setInstalaciones(instalaciones);
 
     char *direccion;
     cout<<"\n-> Direccion del polideportivo: "<<endl;
     cin>>direccion;
+    p->setDireccion(direccion);
 
     char *municipio;
     cout<<"\n-> Municipio al que pertenece el polideportivo: "<<endl;
     cin>>municipio;
+    p->setMunicipio(municipio);
 
     char* codMunicipio;
     cout<<"\n-> Codigo del Municipio al que pertenece el polideportivo: "<<endl;
     cin>>codMunicipio;
+    p->setCodMunicipio(codMunicipio);
 
     char *provincia;
     cout<<"\n-> Provincia a la que pertenece el polideportivo: "<<endl;
     cin>>provincia;
+    p->setProvincia(provincia);
 
     char* codProv;
     cout<<"\n-> Codigo de provincia del polideportivo: "<<endl;
     cin>>codProv;
+    p->setCodProv(codProv);
 
     char* tel;
     cout<<"\n-> Telefono del polideportivo: "<<endl;
     cin>>tel;
+    p->setTel(tel);
 
 
 }
@@ -470,13 +477,13 @@ static char cMostrarMenuVisualizacionGeneral()
 }
 
 
-static char cMostraMenuVisualizacionPorMunicipio()
+static char cMostraMenuVisualizacionPorMunicipio() //se envía el nombre para que devuelva un polideportivo
 {
     Polideportivo *p;
-    char* municipio;
+    char* nombre;
     cout<<"-> Inserte nombre del municipio a mostrar: "<<endl;
-    cin>>municipio;
-    p->setNombre();                                                                //<- habría que hacerlo pero polideportivo está en c
+    cin>>nombre;
+    p->setNombre(nombre);                                                                // falta coger el polideportivo dado el nombre
 }
 
 static char cMostrarMenuModificarPolideportivo()
