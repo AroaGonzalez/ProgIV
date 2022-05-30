@@ -40,6 +40,12 @@ Cliente::~Cliente()
 
 }
 
+void Cliente::falsoConstructor(char* centro, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya)
+{
+    Cliente client(centro, nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya);
+    *this = client;
+}
+
 char* Cliente::getCentro()
 {
     return this->centro;

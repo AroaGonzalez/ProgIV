@@ -16,7 +16,8 @@ class Cliente: public Usuario
         Cliente(char* centro, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
         Cliente(const Cliente &c); 
         virtual ~Cliente();
-
+        void falsoConstructor(char* centro, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
+        
         char* getCentro();
         char* setCentro(char* centro);
 

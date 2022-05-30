@@ -136,7 +136,7 @@ int main(int argc, char *argv[]) {
 
 			
 			
-			if(strcmp(userName, "NOMBREDEFAULT") && strcmp(passW, "PASSWORDDEFAULT")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
+			if(strcmp(userName, "nombre") && strcmp(passW, "pass")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
 				sprintf(sendBuff, "%i", response1);
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Accepted, welcome" al cliente como respuesta a su petición
 				
@@ -146,7 +146,7 @@ int main(int argc, char *argv[]) {
 					switch (option2){
 						case 1: //importar desde fichero
 							
-							cout << "parece que ha habido un error, intentelo mas tarde" << endl;
+							cout << "parece que ha habido un error, inténtelo mas tarde" << endl;
 							
 							break;
 						
@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
 									char nombMuni[15];
 									sprintf(nombMuni, "%s", recvBuff);
-									//db.visualizarPoliMunicipio(db, nombMuni);
+									//BaseDatos::visualizarPoliMunicipio(db, nombMuni);
 								break;
 								case 3: //anyadir polideportivo
 									sprintf(refP, "%s", BaseDatos::selectMaxRef(db)); //saves the referencia
@@ -198,7 +198,6 @@ int main(int argc, char *argv[]) {
 									sprintf(telP, "%s", recvBuff); //saves the telefono
 
 									p.falsoConstructor(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
-									//p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 
 									BaseDatos::insertarPoli(db, &p);
 
@@ -355,8 +354,7 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
 			sprintf(centroU, "%s", recvBuff); //saves the users centro
 
-			Cliente c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
-			//c(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			c.falsoConstructor(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
 			
     		BaseDatos::insertarCliente(db, &c);
 
