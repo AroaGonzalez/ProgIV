@@ -30,6 +30,16 @@ class Polideportivo{
 
         ~Polideportivo();
 
+        void falsoConstructor(char *ref,
+        char *nombre,
+        char *instalaciones,
+        char *direccion,
+        char *municipio,
+        char* codMunicipio,
+        char *provincia,
+        char* codProv,
+        char* tel);
+
         char* getRef();
         char* setRef(char* nombre);
 
@@ -57,9 +67,10 @@ class Polideportivo{
         char* getTel();
         char* setTel(char* tel);
 
+        
 
-        void InicializarPoli(Polideportivo *p, char *ref, char* nombre, char* instalaciones, char *direccion, char* municipio, char* codMunicipio, char* provincia, char* codProv, char* tel);
-
+        
+        
 
 };
 

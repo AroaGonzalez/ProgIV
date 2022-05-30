@@ -197,7 +197,7 @@ int main(int argc, char *argv[]) {
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
 									sprintf(telP, "%s", recvBuff); //saves the telefono
 
-									Polideportivo p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
+									p.falsoConstructor(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 									//p(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 
 									BaseDatos::insertarPoli(db, &p);

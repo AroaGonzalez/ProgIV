@@ -15,7 +15,7 @@ Cliente::Cliente()
 
 }
 
-Cliente::Cliente(char* centro):Usuario(nombre, apellido, fNac, genero, DNI, tel, direccion, nombreUsuario, contrasenya)
+Cliente::Cliente(char* centro, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya)
 {
     this->nombre = nombre;
     this->apellido = apellido;
@@ -51,7 +51,7 @@ char* Cliente::setCentro(char* centro)
 }
 
 
-void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
+void Cliente::leerPolideportivos(Polideportivo* p, char* fichero)
 {
     FILE* file = fopen(fichero, "r");
 
@@ -63,69 +63,62 @@ void Cliente::leerPolideportivos(Polideportivo* p[], char* fichero)
 
     int puntoComa = 0;
 
+    char alex[100];
+    int count = 0;
+    int cond = 0;
+    int estante = 0;
+    int caja = 0;
+
     while ((c=fgetc(file)) != EOF)
     {
+        
+        if(c =='\n'){
+            cond = 1;
+        }
+        if(cond == 1){
+            while (cond == 1)
+            {
+                c = fgetc(file);
+                if(c == ';'){
 
-        if (c == '\n')
-        {
-            poli = p[contlinea];
-            contlinea++;
-            charIndex = 0;
-            puntoComa = 0;
+                    break;
 
-        }else if (c != ';')
-        {
+                }
+
+                if (c != '\n')
+                {
+                    alex[count++] = c;
+                } else {
+
+                    estante += 1;
+                    break;
+
+
+                }
+                
+                
+            }
+            alex[count] = '\0';
             
-            lineas[contlinea][charIndex] = c;
-            charIndex++;
-    
-        }else if(c == ';')
-        {
-            InicializarPoli(p[contlinea], p[contlinea]->ref, p[contlinea]->nombre, p[contlinea]->instalaciones, p[contlinea]->direccion, p[contlinea]->municipio, p[contlinea]->codMunicipio, p[contlinea]->provincia, p[contlinea]->codProv, p[contlinea]->tel);
-            
-            puntoComa++;
-            if (puntoComa == 1)
-            {
-                p[contlinea]->ref = lineas[0];
-
-            }else if (puntoComa == 2)
-            {
-                p[contlinea]->nombre = lineas[1];
-
-            }else if (puntoComa == 3)
-            {
-                p[contlinea]->instalaciones = lineas[2];
-
-            }else if (puntoComa == 4)
-            {
-                p[contlinea]->direccion = lineas[3];
-
-            }else if (puntoComa == 5)
-            {
-                p[contlinea]->municipio = lineas[4];
-
-            }else if (puntoComa == 6)
-            {
-                p[contlinea]->codMunicipio = lineas[5];
-
-            }else if (puntoComa == 7)
-            {
-                p[contlinea]->provincia = lineas[6];
-
-            }else if (puntoComa == 8)
-            {
-                p[contlinea]->codProv = lineas[7];
-
-            }else if (puntoComa == 9)
-            {
-                p[contlinea]->tel = lineas[8];
+            if(caja == 0){
+                poli[estante].setRef(alex);
             }
 
+
+            count = 0;
+            caja += 1;
+            
+        } else{
+
+            c = fgetc(file);
+
         }
+
         
+
     }
 
-
+    p = poli;
     fclose(file);
 }
 
@@ -488,28 +481,47 @@ static char cMostraMenuVisualizacionPorMunicipio() //se envía el nombre para qu
 
 static char cMostrarMenuModificarPolideportivo()
 {
-                                                                            //NO SÉ CÓMO QUEREMOS HACER PARA MODIFICARLO :(
+   
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MODIFICAR DATOS DEL POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione el dato que quiera modificar:\n\n"<<endl;
+    
+    cout<<"1. Nombre\n"<<endl;
+    cout<<"2. Direccion\n"<<endl;
+    cout<<"3. Telefono\n"<<endl;
+    cout<<"4. Municipio\n"<<endl;
+    cout<<"5. Codigo de municipio\n"<<endl;
+    cout<<"6. Provincia\n"<<endl;
+    cout<<"7. Codigo de provincia\n"<<endl;
+    cout<<"8. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
+
+    return linea;
+
 }
 
 
-static void cMostrarMenuModifPoliRef(){
+static void cMostrarMenuModifPoliNom(){
 
     Polideportivo *p;
 
-    char* ref;
-    char* refNueva;
+    char* nom;
+    char* nomNuevo;
 
     cout<<"\nEscriba el codigo de referencia del polideportivo: "<<endl;
-    cin>>ref;
-    p->setRef(ref);
+    cin>>nom;
+    p->setRef(nom);
 
     cout<<"\nNuevo codigo de referencia del polideportivo: "<<endl;
-    cin>>refNueva;
-    p->setRef(refNueva);
+    cin>>nomNuevo;
+    p->setRef(nomNuevo);
     cout<<"\nCodigo de referencia del polideportivo actualizado\n"<<endl;
 
 
-}
+}       //ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL ESTA MAL 
 
 
 static void cMostrarMenuModifPoliInst(){

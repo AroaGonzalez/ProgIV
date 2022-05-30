@@ -13,7 +13,7 @@ class Cliente: public Usuario
 
     public:
         Cliente();
-        Cliente(char* centro);
+        Cliente(char* centro, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
         Cliente(const Cliente &c); 
         virtual ~Cliente();
 
@@ -22,7 +22,7 @@ class Cliente: public Usuario
 
         void limpiarEntrada(char *str, int max_line);
 
-        void leerPolideportivos(Polideportivo* p[], char* fichero);
+        void leerPolideportivos(Polideportivo* p, char* fichero);
 
         static char cMostrarMenuGestPoli1();
 

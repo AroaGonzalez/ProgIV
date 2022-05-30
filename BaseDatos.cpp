@@ -328,23 +328,23 @@ static int insertarPoli(sqlite3 *db, Polideportivo *p)
 	sqlite3_stmt *stmt;
 
 	char sql[] = "INSERT INTO Polideportivo VALUES(";
-	strcat(sql, p->ref);
+	strcat(sql, p->getRef());
 	strcat(sql, ",");
-	strcat(sql, p->nombre);
+	strcat(sql, p->getNombre());
 	strcat(sql, ",");
-	strcat(sql, p->instalaciones);
+	strcat(sql, p->getInstalaciones());
 	strcat(sql, ",");
-	strcat(sql, p->direccion);
+	strcat(sql, p->getDireccion());
 	strcat(sql, ",");
-	strcat(sql, p->municipio);
+	strcat(sql, p->getMunicipio());
 	strcat(sql, ",");
-	strcat(sql, p->codMunicipio);
+	strcat(sql, p->getCodMunicipio());
 	strcat(sql, ",");
-	strcat(sql, p->provincia);
+	strcat(sql, p->getProvincia());
 	strcat(sql, ",");
-	strcat(sql, p->codProv);
+	strcat(sql, p->getCodProv());
 	strcat(sql, ",");
-	strcat(sql, p->tel);
+	strcat(sql, p->getTel());
 	strcat(sql, ");");
 
 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
