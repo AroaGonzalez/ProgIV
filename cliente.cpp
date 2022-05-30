@@ -223,7 +223,8 @@ char Cliente::cMostrarMenuIniSes()
     cout<<"\n======================================\n"<<endl;
     cout<<"INICIO DE SESION\n"<<endl;
     cout<<"======================================\n\n"<<endl;
-    cout<<"Rellene los siguientes parametros\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
+    cout<<"PORFAVOR, INTRODUCE NOMBRE COMO NOMBRE Y PASS COMO CONTRASENYA\n"<<endl;
     
     cout<<"-> Nombre de usuario: "<<endl;
     cin>>nombreDeUsuario;
