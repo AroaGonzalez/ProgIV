@@ -146,6 +146,7 @@ int main(int argc, char *argv[]) {
 					switch (option2){
 						case 1: //importar desde fichero
 							
+							cout << "parece que ha habido un error, intentelo mas tarde" << endl;
 							
 							break;
 						
@@ -153,7 +154,7 @@ int main(int argc, char *argv[]) {
 
 							do{
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva solicitud del cliente
-								sscanf(recvBuff, "%s", &option2);
+								sscanf(recvBuff, "%s", &option3);
 								switch (option3)
 								{
 								case 1: //visualizar polideportivos
@@ -208,7 +209,7 @@ int main(int argc, char *argv[]) {
 								case 4: //modificar polideportivo
 									do{
 										recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
-										sscanf(recvBuff, "%s", &option3);
+										sscanf(recvBuff, "%s", &option4);
 										switch (option4)
 										{
 										case 1: //modificar nombre
