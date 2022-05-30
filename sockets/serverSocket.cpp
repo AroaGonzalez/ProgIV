@@ -30,8 +30,7 @@ int main(int argc, char *argv[]) {
 
 	Cliente c;
 	Polideportivo p;
-	//Cliente c("a");
-	//Polideportivo p("a","a","a","a","a","a","a","a","a");
+
 
 
 	int option1, option2, option3, option4; //for the do and switch
