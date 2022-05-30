@@ -21,7 +21,7 @@ using namespace std;
 int main(int argc, char *argv[]) {
 
 	Usuario u;
-	char nombre[20], contrasenya[20], fNac[10], genero[10], DNI[9], tel[9], direccion[20], nombreUsuario[15], contrasenya[20];
+	char nombre[20], fNac[10], genero[10], DNI[9], tel[9], direccion[20], nombreUsuario[15], contrasenya[20];
 	Cliente c;
 	
 
@@ -74,12 +74,12 @@ int main(int argc, char *argv[]) {
 	int op1, op2, op3;
 	int respuestaS;
 	do{	
-		op1 = c.cMostrarMenuGestPoli1();
+		op1 = Cliente::cMostrarMenuGestPoli1();
 		sprintf(sendBuff, "%i", op1);
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		switch (op1){
 			case 1:
-				c.cMostrarMenuIniSes();
+				Cliente::cMostrarMenuIniSes();
 				sprintf(sendBuff, "%s", c.getNombreUsuario());
 				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre usuarios
 				sprintf(sendBuff, "%s", c.getContrasenya());
@@ -91,34 +91,34 @@ int main(int argc, char *argv[]) {
 				{
 					
 					
-					op2 = c.cMostrarMenuMenuPrinc();
+					op2 = Cliente::cMostrarMenuMenuPrinc();
 		sprintf(sendBuff, "%i", op2);
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		do{
 			switch (op2){
 				case 1:
-					c.cMostrarMenuImportarDatos;
+					Cliente::cMostrarMenuImportarDatos();
 
 				case 2:
 					
 					
 
 
-					op3 = c.cMostrarMenuGestPoli2();
+					op3 = Cliente::cMostrarMenuGestPoli2();
 					sprintf(sendBuff, "%i", op3);
 					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 					do{
 						switch (op3){
 						case 1:
-							c.cMostrarMenuVisualizacionGeneral;
+							Cliente::cMostrarMenuVisualizacionGeneral();
 						case 2:
-							c.cMostrarMenuVisualizacionPorMunicipio;
+							Cliente::cMostrarMenuVisualizacionPorMunicipio();
 						case 3:
-							c.cMostrarMenuAnyadirPolideportivo;
+							Cliente::cMostrarMenuAnyadirPolideportivo();
 						case 4:
-							c.cMostrarMenuModificarPolideportivo;
+							Cliente::cMostrarMenuModificarPolideportivo();
 						case 5:
-							c.cMostrarMenuEliminarPolideportivo;
+							Cliente::cMostrarMenuEliminarPolideportivo();
 						case 6:
 							op2 = 0;
 
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
 
 
 				case 3:
-					c.cMostrarMenuBorrarBaseDatos;
+					Cliente::cMostrarMenuBorrarBaseDatos();
 
 				case 4:
 					op2 = 0;
@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
 					break; } //me lleva a cMostrarMenuGestPoli1(); de nuevo
 				
 			case 2:
-				c.cMostrarMenuRegUsu();
+				Cliente::cMostrarMenuRegUsu();
 				sprintf(sendBuff, "%s", c.getNombre());
 				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre
 				sprintf(sendBuff, "%s", c.getApe());

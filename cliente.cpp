@@ -147,7 +147,7 @@ char Cliente::cMostrarMenuGestPoli1()
     return linea;
 }
 
-char Cliente::cMostrarMenuRegUsu()
+void Cliente::cMostrarMenuRegUsu()
 {
 
     Cliente *c;
@@ -208,7 +208,7 @@ char Cliente::cMostrarMenuRegUsu()
     cin>>centroU;
     c->setCentro(centroU);
 
-    
+
 }
 
 

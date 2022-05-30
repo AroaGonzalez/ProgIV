@@ -64,7 +64,7 @@ int main(void)
             break;
         
         case '3':
-            Cliente::cGestionPolideportivos();
+            Cliente::cMostrarMenuGestPoli1();
             break;
         
         default:

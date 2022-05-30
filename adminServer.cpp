@@ -273,8 +273,8 @@ void Administrador::gMostrarMenuAnyadirPoli()
     cout<<"\n-> Telefono: "<<endl;
     cin>>tel;
 
-    Polideportivo p;
-    InicializarPoli(&p, ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
+
+    Polideportivo p(ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
     cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
     
 }
