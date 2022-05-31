@@ -10,7 +10,7 @@ class Administrador:public Usuario
     
     public:
         Administrador();
-        Administrador(char* a);
+        Administrador(char* a, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
         Administrador(const Administrador &a); 
         ~Administrador();
 

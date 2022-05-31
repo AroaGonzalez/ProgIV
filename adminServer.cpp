@@ -13,9 +13,19 @@ using namespace std;
 
 Administrador::Administrador(){}
 
-Administrador::Administrador(char* a)
+Administrador::Administrador(char* a, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya)
 {
+    this->nombre = nombre;
+    this->apellido = apellido;
+    this->fNac = fNac;
+    this->genero = genero;
+    this->DNI = DNI;
+    this->tel = tel;
+    this->direccion = direccion;
+    this->nombreUsuario = nombreUsuario;
+    this->contrasenya = contrasenya;
     this->a = a;
+
     
 }
 Administrador::Administrador(const Administrador &a)
@@ -261,10 +271,6 @@ void Administrador::gMostrarMenuAnyadirPoli()
     cout<<"\n-> Telefono: "<<endl;
     cin>>tel;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 58a3c2beedf2b0cd1c24c462ad01fe5af4327e6b
     Polideportivo p(ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
     cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
     
