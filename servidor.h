@@ -7,6 +7,7 @@ class Servidor
         static void mostrarMenuServerEspera();
 
         static void mostrarMenuClienteConn();
+
 };
 
 

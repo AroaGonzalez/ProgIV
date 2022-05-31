@@ -10,7 +10,6 @@ using namespace std;
 #include "BaseDatos.h"
 #include "cliente.h"
 #include "polideportivo.h"
-#include "reserva.h"
 #include "usuario.h"
 
 
