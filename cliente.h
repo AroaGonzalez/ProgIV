@@ -25,11 +25,9 @@ class Cliente: public Usuario
 
         static char cMostrarMenuGestPoli1();
 
-        static char cMostrarMenuRegUsu();
+        static void cMostrarMenuRegUsu();
 
         static char cMostrarMenuIniSes();
-
-        static char cMostrarMenuRegUsu();
 
         static char cMostrarMenuMenuPrinc();
 
@@ -58,8 +56,6 @@ class Cliente: public Usuario
         static char cMostrarMenuVisualizacionGeneral();
 
         static char cMostrarMenuVisualizacionPorMunicipio();
-
-        static char cMostrarMenuAnyadirPolideportivo();
 
         static char cMostrarMenuModificarPolideportivo();
 

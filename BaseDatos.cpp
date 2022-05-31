@@ -94,7 +94,7 @@ int selectUsuario(sqlite3 *db, Usuario *u, Usuario* nombreUsuario) {
 }
 
 int selectMaxRef(sqlite3 *db) {
-	char* ref = "0000";
+	char ref[100] = "0000";
 	sqlite3_stmt *stmt;
 
 	char sql[] = "select MAX(Ref) from  Polideportivo";

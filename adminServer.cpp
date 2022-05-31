@@ -261,6 +261,10 @@ void Administrador::gMostrarMenuAnyadirPoli()
     cout<<"\n-> Telefono: "<<endl;
     cin>>tel;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 58a3c2beedf2b0cd1c24c462ad01fe5af4327e6b
     Polideportivo p(ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
     cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
     
