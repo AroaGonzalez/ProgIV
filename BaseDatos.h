@@ -1,7 +1,7 @@
 #ifndef BASEDATOS_H
 #define BASEDATOS_H
 
-#include "sqlite3.h"
+//#include "sqlite3.h"
 #include "usuario.h"
 #include "adminServer.h"
 #include "cliente.h"
@@ -17,38 +17,39 @@ class BaseDatos
 
     public:
 
+    //HEMOS QUITADO TODOS LOS SQLITES POQUE SI NO NO COMPILA
 
-        static int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
+        static int selectAdmin(char *db, Administrador *a, char* nombreUsuario);
 
-        static int insertarAdmin(sqlite3 *db, Administrador *a);
+        static int insertarAdmin(char *db, Administrador *a);
 
-        static int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
+        static int selectCliente(char *db, Cliente *c, char* nombreUsuario);
 
-        static int insertarCliente(sqlite3 *db, Cliente *c);
+        static int insertarCliente(char *db, Cliente *c);
 
-        static int selectMaxRef(sqlite3 *db);
+        static int selectMaxRef(char *db);
 
-        static int insertarPoli(sqlite3 *db, Polideportivo *p);
+        static int insertarPoli(char *db, Polideportivo *p);
 
-        static int borrarPoli(sqlite3 *db, char* nombre);
+        static int borrarPoli(char *db, char* nombre);
 
-        static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre);
+        static int cambiarNombrePoli(char *db, Polideportivo *p, char* nuevoNombre);
 
-        static int cambiarDireccionPoli(sqlite3 *db, Polideportivo *p, char* nuevaDir);
+        static int cambiarDireccionPoli(char *db, Polideportivo *p, char* nuevaDir);
 
-        static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefono);
+        static int cambiarTelefonoPoli(char *db, Polideportivo *p, char* nuevoTelefono);
 
-        static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio);
+        static int cambiarMuniPoli(char *db, Polideportivo *p, char* nuevoMunicipio);
 
-        static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunicipio);
+        static int cambiarCodMuniPoli(char *db, Polideportivo *p, char* nuevoCodMunicipio);
 
-        static int cambiarProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaProvincia);
+        static int cambiarProvPoli(char *db, Polideportivo *p, char* nuevaProvincia);
 
-        static int cambiarCodProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaCodProvincia);
+        static int cambiarCodProvPoli(char *db, Polideportivo *p, char* nuevaCodProvincia);
 
-        static int VisualizarPoli(sqlite3 *db);
+        static int VisualizarPoli(char *db);
 
-        static int borrarBD(sqlite3 *db);
+        static int borrarBD(char *db);
 };
 
 

@@ -103,21 +103,21 @@ int main(int argc, char *argv[]) {
 					
 
 
-					op3 = Cliente::cMostrarMenuGestPoli2();
+					op3 = Cliente::cMostrarMenuGestPoli1();			//DEBERÍA SER POLI2
 					sprintf(sendBuff, "%i", op3);
 					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 					do{
 						switch (op3){
 						case 1:
-							Cliente::cMostrarMenuVisualizacionGeneral();
+							//Cliente::cMostrarMenuVisualizacionGeneral();
 						case 2:
-							Cliente::cMostrarMenuVisualizacionPorMunicipio();
+							//Cliente::cMostrarMenuVisualizacionPorMunicipio();
 						case 3:
 							Cliente::cMostrarMenuAnyadirPolideportivo();
 						case 4:
-							Cliente::cMostrarMenuModificarPolideportivo();
+							//Cliente::cMostrarMenuModificarPolideportivo();
 						case 5:
-							Cliente::cMostrarMenuEliminarPolideportivo();
+							//Cliente::cMostrarMenuEliminarPolideportivo();
 						case 6:
 							op2 = 0;
 

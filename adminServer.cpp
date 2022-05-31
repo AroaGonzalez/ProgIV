@@ -1,6 +1,6 @@
 #include "adminServer.h"
 #include "BaseDatos.h"
-#include "sqlite3.h"
+//#include "sqlite3.h"
 #include <stdio.h>
 #include <string.h>
 #include "usuario.h"
@@ -65,7 +65,7 @@ char Administrador::sMostrarMenuGestPoli1()
 
 void Administrador::sMostrarMenuRegUsu()
 {
-    sqlite3 *db;
+//    sqlite3 *db;
 
     char* nombreUsu;
 
@@ -121,7 +121,7 @@ void Administrador::sMostrarMenuRegUsu()
 char Administrador::sMostrarMenuIniSes()
 {
     Administrador *a;
-    sqlite3 *db;
+//    sqlite3 *db;
     char* nombreDeUsuario;
     char* contrasenya;
 
@@ -237,7 +237,7 @@ void Administrador::gMostrarMenuAnyadirPoli()
     cout<<"Rellene los siguientes parametros:\n"<<endl;
     
     char* ref;
-    sqlite3 *db;
+//    sqlite3 *db;
 
     //BaseDatos::selectMaxRef(db);
 

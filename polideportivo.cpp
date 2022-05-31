@@ -1,7 +1,7 @@
 #include "polideportivo.h" 
 #include <iostream>
 #include <string.h>
-#include "sqlite3.h"
+//#include "sqlite3.h"
 #include <stdlib.h>
 #include "adminServer.h"
 #include "BaseDatos.h"

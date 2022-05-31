@@ -1,7 +1,7 @@
 #include "cliente.h"
 #include <iostream>
 #include <string.h>
-#include "sqlite3.h"
+//#include "sqlite3.h"
 #include <stdlib.h>
 #include "adminServer.h"
 #include "BaseDatos.h"
@@ -131,9 +131,9 @@ void Cliente::leerPolideportivos(Polideportivo* p, char* fichero)
 
 //MENUS VISUALES
 
-char Cliente::cMostrarMenuGestPoli1()
+int Cliente::cMostrarMenuGestPoli1()
 {
-    char linea;
+    int linea;
     cout<<"\n======================================\n"<<endl;
     cout<<"GESTION DE POLIDEPORTIVOS DE EUSKADI\n"<<endl;
     cout<<"======================================\n\n"<<endl;
@@ -240,9 +240,9 @@ char Cliente::cMostrarMenuIniSes()
 
 
 
-char Cliente::cMostrarMenuMenuPrinc()
+int Cliente::cMostrarMenuMenuPrinc()
 {
-    char linea;
+    int linea;
     cout<<"\n======================================\n"<<endl;
     cout<<"MENU PRINCIPAL\n"<<endl;
     cout<<"======================================\n\n"<<endl;
@@ -469,15 +469,15 @@ static char cMostrarMenuAnyadirPolideportivo()
 }
 
 
-static char cMostrarMenuVisualizacionGeneral()
+static void cMostrarMenuVisualizacionGeneral()
 {
     cout<<"Mostrando polideportivos... \n"<<endl;
-
+    
 
 }
 
 
-static char cMostraMenuVisualizacionPorMunicipio() //se envía el nombre para que devuelva un polideportivo
+static void cMostraMenuVisualizacionPorMunicipio() //se envía el nombre para que devuelva un polideportivo
 {
     Polideportivo *p;
     char* nombre;
@@ -576,7 +576,7 @@ static void cMostrarMenuModifPoliTel(){
 
 
 
-static char cMostrarMenuEliminarPolideportivo()
+static void cMostrarMenuEliminarPolideportivo()
 {
 
     Polideportivo *p;

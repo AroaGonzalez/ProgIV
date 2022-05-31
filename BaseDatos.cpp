@@ -10,7 +10,8 @@
 
 using namespace std;
 
-int selectMaxRef(sqlite3 *db) {
+int selectMaxRef(char *db) {
+	/*
 	char ref[100] = "0000";
 	sqlite3_stmt *stmt;
 	
@@ -57,9 +58,12 @@ int selectMaxRef(sqlite3 *db) {
 	printf("Database closed\n") ;
 
 	return SQLITE_OK;
+	*/
+return 0;
 }
 
-int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario) {
+int selectAdmin(char *db, Administrador *a, char* nombreUsuario) {
+	/*
 
 	sqlite3_stmt *stmt;
 	
@@ -106,9 +110,12 @@ int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario) {
 	printf("Database closed\n") ;
 
 	return SQLITE_OK;
+	*/
+return 0;
 }
 
-int insertarAdmin(sqlite3 *db, Administrador *a) {
+int insertarAdmin(char *db, Administrador *a) {
+	/*
 
 	sqlite3_stmt *stmt;
 	
@@ -157,10 +164,13 @@ int insertarAdmin(sqlite3 *db, Administrador *a) {
 	printf("Database closed\n") ;
 
 	return SQLITE_OK;
+	*/
+	return 0;
 }
 
 
-int insertarCliente(sqlite3 *db, Cliente *c) {
+int insertarCliente(char *db, Cliente *c) {
+	/*
 
 	sqlite3_stmt *stmt;
 	
@@ -209,9 +219,11 @@ int insertarCliente(sqlite3 *db, Cliente *c) {
 	printf("Database closed\n") ;
 
 	return SQLITE_OK;
+	*/return 0;
 }
 
-int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario) {
+int selectCliente(char *db, Cliente *c, char* nombreUsuario) {
+	/*
 
 	sqlite3_stmt *stmt;
 	
@@ -258,10 +270,13 @@ int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario) {
 	printf("Database closed\n") ;
 
 	return SQLITE_OK;
+	*/
+return 0;
 }
 
 
-static int borrarPoli(sqlite3 *db, char* nombre) {
+static int borrarPoli(char *db, char* nombre) {
+	/*
 
 	sqlite3_stmt *stmt;
 	
@@ -308,10 +323,12 @@ static int borrarPoli(sqlite3 *db, char* nombre) {
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/ return 0;
 }
 
-static int insertarPoli(sqlite3 *db, Polideportivo *p)
+static int insertarPoli(char *db, Polideportivo *p)
 {
+	/*
 	sqlite3_stmt *stmt;
 	
 	int result = sqlite3_open("test.sqlite", &db);
@@ -373,10 +390,13 @@ static int insertarPoli(sqlite3 *db, Polideportivo *p)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
+	return 0;
 }
 
-static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre)
+static int cambiarNombrePoli(char *db, Polideportivo *p, char* nuevoNombre)
 {
+	/*
 	sqlite3_stmt *stmt;
 	
 	int result = sqlite3_open("test.sqlite", &db);
@@ -422,10 +442,13 @@ static int cambiarNombrePoli(sqlite3 *db, Polideportivo *p, char* nuevoNombre)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
+	return 0;
 }
 
-static int cambiarDireccionPoli(sqlite3 *db, Polideportivo *p, char* nuevaDir)
+static int cambiarDireccionPoli(char *db, Polideportivo *p, char* nuevaDir)
 {
+	/*
 	sqlite3_stmt *stmt;
 	
 	int result = sqlite3_open("test.sqlite", &db);
@@ -471,10 +494,12 @@ static int cambiarDireccionPoli(sqlite3 *db, Polideportivo *p, char* nuevaDir)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/return 0;
 }
 
-static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefono)
+static int cambiarTelefonoPoli(char *db, Polideportivo *p, char* nuevoTelefono)
 {
+	/*
 	sqlite3_stmt *stmt;
 
 	
@@ -512,10 +537,12 @@ static int cambiarTelefonoPoli(sqlite3 *db, Polideportivo *p, char* nuevoTelefon
 	cout<<"Prepared statement finalized (SELECT)\n"<<endl;
 	
 	return SQLITE_OK;
+	*/return 0;
 }
 
-static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio)
+static int cambiarMuniPoli(char *db, Polideportivo *p, char* nuevoMunicipio)
 {
+	return 0;/*
 	sqlite3_stmt *stmt;
 
 	
@@ -562,10 +589,12 @@ static int cambiarMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoMunicipio)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
 }
 
-static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunicipio)
+static int cambiarCodMuniPoli(char *db, Polideportivo *p, char* nuevoCodMunicipio)
 {
+	return 0;/*
 	sqlite3_stmt *stmt;
 	
 	int result = sqlite3_open("test.sqlite", &db);
@@ -611,10 +640,12 @@ static int cambiarCodMuniPoli(sqlite3 *db, Polideportivo *p, char* nuevoCodMunic
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
 }
 
-static int cambiarProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaProvincia)
+static int cambiarProvPoli(char *db, Polideportivo *p, char* nuevaProvincia)
 {
+	return 0;/*
 	sqlite3_stmt *stmt;
 
 	
@@ -661,10 +692,12 @@ static int cambiarProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaProvincia)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
 }
 
-static int cambiarCodProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaCodProvincia)
+static int cambiarCodProvPoli(char *db, Polideportivo *p, char* nuevaCodProvincia)
 {
+	return 0;/*
 	sqlite3_stmt *stmt;
 
 	
@@ -711,10 +744,12 @@ static int cambiarCodProvPoli(sqlite3 *db, Polideportivo *p, char* nuevaCodProvi
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
 }
 
-static int VisualizarPoli(sqlite3 *db)
+static int VisualizarPoli(char *db)
 {
+	return 0;/*
 	sqlite3_stmt *stmt;
 
 	
@@ -759,10 +794,12 @@ static int VisualizarPoli(sqlite3 *db)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/
 }
 
-static int borrarBD(sqlite3 *db)
+static int borrarBD(char *db)
 {
+	/*
 	sqlite3_stmt *stmt;
 
 	
@@ -807,4 +844,5 @@ static int borrarBD(sqlite3 *db)
 	printf("Database closed\n") ;
 	
 	return SQLITE_OK;
+	*/return 0;
 }

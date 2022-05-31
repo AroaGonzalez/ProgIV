@@ -23,13 +23,13 @@ class Cliente: public Usuario
 
         void leerPolideportivos(Polideportivo* p, char* fichero);
 
-        static char cMostrarMenuGestPoli1();
+        static int cMostrarMenuGestPoli1();
 
         static void cMostrarMenuRegUsu();
 
         static char cMostrarMenuIniSes();
 
-        static char cMostrarMenuMenuPrinc();
+        static int cMostrarMenuMenuPrinc();
 
         static char cMostrarMenuGestReserv();
 
@@ -51,11 +51,11 @@ class Cliente: public Usuario
 
         static char cMostrarMenuAnyadirPolideportivo();
 
-        static char cMostrarMenuGestPoli2();
+        //static int cMostrarMenuGestPoli2();
 
-        static char cMostrarMenuVisualizacionGeneral();
+        static void cMostrarMenuVisualizacionGeneral();
 
-        static char cMostrarMenuVisualizacionPorMunicipio();
+        static void cMostrarMenuVisualizacionPorMunicipio();
 
         static char cMostrarMenuModificarPolideportivo();
 
@@ -65,7 +65,7 @@ class Cliente: public Usuario
 
             static void cMostrarMenuModifPoliTel();
 
-        static char cMostrarMenuEliminarPolideportivo();
+        static void cMostrarMenuEliminarPolideportivo();
 
 
 
