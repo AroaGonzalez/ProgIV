@@ -8,7 +8,6 @@
 #include "BaseDatos.h"
 #include "cliente.h"
 #include "polideportivo.h"
-#include "reserva.h"
 #include "usuario.h"
 using namespace std;
 

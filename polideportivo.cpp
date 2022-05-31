@@ -111,6 +111,17 @@ char* Polideportivo::getMunicipio()
 char* Polideportivo::setMunicipio(char* municipio)
 {
     this->municipio = municipio;
+
+}
+
+char* Polideportivo::getCodMunicipio()
+{
+    return this->codMunicipio;
+}
+
+char* Polideportivo::setCodMunicipio(char* CodMunicipio)
+{
+    this->codMunicipio = codMunicipio;
 }
 
 

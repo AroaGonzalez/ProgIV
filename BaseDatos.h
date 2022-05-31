@@ -5,7 +5,7 @@
 #include "usuario.h"
 #include "adminServer.h"
 #include "cliente.h"
-#include "reserva.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,9 +17,6 @@ class BaseDatos
 
     public:
 
-        static int insertarUsuario(sqlite3 *db, Usuario *u);
-
-        static int selectUsuario(sqlite3 *db, Usuario *u, char* nombreUsuario);
 
         static int selectAdmin(sqlite3 *db, Administrador *a, char* nombreUsuario);
 
@@ -28,8 +25,6 @@ class BaseDatos
         static int selectCliente(sqlite3 *db, Cliente *c, char* nombreUsuario);
 
         static int insertarCliente(sqlite3 *db, Cliente *c);
-
-        static int crearReserva(sqlite3 *db, Reserva *r);
 
         static int selectMaxRef(sqlite3 *db);
 

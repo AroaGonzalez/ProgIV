@@ -43,13 +43,5 @@ create table Polideportivo(
     primary key (Ref)
 );
 
-create table Reserva(
-Cod char(5) not null,
-Hora char(2) not null,
-Tipo char(15),
-Precio char(2),
-Ref_Poli char(5),
-primary key (Cod),
-foreign key (Ref_Poli) references Polideportivo(Ref) on delete cascade
-);
+
 

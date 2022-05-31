@@ -110,10 +110,12 @@ void Administrador::sMostrarMenuRegUsu()
     cout<<"\n-> Contrasenya: "<<endl;
     cin>>conU;
 
-    Usuario u(nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
+    char admin[100] = "aa";
+
+    Administrador a(admin, nombreU, apellidoU, FNacU, generoU, DNIU, telU, dirU, nomUsuU, conU);
 
     cout<<"\nUsuario creado correctamente, pulsa enter para continuar "<<endl;
-    BaseDatos::insertarUsuario(db, &u);
+    //BaseDatos::insertarAdmin(db, &a);
 }
 
 char Administrador::sMostrarMenuIniSes()
@@ -131,12 +133,12 @@ char Administrador::sMostrarMenuIniSes()
     cout<<"-> Nombre de usuario: "<<endl;
     cin>>nombreDeUsuario;
     a->setNombreUsu(nombreDeUsuario);
-    BaseDatos::selectAdmin(db, a, a->getNombreUsuario());
+    //BaseDatos::selectAdmin(db, a, a->getNombreUsuario());
     
     cout<<"\n-> Contrasenya: "<<endl;
     cin>>contrasenya;
     a->setContrasenya(contrasenya);
-    BaseDatos::selectAdmin(db, a, a->getContrasenya());
+    //BaseDatos::selectAdmin(db, a, a->getContrasenya());
     
     cout<<"\nPulsa enter para continuar "<<endl;  
     
@@ -237,7 +239,7 @@ void Administrador::gMostrarMenuAnyadirPoli()
     char* ref;
     sqlite3 *db;
 
-    BaseDatos::selectMaxRef(db);
+    //BaseDatos::selectMaxRef(db);
 
     char* nombreP;
     cout<<"-> Nombre: "<<endl;
@@ -315,11 +317,7 @@ void Administrador::gMostrarMenuBorrarPoli()
     cout<<"\nEstas seguro de que quieres borrar el polideportivo? [s/n]: "<<endl;
     cin>>resp;
 
-    sqlite3 *db;
-    if (resp == "s")
-    {
-        BaseDatos::borrarPoli(db, nombreP);
-    }
+   
     
 
     cout<<"\nPolideportivo eliminado, pulse enter para continuar\n"<<endl;
