@@ -21,8 +21,6 @@ class Cliente: public Usuario
         char* getCentro();
         char* setCentro(char* centro);
 
-        void limpiarEntrada(char *str, int max_line);
-
         void leerPolideportivos(Polideportivo* p, char* fichero);
 
         static char cMostrarMenuGestPoli1();

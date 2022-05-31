@@ -6,19 +6,16 @@
 class Administrador:public Usuario
 {
     private:
-        char* nombreUsuario;
-        char* contrasenya;
+        char* a;
     
     public:
         Administrador();
-        Administrador(char* nombreUsuario, char* contrasenya); 
+        Administrador(char* a);
         Administrador(const Administrador &a); 
         ~Administrador();
 
-        char* getNombreUsuario();
-        char* setNombreUsu(char* nombreUsu);
-        char* getContrasenya();
-        char* setContrasenya(char* contrasenya);
+        char* getA();
+        char* setA(char* a);
 
         static char sMostrarMenuGestPoli1();
 

@@ -13,10 +13,10 @@ using namespace std;
 
 Administrador::Administrador(){}
 
-Administrador::Administrador(char* nombreUsuario, char* contrasenya)
+Administrador::Administrador(char* a)
 {
-    this->nombreUsuario = nombreUsuario;
-    this->contrasenya = contrasenya;
+    this->a = a;
+    
 }
 Administrador::Administrador(const Administrador &a)
 {
@@ -27,27 +27,15 @@ Administrador::~Administrador()
 {
 }
 
-char* Administrador::getNombreUsuario()
+char* Administrador::getA()
 {
-    return this->nombreUsuario;
+    return this->a;
 }
 
-char* Administrador::setNombreUsu(char* nombreUsu)
+char* Administrador::setA(char* a)
 {
-    this->nombreUsuario = nombreUsu;
+    this->a = a;
 }
-
-char* Administrador::getContrasenya()
-{
-    return this->contrasenya;
-}
-
-char* Administrador::setContrasenya(char* contrasenya)
-{
-    this->contrasenya = contrasenya;
-}
-
-
 
 char Administrador::sMostrarMenuGestPoli1()
 {
@@ -273,8 +261,7 @@ void Administrador::gMostrarMenuAnyadirPoli()
     cout<<"\n-> Telefono: "<<endl;
     cin>>tel;
 
-    Polideportivo p;
-    InicializarPoli(&p, ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
+    Polideportivo p(ref, nombreP, instalaciones, dirP, muni, codM, prov, codProv, tel);
     cout<<"\nPolideportivo anyadido, pulse enter para continuar"<<endl;
     
 }
