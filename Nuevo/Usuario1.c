@@ -7,7 +7,7 @@ void generarUsuario(Usuario1* u, char* nombre, char* apellido, char* fNac, char*
 {
     strcpy(u->nombre, nombre);
     strcpy(u->apellido, apellido);
-    strcpy(u->fNac, genero);
+    strcpy(u->fNac, fNac);
     strcpy(u->genero, genero);
     strcpy(u->DNI, DNI);
     strcpy(u->direccion, direccion);
