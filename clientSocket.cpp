@@ -6,22 +6,387 @@
 #include <string.h>
 using namespace std;
 
-#include "adminServer.h"
-#include "BaseDatos.h"
+
 #include "cliente.h"
-#include "polideportivo.h"
-#include "usuario.h"
 
 
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
 
+int cMostrarMenuGestPoli1()
+{
+    int linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"GESTION DE POLIDEPORTIVOS DE EUSKADI\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Bienvenido al programa que administra el servidor\n"<<endl;
+
+    cout<<"1. Iniciar sesion\n"<<endl;
+    cout<<"2. Registrar usuario\n"<<endl;
+    cout<<"3. Salir\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
+    return linea;
+}
+
+void cMostrarMenuRegUsu(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"REGISTRO DE USUARIO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
+    
+
+    char* nombreU;
+    cout<<"-> Nombre: "<<endl;
+    cin>>nombreU;
+	sprintf(sendBuff, "%s", nombreU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+	
+
+    char* apellidoU;
+    cout<<"\n-> Apellido: "<<endl;
+    cin>> apellidoU;
+    sprintf(sendBuff, "%s", apellidoU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* DNIU;
+    cout<<"\n-> DNI: "<<endl;
+    cin>>DNIU;
+    sprintf(sendBuff, "%s", DNIU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* telU;
+    cout<<"\n-> Telefono: "<<endl;
+    cin>>telU;
+    sprintf(sendBuff, "%s", telU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* FNacU;
+    cout<<"\n-> Fecha nacimiento: "<<endl;
+    cin>>FNacU;
+    sprintf(sendBuff, "%s", FNacU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* generoU;
+    cout<<"\n-> Genero: "<<endl;
+    cin>>generoU;
+    sprintf(sendBuff, "%s", generoU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* dirU;
+    cout<<"\n-> Direccion: "<<endl;
+    cin>>dirU;
+	sprintf(sendBuff, "%s", dirU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* nomUsuU;
+    cout<<"\n-> Nombre de usuario: "<<endl;
+    cin>>nomUsuU;
+    sprintf(sendBuff, "%s", nomUsuU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    
+    char* conU;
+    cout<<"\n-> Contrasenya: "<<endl;
+    cin>>conU;
+    sprintf(sendBuff, "%s", conU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* centroU;
+    cout<<"\n-> Centro: "<<endl;
+    cin>>centroU;
+    sprintf(sendBuff, "%s", centroU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+
+}
+
+
+void cMostrarMenuIniSes(SOCKET s, char sendBuff[512], char recvBuff[512]) /////////////////////////////////////
+{
+    char* nombreDeUsuario;
+    char* contrasenya;
+
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"INICIO DE SESION\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
+    
+    cout<<"-> Nombre de usuario: "<<endl;
+    cin>>nombreDeUsuario;
+    sprintf(sendBuff, "%s", nombreDeUsuario);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    
+    cout<<"\n-> Contrasenya: "<<endl;
+    cin>>contrasenya;
+    sprintf(sendBuff, "%s", contrasenya);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    
+}
+
+int cMostrarMenuMenuPrinc()
+{
+    int linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MENU PRINCIPAL\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione una opcion: \n\n"<<endl;
+    cout<<"1. Gestionar reservas\n"<<endl;
+    cout<<"2. Modificar datos personales\n"<<endl;
+    cout<<"3. Contactar con otros polideportivos\n"<<endl;
+    cout<<"4. Gestionar polideportivos\n"<<endl;
+    cout<<"5. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
+   
+    return linea;
+}
+
+int cMostrarMenuGestReserv()
+{
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"GESTIONAR RESERVAS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"1. Reservar espacio deportivo\n"<<endl;
+    cout<<"2. Anular reserva\n"<<endl;
+    cout<<"3. Volver\n\n"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
+    
+    return linea;
+}
+
+int cMostrarMenuModifDat(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+    char* dir, cuot, nombr, contr;
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MODIFICAR DATOS PERSONALES\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+
+    cout<<"\nNueva nombre de usuario: "<<endl;
+    cin>>nombr;
+    sprintf(sendBuff, "%s", nombr);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    cout<<"\nNueva contrasenya: "<<endl;
+    cin>>contr;
+    sprintf(sendBuff, "%s", contr);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"\nNueva direccion: "<<endl;
+    cin>>dir;
+    sprintf(sendBuff, "%s", dir);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"\nNuevo tipo de cuota: "<<endl;
+    cin>>cout;
+    sprintf(sendBuff, "%s", cout);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+}
+
+
+int cMostrarMenuContactPoli()
+{
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"CONTACTAR CON OTROS POLIDEPORTIVOS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    
+    cout<<"-> Nombre del polideportivo: "<<endl;
+    cin>>linea;
+   
+    int telef = 666666666;    
+    cout<<"\nEl numero telefonico del polideportivo es: "<< telef<<endl;
+
+    return linea;
+}
+
+void cMostrarMenuImportarDatos() ///////////////////////////////////////////////////////////////
+{
+    cout<<"Importando datos,no cierre la aplicación ... \n"<<endl;      
+    
+    
+                                                                    //FALTA ALGO EN SOCKETS
+
+} 
+
+
+void cMostrarMenuBorrarBaseDatos()
+{
+    cout<<"Importando datos: \n"<<endl;
+}
+
+int cMostrarMenuGestPoli2()
+{
+    char linea;
+    cout<<"\n======================================\n"<<endl;
+    cout<<"GESTION DE POLIDEPORTIVOS\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Seleccione la opcion que desee:\n\n"<<endl;
+    
+    cout<<"1.- Visualización general\n"<<endl;
+    cout<<"2.- Visualización por municipios\n"<<endl;
+    cout<<"3.- Anyadir polideportivo\n"<<endl;
+    cout<<"4.- Modificar poliderportivo\n"<<endl;
+    cout<<"5.- Eliminar poliderportivo\n\n"<<endl;
+    cout<<"6. Volver"<<endl;
+    cout<<"Opcion: "<<endl;
+    cin>>linea;
+
+
+    return linea;
+}
+
+
+void cMostrarMenuVisualizacionGeneral()
+{
+    cout<<"Mostrando polideportivos... \n"<<endl;
+    
+
+}
+
+
+void cMostraMenuVisualizacionPorMunicipio(SOCKET s, char sendBuff[512], char recvBuff[512]) //se envía el nombre para que devuelva un polideportivo
+{
+    char* nombre;
+    cout<<"-> Inserte nombre del municipio a mostrar: "<<endl;
+    cin>>nombre;
+    sprintf(sendBuff, "%s", nombre);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+}
+
+void cMostrarMenuAnyadirPolideportivo(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+    
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"ANYADIR POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    cout<<"Rellene los siguientes parametros\n"<<endl;
+
+
+    char *ref;
+    cout<<"-> Referencia del polideportivo: "<<endl;
+    cin>>ref;
+    sprintf(sendBuff, "%s", ref);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    
+    char *nombre;
+    cout<<"\n-> Nombre del polideportivo: "<<endl;
+    cin>>nombre;
+    sprintf(sendBuff, "%s", nombre);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+    
+    char *instalaciones;
+    cout<<"\n-> Instalaciones del polideportivo: "<<endl;
+    cin>>instalaciones;
+    sprintf(sendBuff, "%s", instalaciones);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char *direccion;
+    cout<<"\n-> Direccion del polideportivo: "<<endl;
+    cin>>direccion;
+    sprintf(sendBuff, "%s", direccion);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char *municipio;
+    cout<<"\n-> Municipio al que pertenece el polideportivo: "<<endl;
+    cin>>municipio;
+    sprintf(sendBuff, "%s", municipio);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* codMunicipio;
+    cout<<"\n-> Codigo del Municipio al que pertenece el polideportivo: "<<endl;
+    cin>>codMunicipio;
+    sprintf(sendBuff, "%s", codMunicipio);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char *provincia;
+    cout<<"\n-> Provincia a la que pertenece el polideportivo: "<<endl;
+    cin>>provincia;
+    sprintf(sendBuff, "%s", provincia);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* codProv;
+    cout<<"\n-> Codigo de provincia del polideportivo: "<<endl;
+    cin>>codProv;
+    sprintf(sendBuff, "%s", codProv);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    char* tel;
+    cout<<"\n-> Telefono del polideportivo: "<<endl;
+    cin>>tel;
+    sprintf(sendBuff, "%s", tel);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+
+}
+
+void cMostrarMenuModificarPolideportivo(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+   char* nombre, dir, tel, muni, codMuni, prov, codProv;
+
+    cout<<"\n======================================\n"<<endl;
+    cout<<"MODIFICAR DATOS DEL POLIDEPORTIVO\n"<<endl;
+    cout<<"======================================\n\n"<<endl;
+    
+    cout<<"Nombre: \n"<<endl;
+	cin << nombre;
+	sprintf(sendBuff, "%s", nombre);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    cout<<"Direccion: \n"<<endl;
+	cin << dir;
+	sprintf(sendBuff, "%s", nombre);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+    cout<<"Telefono: \n"<<endl;
+	cin << tel;
+	sprintf(sendBuff, "%s", tel);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"Municipio: \n"<<endl;
+	cin << muni;
+	sprintf(sendBuff, "%s", muni);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"Codigo de municipio: \n"<<endl;
+	cin << codMuni;
+	sprintf(sendBuff, "%s", codMuni);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"Provincia: \n"<<endl;
+	cin << prov;
+	sprintf(sendBuff, "%s", prov);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+	cout<<"Codigo de proviincia: \n"<<endl;
+	cin << codProv;
+	sprintf(sendBuff, "%s", codProv);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+}
+
+void cMostrarMenuEliminarPolideportivo(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+
+    char* ref;
+
+    cout<<"\nEscriba el codigo de referencia del polideportivo a eliminar: "<<endl;
+    cin>>ref;
+    sprintf(sendBuff, "%s", centroU);
+	send(s, sendBuff, sizeof(sendBuff), 0);
+
+}
+
 int main(int argc, char *argv[]) {
 
-	Usuario u;
 	char nombre[20], fNac[10], genero[10], DNI[9], tel[9], direccion[20], nombreUsuario[15], contrasenya[20];
-	Cliente c;
 	
 
 	WSADATA wsaData;
@@ -63,9 +428,6 @@ int main(int argc, char *argv[]) {
 
 
 
-
-
-
 	// SEND and RECEIVE data
 	
 	//GEST POLI EUSKADI
@@ -73,51 +435,42 @@ int main(int argc, char *argv[]) {
 	int op1, op2, op3;
 	int respuestaS;
 	do{	
-		op1 = Cliente::cMostrarMenuGestPoli1();
+		op1 = cMostrarMenuGestPoli1();
 		sprintf(sendBuff, "%i", op1);
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		switch (op1){
 			case 1:
-				Cliente::cMostrarMenuIniSes();
-				sprintf(sendBuff, "%s", c.getNombreUsuario());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre usuarios
-				sprintf(sendBuff, "%s", c.getContrasenya());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviada contrasenya usuarios
+				cMostrarMenuIniSes();
 				
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 				if (respuestaS == 1)
 				{
-					
-					
-					op2 = Cliente::cMostrarMenuMenuPrinc();
-		sprintf(sendBuff, "%i", op2);
-		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+					op2 = cMostrarMenuMenuPrinc();
+		            sprintf(sendBuff, "%i", op2);
+		            send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		do{
 			switch (op2){
 				case 1:
-					Cliente::cMostrarMenuImportarDatos();
+					cMostrarMenuImportarDatos();
 
 				case 2:
-					
-					
 
-
-					op3 = Cliente::cMostrarMenuGestPoli1();			//DEBERÍA SER POLI2
+					op3 = cMostrarMenuGestPoli2();			//DEBERÍA SER POLI2
 					sprintf(sendBuff, "%i", op3);
 					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 					do{
 						switch (op3){
 						case 1:
-							//Cliente::cMostrarMenuVisualizacionGeneral();
+							cMostrarMenuVisualizacionGeneral();
 						case 2:
-							//Cliente::cMostrarMenuVisualizacionPorMunicipio();
+							cMostrarMenuVisualizacionPorMunicipio();
 						case 3:
-							Cliente::cMostrarMenuAnyadirPolideportivo();
+							cMostrarMenuAnyadirPolideportivo();
 						case 4:
-							//Cliente::cMostrarMenuModificarPolideportivo();
+							cMostrarMenuModificarPolideportivo();
 						case 5:
-							//Cliente::cMostrarMenuEliminarPolideportivo();
+							cMostrarMenuEliminarPolideportivo();
 						case 6:
 							op2 = 0;
 
@@ -126,53 +479,22 @@ int main(int argc, char *argv[]) {
 
 					}while(op3 != 0);
 
-
-
-
-
-
-
 				case 3:
-					Cliente::cMostrarMenuBorrarBaseDatos();
+					cMostrarMenuBorrarBaseDatos();
 
 				case 4:
 					op2 = 0;
 
 				break;
 			}
-			
-
-
 
 		}while(op2 != 0);
-
-
-
-
 				} else { 
 					cout << "acceso denegado, identificación incorrecta"<<endl;
 					break; } //me lleva a cMostrarMenuGestPoli1(); de nuevo
 				
 			case 2:
-				Cliente::cMostrarMenuRegUsu();
-				sprintf(sendBuff, "%s", c.getNombre());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre
-				sprintf(sendBuff, "%s", c.getApe());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado apellido
-				sprintf(sendBuff, "%s", c.getDni());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado dni
-				sprintf(sendBuff, "%s", c.getTel());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado telefono
-				sprintf(sendBuff, "%s", c.getFnac());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviada fecha de nacimiento
-				sprintf(sendBuff, "%s", c.getGenero());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado genero
-				sprintf(sendBuff, "%s", c.getDir());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviada direccion
-				sprintf(sendBuff, "%s", c.getNombreUsuario());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviado nombre de usuario
-				sprintf(sendBuff, "%s", c.getContrasenya());
-				send(s, sendBuff, sizeof(sendBuff), 0); //enviada contrasenya
+				cMostrarMenuRegUsu();
 
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
@@ -190,74 +512,7 @@ int main(int argc, char *argv[]) {
 			
 		}
 		
-
-
-
 	}while (op1 != 0);
-	
-	//cout << "Introduzca su nombre de usuario: \n" << endl;
-	//cin >> nombre;
-	//cout << "Introduzca su contrasenya: \n" << endl;
-	//cin >> contrasenya;
-//
-	//cout << "Sending request iniciar sesion... \n" << endl;
-	//sprintf(sendBuff, "%s, %s", nombre, contrasenya); // introducimos nombre y contrasenya
-	//send(s, sendBuff, sizeof(sendBuff), 0); // enviamos al servidor
-//
-	//cout << "Receiving iniciar sesion... \n" << endl;
-	//recv(s, recvBuff, sizeof(recvBuff), 0);
-	//cout << "Data received: "<< recvBuff << "\n" << endl;
-
-
-	
-	Cliente::cMostrarMenuIniSes();
-
-	//registrar usario
-
-	Cliente::cMostrarMenuRegUsu();
-	//cout << "Introduzca su nombre real: \n" << endl;
-	//cin >> nombre;
-	//cout << "Introduzca su nueva contrasenya: \n" << endl;
-	//cin >> contrasenya;
-	//cout << "Introduzca su fecha de nacimiento: \n" << endl;
-	//cin >> fNac;
-	//cout << "Introduzca su genero: \n" << endl;
-	//cin >> genero;
-	//cout << "Introduzca su DNI: \n" << endl;
-	//cin >> DNI;
-	//cout << "Introduzca su telefono: \n" << endl;
-	//cin >> tel;
-	//cout << "Introduzca su direccion: \n" << endl;
-	//cin >> direccion;
-	//cout << "Introduzca el nombre de usuario deseado: \n" << endl;
-	//cin >> nombreUsuario;
-	//cout << "Introduzca la contraseña deseada: \n" << endl;
-	//cin >> contrasenya;
-
-	
-	//gestionar polideportivos
-	Cliente::cMostrarMenuGestPoli1();
-
-	//mostrar meny principal
-	Cliente::cMostrarMenuMenuPrinc();
-
-	//mostrar menu de gestion de reservas
-	Cliente::cMostrarMenuGestReserv();
-
-	//menu modificar datos
-	Cliente::cMostrarMenuModifDat();
-
-	//menu modificar dat dir
-	Cliente::cMostrarMenuModifDatDir();
-
-	cout << "Sending request registrar usuario... \n" << endl;
-	strcpy(sendBuff, "regUsu");
-	send(s, sendBuff, sizeof(sendBuff), 0);
-
-	cout << "Receiving registrar usario... \n" << endl;
-	recv(s, recvBuff, sizeof(recvBuff), 0);
-	cout << "Data received: "<< recvBuff << "\n" << endl;
-	
 
 	// CLOSING the socket and cleaning Winsock...
 	closesocket(s);
