@@ -419,8 +419,6 @@ int main(int argc, char *argv[]) {
 	int respuestaS;
 	do{	
 		op1 = cMostrarMenuGestPoli1(s, sendBuff, recvBuff);
-		sprintf(sendBuff, "%i", op1);
-		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		switch (op1){
 			case 1:
 				cMostrarMenuIniSes(s, sendBuff, recvBuff);
@@ -430,8 +428,7 @@ int main(int argc, char *argv[]) {
 				if (respuestaS == 1)
 				{
 					op2 = cMostrarMenuMenuPrinc(s, sendBuff, recvBuff);
-		            sprintf(sendBuff, "%i", op2);
-		            send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+
 		do{
 			switch (op2){
 				case 1:
@@ -439,9 +436,8 @@ int main(int argc, char *argv[]) {
 
 				case 2:
 
-					op3 = cMostrarMenuGestPoli2(s, sendBuff, recvBuff);			//DEBERÍA SER POLI2
-					sprintf(sendBuff, "%i", op3);
-					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
+					op3 = cMostrarMenuGestPoli2(s, sendBuff, recvBuff);
+
 					do{
 						switch (op3){
 						case 1:
