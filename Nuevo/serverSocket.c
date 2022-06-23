@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <string.h>
-#include <iostream>
-using namespace std;
+#include "Polideportivo.h"
+#include "Usuario1.h"
 
 
 #define SERVER_IP "127.0.0.1"
@@ -125,7 +125,8 @@ int main(int argc, char *argv[]) {
 
 			
 			
-			if(strcmp(userName, "nombre") && strcmp(passW, "pass")){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
+			if(comparaUsuario(userName, passW) == 0){ //si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
+
 				sprintf(sendBuff, "%i", response1);
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0); //envia "Accepted, welcome" al cliente como respuesta a su petición
 				
@@ -135,7 +136,7 @@ int main(int argc, char *argv[]) {
 					switch (option2){
 						case 1: //importar desde fichero
 							
-							cout << "parece que ha habido un error, inténtelo mas tarde" << endl;
+							printf("parece que ha habido un error, inténtelo mas tarde");					 //RDSHIJR COMMENTS PARA QUE SE NOTE QUE ESTA MAL
 							
 							break;
 						
@@ -148,6 +149,7 @@ int main(int argc, char *argv[]) {
 								{
 								case 1: //visualizar polideportivos
 			//						BaseDatos::VisualizarPoli(db); //visualizacion general de todos los Polideportivos
+									visualizarPoli();
 
 									sprintf(sendBuff, "%i", response1);
 									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -157,6 +159,7 @@ int main(int argc, char *argv[]) {
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el municipio
 									char nombMuni[15];
 									sprintf(nombMuni, "%s", recvBuff);
+									poliPorMunicipio(nombMuni);
 									//BaseDatos::visualizarPoliMunicipio(db, nombMuni);
 								break;
 								case 3: //anyadir polideportivo
@@ -186,7 +189,7 @@ int main(int argc, char *argv[]) {
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el primer atributo de la clase polideportivo
 									sprintf(telP, "%s", recvBuff); //saves the telefono
 
-									p.falsoConstructor(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
+									anyadirPoli(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 
 				//					BaseDatos::insertarPoli(db, &p);
 
@@ -195,91 +198,63 @@ int main(int argc, char *argv[]) {
 
 									break;
 								case 4: //modificar polideportivo
-									do{
-										recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
-										sscanf(recvBuff, "%s", &option4);
-										switch (option4)
-										{
-										case 1: //modificar nombre
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
-											char nNombre[15];
-											sprintf(nNombre, "%s", recvBuff);
-				//							BaseDatos::cambiarNombrePoli(db, &p, nNombre);
+									
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el codigo del dato que se quiera modificar
+									char poli[15];
+									sscanf(recvBuff, "%s", poli);
 
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo ref
+									char nRef[15];
+									sscanf(recvBuff, "%s", nRef);
 
-											break;
-										case 3: //modificar direccion
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive l nueva direccion
-											char nDir[15];
-											sprintf(nDir, "%s", recvBuff);
-				//							BaseDatos::cambiarDireccionPoli(db, &p, nDir);
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
+									char nNombre[15];
+									sscanf(recvBuff, "%s", nNombre);
 
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre
+									char nInst[15];
+									sscanf(recvBuff, "%s", nInst);
 
-											break;
-										case 4: //modificar municipio
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
-											char nMuni[15];
-											sprintf(nMuni, "%s", recvBuff);
-				//							BaseDatos::cambiarMuniPoli(db, &p, nMuni);
-
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-											break;
-										case 5: //modificar codigo de municipio
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
-											char nCodMuni[15];
-											sprintf(nCodMuni, "%s", recvBuff);
-					//						BaseDatos::cambiarCodMuniPoli(db, &p, nCodMuni);
-
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-											break;
-										case 6: //modificar provincia
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
-											char nProv[15];
-											sprintf(nProv, "%s", recvBuff);
-					//						BaseDatos::cambiarProvPoli(db, &p, nProv);
-
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-											break;
-										case 7: //modificar codigo de provincia
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
-											char nCodProv[15];
-											sprintf(nCodProv, "%s", recvBuff);
-					//						BaseDatos::cambiarCodProvPoli(db, &p, nCodProv);
-
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-											break;
-										case 8: //modificar telefono
-											recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
-											char nTel[15];
-											sprintf(nTel, "%s", recvBuff);
-					//						BaseDatos::cambiarTelefonoPoli(db, &p, nTel);
-
-											sprintf(sendBuff, "%i", response1);
-											send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-											break;
-										case 9: //Volver
-											option4 = 0;
-											break;
-										}
-									break;
-									}while(option4 != 0);
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva direccion
+									char nDir[15];
+									sscanf(recvBuff, "%s", nDir);
+										
+									//modificar municipio
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo nombre del municipio
+									char nMuni[15];
+									sscanf(recvBuff, "%s", nMuni);
+										
+									//modificar codigo de municipio
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de municipio
+									char nCodMuni[15];
+									sscanf(recvBuff, "%s", nCodMuni);
+					
+									//modificar provincia
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive la nueva provincia
+									char nProv[15];
+									sscanf(recvBuff, "%s", nProv);
+										
+									//modificar codigo de provincia
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo codigo de provincia
+									char nCodProv[15];
+									sscanf(recvBuff, "%s", nCodProv);
+									
+									//modificar telefono
+									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nuevo telefono
+									char nTel[15];
+									sscanf(recvBuff, "%s", nTel);
+									
+									editarPoli(poli, nRef, nNombre, nInst, nDir, nMuni, nCodMuni, nProv, nCodProv, nTel);
+									
+									sprintf(sendBuff, "%i", response1);
+									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+										
 								case 5: //borrar polideportivo
 									recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //recive el nombre del polideportivo a borrar
 									sprintf(namePoli, "%s", recvBuff); //guarda el nombre del polideportivo
 				//					BaseDatos::borrarPoli(db, namePoli);
+
+									deletePoli(namePoli);
 
 									sprintf(sendBuff, "%i", response1);
 									send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -295,6 +270,8 @@ int main(int argc, char *argv[]) {
 						
 						case 3: //Borrar base de datos
 			//				BaseDatos::borrarBD(db);
+
+							deleteDB();
 
 							sprintf(sendBuff, "%i", response1);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -314,36 +291,36 @@ int main(int argc, char *argv[]) {
 			break;
 		case 2:
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the name
-			sprintf(nombreU, "%s", recvBuff); //saves the name
+			sscanf(recvBuff, "%s", nombreU); //saves the name
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the apellido
-			sprintf(apellidoU, "%s", recvBuff); //saves the apellido
+			sscanf(recvBuff, "%s", apellidoU); //saves the apellido
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the DNI
-			sprintf(dniU, "%s", recvBuff); //saves the DNI
+			sscanf(recvBuff, "%s", fNacU); //saves the DNI
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the telefono
-			sprintf(telU, "%s", recvBuff); //saves the telefono
+			sscanf(recvBuff, "%s", generoU); //saves the telefono
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the fecha de nacimiento
-			sprintf(fNacU, "%s", recvBuff); //saves the fecha de nacimiento
+			sscanf(recvBuff, "%s", dniU); //saves the fecha de nacimiento
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the genero
-			sprintf(generoU, "%s", recvBuff); //saves the genero
+			sscanf(recvBuff, "%s", telU); //saves the genero
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the direccion
-			sprintf(dirU, "%s", recvBuff); //saves the direccion
+			sscanf(recvBuff, "%s", dirU); //saves the direccion
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the user Name
-			sprintf(nombUsuU, "%s", recvBuff); //saves the user name
+			sscanf(recvBuff, "%s", nombUsuU); //saves the user name
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
-			sprintf(passU, "%s", recvBuff); //saves the password
+			sscanf(recvBuff, "%s", passU); //saves the password
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
-			sprintf(centroU, "%s", recvBuff); //saves the users centro
+			sscanf(recvBuff, "%s", centroU); //saves the users centro
 
-			c.falsoConstructor(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			generarUsuario(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
 			
     //		BaseDatos::insertarCliente(db, &c);
 
@@ -359,7 +336,7 @@ int main(int argc, char *argv[]) {
 
 	}while (option1 != 0);
 	// CLOSING the sockets and cleaning Winsock...
-	cout << "Cerrando conexión" << endl;
+	printf("Cerrando conexión\n");
 	closesocket(comm_socket);
 	WSACleanup();
 
