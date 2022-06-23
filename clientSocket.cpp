@@ -7,14 +7,10 @@
 using namespace std;
 
 
-#include "cliente.h"
-
-
-
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
 
-int cMostrarMenuGestPoli1()
+int cMostrarMenuGestPoli1(SOCKET s, char sendBuff[512], char recvBuff[512])
 {
     int linea;
     cout<<"\n======================================\n"<<endl;
@@ -27,7 +23,10 @@ int cMostrarMenuGestPoli1()
     cout<<"3. Salir\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
-    return linea;
+	sprintf(sendBuff, "%i", linea);
+    send(s, sendBuff, sizeof(sendBuff), 0);
+
+	return linea;
 }
 
 void cMostrarMenuRegUsu(SOCKET s, char sendBuff[512], char recvBuff[512])
@@ -104,7 +103,7 @@ void cMostrarMenuRegUsu(SOCKET s, char sendBuff[512], char recvBuff[512])
 }
 
 
-void cMostrarMenuIniSes(SOCKET s, char sendBuff[512], char recvBuff[512]) /////////////////////////////////////
+void cMostrarMenuIniSes(SOCKET s, char sendBuff[512], char recvBuff[512])
 {
     char* nombreDeUsuario;
     char* contrasenya;
@@ -127,40 +126,26 @@ void cMostrarMenuIniSes(SOCKET s, char sendBuff[512], char recvBuff[512]) //////
     
 }
 
-int cMostrarMenuMenuPrinc()
+int cMostrarMenuMenuPrinc(SOCKET s, char sendBuff[512], char recvBuff[512])
 {
     int linea;
     cout<<"\n======================================\n"<<endl;
     cout<<"MENU PRINCIPAL\n"<<endl;
     cout<<"======================================\n\n"<<endl;
     cout<<"Seleccione una opcion: \n\n"<<endl;
-    cout<<"1. Gestionar reservas\n"<<endl;
-    cout<<"2. Modificar datos personales\n"<<endl;
-    cout<<"3. Contactar con otros polideportivos\n"<<endl;
-    cout<<"4. Gestionar polideportivos\n"<<endl;
-    cout<<"5. Volver\n\n"<<endl;
-    cout<<"Opcion: "<<endl;
-    cin>>linea;
-   
-    return linea;
-}
-
-int cMostrarMenuGestReserv()
-{
-    char linea;
-    cout<<"\n======================================\n"<<endl;
-    cout<<"GESTIONAR RESERVAS\n"<<endl;
-    cout<<"======================================\n\n"<<endl;
-    cout<<"1. Reservar espacio deportivo\n"<<endl;
-    cout<<"2. Anular reserva\n"<<endl;
+    cout<<"1. Modificar datos personales\n"<<endl;
+    cout<<"2. Gestionar polideportivos\n"<<endl;
     cout<<"3. Volver\n\n"<<endl;
     cout<<"Opcion: "<<endl;
     cin>>linea;
-    
-    return linea;
+	sprintf(sendBuff, "%i", linea);
+    send(s, sendBuff, sizeof(sendBuff), 0);
+
+	return linea;
 }
 
-int cMostrarMenuModifDat(SOCKET s, char sendBuff[512], char recvBuff[512])
+
+void cMostrarMenuModifDat(SOCKET s, char sendBuff[512], char recvBuff[512])
 {
     char* dir, cuot, nombr, contr;
 
@@ -184,27 +169,11 @@ int cMostrarMenuModifDat(SOCKET s, char sendBuff[512], char recvBuff[512])
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 	cout<<"\nNuevo tipo de cuota: "<<endl;
-    cin>>cout;
-    sprintf(sendBuff, "%s", cout);
+    cin>>cuot;
+    sprintf(sendBuff, "%s", cuot);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 }
 
-
-int cMostrarMenuContactPoli()
-{
-    char linea;
-    cout<<"\n======================================\n"<<endl;
-    cout<<"CONTACTAR CON OTROS POLIDEPORTIVOS\n"<<endl;
-    cout<<"======================================\n\n"<<endl;
-    
-    cout<<"-> Nombre del polideportivo: "<<endl;
-    cin>>linea;
-   
-    int telef = 666666666;    
-    cout<<"\nEl numero telefonico del polideportivo es: "<< telef<<endl;
-
-    return linea;
-}
 
 void cMostrarMenuImportarDatos() ///////////////////////////////////////////////////////////////
 {
@@ -221,7 +190,7 @@ void cMostrarMenuBorrarBaseDatos()
     cout<<"Importando datos: \n"<<endl;
 }
 
-int cMostrarMenuGestPoli2()
+int cMostrarMenuGestPoli2(SOCKET s, char sendBuff[512], char recvBuff[512])
 {
     char linea;
     cout<<"\n======================================\n"<<endl;
@@ -236,10 +205,12 @@ int cMostrarMenuGestPoli2()
     cout<<"5.- Eliminar poliderportivo\n\n"<<endl;
     cout<<"6. Volver"<<endl;
     cout<<"Opcion: "<<endl;
-    cin>>linea;
 
+	cin>>linea;
+	sprintf(sendBuff, "%i", linea);
+    send(s, sendBuff, sizeof(sendBuff), 0);
 
-    return linea;
+	return linea;
 }
 
 
@@ -336,40 +307,50 @@ void cMostrarMenuModificarPolideportivo(SOCKET s, char sendBuff[512], char recvB
     cout<<"======================================\n\n"<<endl;
     
     cout<<"Nombre: \n"<<endl;
-	cin << nombre;
+	cin >> nombre;
 	sprintf(sendBuff, "%s", nombre);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
     cout<<"Direccion: \n"<<endl;
-	cin << dir;
+	cin >> dir;
 	sprintf(sendBuff, "%s", nombre);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
     cout<<"Telefono: \n"<<endl;
-	cin << tel;
+	cin >> tel;
 	sprintf(sendBuff, "%s", tel);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 	cout<<"Municipio: \n"<<endl;
-	cin << muni;
+	cin >> muni;
 	sprintf(sendBuff, "%s", muni);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 	cout<<"Codigo de municipio: \n"<<endl;
-	cin << codMuni;
+	cin >> codMuni;
 	sprintf(sendBuff, "%s", codMuni);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 	cout<<"Provincia: \n"<<endl;
-	cin << prov;
+	cin >> prov;
 	sprintf(sendBuff, "%s", prov);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 	cout<<"Codigo de proviincia: \n"<<endl;
-	cin << codProv;
+	cin >> codProv;
 	sprintf(sendBuff, "%s", codProv);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
+}
+
+void cMostrarMenuVisualizacionPorMunicipio(SOCKET s, char sendBuff[512], char recvBuff[512])
+{
+	char* muni;
+
+    cout<<"\nEscriba el municipio de referencia del polideportivo a visualizar: "<<endl;
+    cin>>muni;
+    sprintf(sendBuff, "%s", muni);
+	send(s, sendBuff, sizeof(sendBuff), 0);
 }
 
 void cMostrarMenuEliminarPolideportivo(SOCKET s, char sendBuff[512], char recvBuff[512])
@@ -379,10 +360,12 @@ void cMostrarMenuEliminarPolideportivo(SOCKET s, char sendBuff[512], char recvBu
 
     cout<<"\nEscriba el codigo de referencia del polideportivo a eliminar: "<<endl;
     cin>>ref;
-    sprintf(sendBuff, "%s", centroU);
+    sprintf(sendBuff, "%s", ref);
 	send(s, sendBuff, sizeof(sendBuff), 0);
 
 }
+
+
 
 int main(int argc, char *argv[]) {
 
@@ -435,18 +418,18 @@ int main(int argc, char *argv[]) {
 	int op1, op2, op3;
 	int respuestaS;
 	do{	
-		op1 = cMostrarMenuGestPoli1();
+		op1 = cMostrarMenuGestPoli1(s, sendBuff, recvBuff);
 		sprintf(sendBuff, "%i", op1);
 		send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		switch (op1){
 			case 1:
-				cMostrarMenuIniSes();
+				cMostrarMenuIniSes(s, sendBuff, recvBuff);
 				
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
 				if (respuestaS == 1)
 				{
-					op2 = cMostrarMenuMenuPrinc();
+					op2 = cMostrarMenuMenuPrinc(s, sendBuff, recvBuff);
 		            sprintf(sendBuff, "%i", op2);
 		            send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 		do{
@@ -456,7 +439,7 @@ int main(int argc, char *argv[]) {
 
 				case 2:
 
-					op3 = cMostrarMenuGestPoli2();			//DEBERÍA SER POLI2
+					op3 = cMostrarMenuGestPoli2(s, sendBuff, recvBuff);			//DEBERÍA SER POLI2
 					sprintf(sendBuff, "%i", op3);
 					send(s, sendBuff, sizeof(sendBuff), 0); //se envia
 					do{
@@ -464,13 +447,13 @@ int main(int argc, char *argv[]) {
 						case 1:
 							cMostrarMenuVisualizacionGeneral();
 						case 2:
-							cMostrarMenuVisualizacionPorMunicipio();
+							cMostrarMenuVisualizacionPorMunicipio(s, sendBuff, recvBuff);
 						case 3:
-							cMostrarMenuAnyadirPolideportivo();
+							cMostrarMenuAnyadirPolideportivo(s, sendBuff, recvBuff);
 						case 4:
-							cMostrarMenuModificarPolideportivo();
+							cMostrarMenuModificarPolideportivo(s, sendBuff, recvBuff);
 						case 5:
-							cMostrarMenuEliminarPolideportivo();
+							cMostrarMenuEliminarPolideportivo(s, sendBuff, recvBuff);
 						case 6:
 							op2 = 0;
 
@@ -494,7 +477,7 @@ int main(int argc, char *argv[]) {
 					break; } //me lleva a cMostrarMenuGestPoli1(); de nuevo
 				
 			case 2:
-				cMostrarMenuRegUsu();
+				cMostrarMenuRegUsu(s, sendBuff, recvBuff);
 
 				recv(s, recvBuff, sizeof(recvBuff), 0);
 				scanf(recvBuff, "%d", &respuestaS); //Recibe el resultado
