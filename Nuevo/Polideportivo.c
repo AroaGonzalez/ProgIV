@@ -36,7 +36,7 @@ int visualizarPoli()
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
     
     if (rc != SQLITE_OK) {
         
@@ -72,7 +72,7 @@ int poliPorMunicipio(char* municipio)
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
     
     if (rc != SQLITE_OK) {
         
@@ -110,7 +110,7 @@ int anyadirPoli(char *ref, char *nombre, char *instalaciones, char *direccion, c
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
     
     if (rc != SQLITE_OK) {
         
@@ -162,7 +162,7 @@ int editarPoli(char* nombrePoli, char *ref, char *nombre, char *instalaciones, c
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
     
     if (rc != SQLITE_OK) {
         
@@ -217,7 +217,7 @@ int deletePoli(char* nombre)
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
     
     if (rc != SQLITE_OK) {
         
@@ -255,7 +255,7 @@ int deleteDB()
     sqlite3 *db;
     char *err_msg = 0;
     
-    int rc = sqlite3_open("test.db", &db); //CAMBIAR NOMBRE
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE
     
     if (rc != SQLITE_OK) {
         

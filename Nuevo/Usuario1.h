@@ -19,4 +19,6 @@ void generarUsuario(Usuario1*, char* nombre, char* apellido, char* fNac, char* g
 
 int comparaUsuario(char* nombreUsuario, char* contrasenya);
 
+int anyadirUsuario(Usuario1 u);
+
 #endif

@@ -5,6 +5,7 @@
 #include <string.h>
 #include "Polideportivo.h"
 #include "Usuario1.h"
+#include "Logger.h"
 
 
 #define SERVER_IP "127.0.0.1"
@@ -112,13 +113,18 @@ int main(int argc, char *argv[]) {
     	char codProvP[15];
     	char telP[15];
 
+		registro();
+
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		sscanf(recvBuff, "%s", &option1);
+		sscanf(recvBuff, "%i", &option1);
 		switch (option1)
 		{
 		case 1:
+			acciones("Inicio sesion"); // HACER ASI CON TODAS LAS ACCIONES SOLO NE SERVERSOCKET
+
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the User Name
 			sprintf(userName, "%s", recvBuff); //saves the user name
+
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
 			sprintf(passW, "%s", recvBuff); //saves the password
@@ -317,10 +323,14 @@ int main(int argc, char *argv[]) {
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the password
 			sscanf(recvBuff, "%s", passU); //saves the password
 
-			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
-			sscanf(recvBuff, "%s", centroU); //saves the users centro
+			//recv(comm_socket, recvBuff, sizeof(recvBuff), 0); //receives the users centro
+			//sscanf(recvBuff, "%s", centroU); //saves the users centro
 
-			generarUsuario(nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU, centroU);
+			Usuario1 usu;
+
+			generarUsuario(&usu, nombreU, apellidoU, fNacU, generoU, dniU, telU, dirU, nombUsuU, passU);
+
+			anyadirUsuario(usu);
 			
     //		BaseDatos::insertarCliente(db, &c);
 

@@ -2,5 +2,6 @@
 #define _LOGGER_H_
 
 void registro();
+void acciones(char*);
 
 #endif

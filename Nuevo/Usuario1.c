@@ -23,7 +23,7 @@ int comparaUsuario(char* nombreUsuario, char* contrasenya)
     char* err_msg = 0;
     sqlite3_stmt* res;
 
-    int rc = sqlite3_open("../data.db", &db); //CAMBIAR NOMBRE DB
+    int rc = sqlite3_open("Polideportivo.sql", &db);
 
     if (rc != SQLITE_OK) {
 
@@ -70,3 +70,55 @@ int comparaUsuario(char* nombreUsuario, char* contrasenya)
 
 
 
+int anyadirUsuario(Usuario1 u)
+{
+    sqlite3 *db;
+    char *err_msg = 0;
+    
+    int rc = sqlite3_open("Polideportivo.sql", &db); //CAMBIAR NOMBRE DB
+    
+    if (rc != SQLITE_OK) {
+        
+        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
+        sqlite3_close(db);
+        
+        return 1;
+    }
+    
+    char sql[100] = "INSERT INTO Usuario VALUES('";
+    strcat(sql, u.nombre);
+    strcat(sql, "', '");
+    strcat(sql, u.apellido);
+    strcat(sql, "', '");
+    strcat(sql, u.fNac);
+    strcat(sql, "', '");
+    strcat(sql, u.genero);
+    strcat(sql, "', '");
+    strcat(sql, u.DNI);
+    strcat(sql, "', '");
+    strcat(sql, u.direccion);
+    strcat(sql, "', '");
+    strcat(sql, u.tel);
+    strcat(sql, "', '");
+    strcat(sql, u.nombreUsuario);
+    strcat(sql, "', '");
+    strcat(sql, u.contrasenya);
+    strcat(sql, "');");
+
+
+    rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
+    
+    if (rc != SQLITE_OK ) {
+        
+        fprintf(stderr, "SQL error: %s\n", err_msg);
+        
+        sqlite3_free(err_msg);        
+        sqlite3_close(db);
+        
+        return 1;
+    } 
+    
+    sqlite3_close(db);
+    
+    return 0;
+}
