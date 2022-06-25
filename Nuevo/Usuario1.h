@@ -3,22 +3,24 @@
 
 typedef struct
 {
-    char* nombre;
-    char* apellido;
-    char* fNac;
-    char* genero;
-    char* DNI;
-    char* tel;
-    char* direccion;
-    char* nombreUsuario;
-    char* contrasenya;
+    char *nombre;
+    char *apellido;
+    char *fNac;
+    char *genero;
+    char *DNI;
+    char *tel;
+    char *direccion;
+    char *nombreUsuario;
+    char *contrasenya;
 
-}Usuario1;
+} Usuario1;
 
-void generarUsuario(Usuario1*, char* nombre, char* apellido, char* fNac, char* genero, char* DNI, char* tel, char* direccion, char* nombreUsuario, char* contrasenya);
+void generarUsuario(Usuario1 *, char *nombre, char *apellido, char *fNac, char *genero, char *DNI, char *tel, char *direccion, char *nombreUsuario, char *contrasenya);
 
-int comparaUsuario(char* nombreUsuario, char* contrasenya);
+int comparaUsuario(char *nombreUsuario, char *contrasenya);
 
 int anyadirUsuario(Usuario1 u);
+
+void liberarUsuario(Usuario1 *);
 
 #endif

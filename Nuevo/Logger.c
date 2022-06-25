@@ -8,21 +8,21 @@ void registro()
   struct tm *tm;
   char fechayhora[100];
 
-  t=time(NULL);
-  tm=localtime(&t);
+  t = time(NULL);
+  tm = localtime(&t);
   strftime(fechayhora, 100, "%d/%m/%Y", tm);
 
-    FILE* escribir = fopen("fichero.txt", "a");
+  FILE *escribir = fopen("fichero.txt", "a");
 
-  fprintf (escribir, "Hoy es: %s\n", fechayhora);
+  fprintf(escribir, "Hoy es: %s\n", fechayhora);
   fprintf(escribir, "\n");
   fclose(escribir);
 }
 
-void acciones(char* accion)
+void acciones(char *accion)
 {
-    FILE* escribir = fopen("fichero.txt", "a");
-    fprintf(escribir, accion);
-    fprintf(escribir, "\n");
-    fclose(escribir);
+  FILE *escribir = fopen("fichero.txt", "a");
+  fprintf(escribir, accion);
+  fprintf(escribir, "\n");
+  fclose(escribir);
 }
