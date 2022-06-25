@@ -487,7 +487,7 @@ int main(int argc, char *argv[])
                             case 5:
                                 cMostrarMenuEliminarPolideportivo(s, sendBuff, recvBuff);
                             case 6:
-                                op2 = 0;
+                                op3 = 0;
 
                                 break;
                             }

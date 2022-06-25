@@ -226,3 +226,7 @@ Hoy es: 25/06/2022
 Hoy es: 25/06/2022
 
 Inicio sesion
+Se crea usuario
+Hoy es: 25/06/2022
+
+Inicio sesion

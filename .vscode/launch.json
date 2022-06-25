@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "c:/Users/victo/Documents/GitHub/ProgIV",
-      "program": "c:/Users/victo/Documents/GitHub/ProgIV/build/Debug/outDebug",
+      "cwd": "c:/Users/aitor/OneDrive/Documentos/GitHub/ProgIV/Nuevo",
+      "program": "c:/Users/aitor/OneDrive/Documentos/GitHub/ProgIV/Nuevo/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
