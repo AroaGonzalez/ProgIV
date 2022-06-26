@@ -139,14 +139,14 @@ int main(int argc, char *argv[])
 				sprintf(sendBuff, "%i", response1);
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0); // envia "Accepted, welcome" al cliente como respuesta a su petición
 
-				do
-				{
+				
+				//do
+				//{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive la nueva solicitud del cliente
-					sscanf(recvBuff, "%s", &option2);
+					sscanf(recvBuff, "%i", &option2);
 					switch (option2)
 					{
 					case 1: // importar desde fichero
-
 						acciones("Se importa desde fichero");
 
 						printf("parece que ha habido un error, inténtelo mas tarde"); // RDSHIJR COMMENTS PARA QUE SE NOTE QUE ESTA MAL
@@ -155,10 +155,10 @@ int main(int argc, char *argv[])
 
 					case 2:
 
-						do
-						{
+						//do
+						//{
 							recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive la nueva solicitud del cliente
-							sscanf(recvBuff, "%s", &option3);
+							sscanf(recvBuff, "%i", &option3);
 							switch (option3)
 							{
 							case 1: // visualizar polideportivos
@@ -274,6 +274,8 @@ int main(int argc, char *argv[])
 								sprintf(sendBuff, "%i", response1);
 								send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
+								break;
+
 							case 5:			
 
 								acciones("Se borra polideportivo");
@@ -291,29 +293,17 @@ int main(int argc, char *argv[])
 							case 6: // volver
 								acciones("Se vuelve");
 
-								option3 = 0;
+								option1 = 0;
 								break;
 							}
 
-						} while (option3 != 0);
+						//} while (option3 != 0);
 
-					case 3: // Borrar base de datos
-						//				BaseDatos::borrarBD(db);
-
-						acciones("Se borra la base de datos");
-
-						deleteDB();
-
-						sprintf(sendBuff, "%i", response1);
-						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-						break;
-
-					case 4:
+					case 3:
 						option2 = 0;
 						break;
-					}
-				} while (option2 != 0);
+					};
+				//} while (option2 != 0);
 			}
 			else
 			{
@@ -322,6 +312,7 @@ int main(int argc, char *argv[])
 			}
 			break;
 		case 2:
+
 			acciones("Se crea usuario");
 
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // receives the name

@@ -144,7 +144,7 @@ int cMostrarMenuMenuPrinc(SOCKET s, char *sendBuff, char *recvBuff)
          << endl;
     cout << "Seleccione una opcion: \n\n"
          << endl;
-    cout << "1. Modificar datos personales\n"
+    cout << "1. Importar datos\n"
          << endl;
     cout << "2. Gestionar polideportivos\n"
          << endl;
@@ -206,7 +206,7 @@ void cMostrarMenuBorrarBaseDatos()
 
 int cMostrarMenuGestPoli2(SOCKET s, char *sendBuff, char *recvBuff)
 {
-    char linea;
+    int linea;
     cout << "\n======================================\n"
          << endl;
     cout << "GESTION DE POLIDEPORTIVOS\n"
@@ -224,9 +224,9 @@ int cMostrarMenuGestPoli2(SOCKET s, char *sendBuff, char *recvBuff)
          << endl;
     cout << "4.- Modificar poliderportivo\n"
          << endl;
-    cout << "5.- Eliminar poliderportivo\n\n"
+    cout << "5.- Eliminar poliderportivo\n"
          << endl;
-    cout << "6. Volver" << endl;
+    cout << "6. Volver\n" << endl;
     cout << "Opcion: " << endl;
 
     cin >> linea;
@@ -461,57 +461,67 @@ int main(int argc, char *argv[])
             {
                 op2 = cMostrarMenuMenuPrinc(s, sendBuff, recvBuff);
 
-                do
-                {
+                //do
+                //{
                     switch (op2)
                     {
                     case 1:
                         cMostrarMenuImportarDatos();
+                        break;
 
                     case 2:
 
                         op3 = cMostrarMenuGestPoli2(s, sendBuff, recvBuff);
 
-                        do
-                        {
+                        //do
+                        //{
                             switch (op3)
                             {
                             case 1:
                                 cMostrarMenuVisualizacionGeneral();
+                                break;
                             case 2:
                                 cMostrarMenuVisualizacionPorMunicipio(s, sendBuff, recvBuff);
+                                break;
                             case 3:
                                 cMostrarMenuAnyadirPolideportivo(s, sendBuff, recvBuff);
+                                break;
                             case 4:
                                 cMostrarMenuModificarPolideportivo(s, sendBuff, recvBuff);
+                                break;
                             case 5:
                                 cMostrarMenuEliminarPolideportivo(s, sendBuff, recvBuff);
+                                break;
                             case 6:
                                 op3 = 0;
-
+                                
                                 break;
                             }
 
-                        } while (op3 != 0);
+                        //} while (op3 != 0);
 
                     case 3:
-                        cMostrarMenuBorrarBaseDatos();
-
-                    case 4:
-                        op2 = 0;
-
+                         op2 = 0;
+                        
                         break;
                     }
-
-                } while (op2 != 0);
+               break;
+                //} while (op2 != 0);
             }
             else
             {
                 cout << "acceso denegado, identificación incorrecta" << endl;
                 break;
             } // me lleva a cMostrarMenuGestPoli1(); de nuevo
-
+          break;
         case 2:
+          if (op2 == 0)
+          {
+               op1 = 0;
+
+               break;
+          }
+          
             cMostrarMenuRegUsu(s, sendBuff, recvBuff);
 
             recv(s, recvBuff, sizeof(recvBuff), 0);
