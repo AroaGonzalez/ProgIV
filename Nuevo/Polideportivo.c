@@ -16,8 +16,7 @@ void generarPoli(Polideportivo *p, char *ref, char *nombre, char *instalaciones,
     strcpy(p->tel, tel);
 }
 
-int callback(void *NotUsed, int argc, char **argv,
-             char **azColName)
+int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
 
     NotUsed = 0;
@@ -88,9 +87,9 @@ int poliPorMunicipio(char *municipio)
         return 1;
     }
 
-    char sql[100] = "SELECT * FROM Polideportivo Where municipio = '";
+    char sql[100] = "SELECT * FROM Polideportivo WHERE municipio LIKE '";
     strcat(sql, municipio);
-    strcat(sql, "'");
+    strcat(sql, "%'");
 
     rc = sqlite3_exec(db, sql, callback, 0, &err_msg);
 
@@ -146,6 +145,7 @@ int anyadirPoli(char *ref, char *nombre, char *instalaciones, char *direccion, c
     strcat(sql, "', '");
     strcat(sql, tel);
     strcat(sql, "');");
+    
 
     rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
 

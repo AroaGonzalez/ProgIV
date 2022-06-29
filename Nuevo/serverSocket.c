@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 			{ // si el nombre y la contra son correctas (verificadas en la base de datos), accede al menu principal
 
 				sprintf(sendBuff, "%i", response1);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0); // envia "Accepted, welcome" al cliente como respuesta a su petición
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0); // envia "Accepted, welcome" al cliente como respuesta a su peticion
 
 				
 				//do
@@ -147,9 +147,8 @@ int main(int argc, char *argv[])
 					switch (option2)
 					{
 					case 1: // importar desde fichero
-						acciones("Se importa desde fichero");
-
-						printf("parece que ha habido un error, inténtelo mas tarde"); // RDSHIJR COMMENTS PARA QUE SE NOTE QUE ESTA MAL
+						acciones("Se modifican datos");
+						
 
 						break;
 
@@ -168,6 +167,7 @@ int main(int argc, char *argv[])
 								//						BaseDatos::VisualizarPoli(db); //visualizacion general de todos los Polideportivos
 								visualizarPoli();
 
+
 								sprintf(sendBuff, "%i", response1);
 								send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
@@ -176,9 +176,9 @@ int main(int argc, char *argv[])
 
 								acciones("Visualizar polideportivos por municipio");
 
+								char nombMuni[100];
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el municipio
-								char nombMuni[15];
-								sprintf(nombMuni, "%s", recvBuff);
+								sscanf(recvBuff, "%s", nombMuni);
 								poliPorMunicipio(nombMuni);
 								// BaseDatos::visualizarPoliMunicipio(db, nombMuni);
 								break;
@@ -189,31 +189,30 @@ int main(int argc, char *argv[])
 								//						sprintf(refP, "%s", BaseDatos::selectMaxRef(db)); //saves the referencia
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el nombre del polideportivo
-								sprintf(nombreP, "%s", recvBuff);				  // saves the nombre
+								sprintf(recvBuff, "%s", nombreP);				  // saves the nombre
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive las instalaciones del polideportivo
-								sprintf(instalacionesP, "%s", recvBuff);		  // saves the instalaciones
+								sscanf(recvBuff, "%s", instalacionesP);		  // saves the instalaciones
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(direccionP, "%s", recvBuff);			  // saves the direccion
+								sscanf(recvBuff, "%s", direccionP);			  // saves the direccion
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(municipioP, "%s", recvBuff);			  // saves the municipio
+								sscanf(recvBuff, "%s", municipioP);			  // saves the municipio
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(codMunicipioP, "%s", recvBuff);			  // saves the codigo municipio
+								sscanf(recvBuff, "%s", codMunicipioP);			  // saves the codigo municipio
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(provinciaP, "%s", recvBuff);			  // saves the provincia
+								sscanf(recvBuff, "%s", provinciaP);			  // saves the provincia
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(codProvP, "%s", recvBuff);				  // saves the codigo provincia
+								sscanf(recvBuff, "%s", codProvP);				  // saves the codigo provincia
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el primer atributo de la clase polideportivo
-								sprintf(telP, "%s", recvBuff);					  // saves the telefono
+								sscanf(recvBuff, "%s", telP);					  // saves the telefono
 
 								anyadirPoli(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
-
 								//					BaseDatos::insertarPoli(db, &p);
 
 								sprintf(sendBuff, "%i", response1);
@@ -281,7 +280,7 @@ int main(int argc, char *argv[])
 								acciones("Se borra polideportivo");
 																	  // borrar polideportivo
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el nombre del polideportivo a borrar
-								sprintf(namePoli, "%s", recvBuff);				  // guarda el nombre del polideportivo
+								sscanf(recvBuff, "%s", namePoli);				  // guarda el nombre del polideportivo
 								//					BaseDatos::borrarPoli(db, namePoli);
 
 								deletePoli(namePoli);
@@ -308,7 +307,7 @@ int main(int argc, char *argv[])
 			else
 			{
 				sprintf(sendBuff, "%i", response0);
-				send(comm_socket, sendBuff, sizeof(sendBuff), 0); // envia 0 al cliente como respuesta a su petición
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0); // envia 0 al cliente como respuesta a su peticion
 			}
 			break;
 		case 2:
@@ -366,7 +365,7 @@ int main(int argc, char *argv[])
 
 	} while (option1 != 0);
 	// CLOSING the sockets and cleaning Winsock...
-	printf("Cerrando conexión\n");
+	printf("Cerrando conexion\n");
 	closesocket(comm_socket);
 	WSACleanup();
 

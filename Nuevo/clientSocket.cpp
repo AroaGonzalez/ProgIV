@@ -192,7 +192,7 @@ void cMostrarMenuModifDat(SOCKET s, char *sendBuff, char *recvBuff)
 
 void cMostrarMenuImportarDatos() ///////////////////////////////////////////////////////////////
 {
-    cout << "Importando datos,no cierre la aplicación ... \n"
+    cout << "Importando datos,no cierre la aplicacion ... \n"
          << endl;
 
     // FALTA ALGO EN SOCKETS
@@ -216,9 +216,9 @@ int cMostrarMenuGestPoli2(SOCKET s, char *sendBuff, char *recvBuff)
     cout << "Seleccione la opcion que desee:\n\n"
          << endl;
 
-    cout << "1.- Visualización general\n"
+    cout << "1.- Visualizacion general\n"
          << endl;
-    cout << "2.- Visualización por municipios\n"
+    cout << "2.- Visualizacion por municipios\n"
          << endl;
     cout << "3.- Anyadir polideportivo\n"
          << endl;
@@ -376,7 +376,7 @@ void cMostrarMenuVisualizacionPorMunicipio(SOCKET s, char *sendBuff, char *recvB
 {
     char muni[100];
 
-    cout << "\nEscriba el municipio de referencia del polideportivo a visualizar: " << endl;
+    cout << "\nEscriba la inicial del municipio de referencia del polideportivo a visualizar: " << endl;
     cin >> muni;
     sprintf(sendBuff, "%s", muni);
     send(s, sendBuff, sizeof(sendBuff), 0);
@@ -510,7 +510,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                cout << "acceso denegado, identificación incorrecta" << endl;
+                cout << "acceso denegado, identificacion incorrecta" << endl;
                 break;
             } // me lleva a cMostrarMenuGestPoli1(); de nuevo
           break;
