@@ -126,7 +126,7 @@ int anyadirPoli(char *ref, char *nombre, char *instalaciones, char *direccion, c
         return 1;
     }
 
-    char sql[100] = "INSERT INTO Polideportivo VALUES('";
+    char sql[200] = "INSERT INTO Polideportivo VALUES('";
     strcat(sql, ref);
     strcat(sql, "', '");
     strcat(sql, nombre);
@@ -146,6 +146,7 @@ int anyadirPoli(char *ref, char *nombre, char *instalaciones, char *direccion, c
     strcat(sql, tel);
     strcat(sql, "');");
     
+    printf("Polideportivo %s creado correctamente", nombre);
 
     rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
 
@@ -241,6 +242,7 @@ int deletePoli(char *nombre)
     char sql[100] = "DELETE FROM Polideportivo Where nombre = '";
     strcat(sql, nombre);
     strcat(sql, "';");
+
 
     rc = sqlite3_exec(db, sql, callback, 0, &err_msg);
 

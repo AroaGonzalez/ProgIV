@@ -316,6 +316,8 @@ void cMostrarMenuAnyadirPolideportivo(SOCKET s, char *sendBuff, char *recvBuff)
     cin >> tel;
     sprintf(sendBuff, "%s", tel);
     send(s, sendBuff, sizeof(sendBuff), 0);
+    cout << endl;
+
 }
 
 void cMostrarMenuModificarPolideportivo(SOCKET s, char *sendBuff, char *recvBuff)
@@ -329,54 +331,55 @@ void cMostrarMenuModificarPolideportivo(SOCKET s, char *sendBuff, char *recvBuff
     cout << "======================================\n\n"
          << endl;
 
-    cout << "Nombre: \n"
+    cout << "Nombre:"
          << endl;
     cin >> nombre;
     sprintf(sendBuff, "%s", nombre);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Direccion: \n"
+    cout << "\nDireccion:"
          << endl;
     cin >> dir;
     sprintf(sendBuff, "%s", nombre);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Telefono: \n"
+    cout << "\nTelefono:"
          << endl;
     cin >> tel;
     sprintf(sendBuff, "%s", tel);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Municipio: \n"
+    cout << "\nMunicipio:"
          << endl;
     cin >> muni;
     sprintf(sendBuff, "%s", muni);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Codigo de municipio: \n"
+    cout << "\nCodigo de municipio:"
          << endl;
     cin >> codMuni;
     sprintf(sendBuff, "%s", codMuni);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Provincia: \n"
+    cout << "\nProvincia:"
          << endl;
     cin >> prov;
     sprintf(sendBuff, "%s", prov);
     send(s, sendBuff, sizeof(sendBuff), 0);
 
-    cout << "Codigo de proviincia: \n"
+    cout << "\nCodigo de provincia:"
          << endl;
     cin >> codProv;
     sprintf(sendBuff, "%s", codProv);
     send(s, sendBuff, sizeof(sendBuff), 0);
+
 }
 
 void cMostrarMenuVisualizacionPorMunicipio(SOCKET s, char *sendBuff, char *recvBuff)
 {
     char muni[100];
 
-    cout << "\nEscriba la inicial del municipio de referencia del polideportivo a visualizar: " << endl;
+    cout << "\nEscriba la inicial del nombre del municipio del polideportivo a visualizar: " << endl;
     cin >> muni;
     sprintf(sendBuff, "%s", muni);
     send(s, sendBuff, sizeof(sendBuff), 0);
@@ -391,6 +394,7 @@ void cMostrarMenuEliminarPolideportivo(SOCKET s, char *sendBuff, char *recvBuff)
     cin >> ref;
     sprintf(sendBuff, "%s", ref);
     send(s, sendBuff, sizeof(sendBuff), 0);
+
 }
 
 int main(int argc, char *argv[])

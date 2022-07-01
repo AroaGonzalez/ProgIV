@@ -189,7 +189,10 @@ int main(int argc, char *argv[])
 								//						sprintf(refP, "%s", BaseDatos::selectMaxRef(db)); //saves the referencia
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el nombre del polideportivo
-								sprintf(recvBuff, "%s", nombreP);				  // saves the nombre
+								sscanf(recvBuff, "%s", refP);				  // saves the ref
+								
+								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive el nombre del polideportivo
+								sscanf(recvBuff, "%s", nombreP);				  // saves the nombre
 
 								recv(comm_socket, recvBuff, sizeof(recvBuff), 0); // recive las instalaciones del polideportivo
 								sscanf(recvBuff, "%s", instalacionesP);		  // saves the instalaciones
@@ -214,6 +217,7 @@ int main(int argc, char *argv[])
 
 								anyadirPoli(refP, nombreP, instalacionesP, direccionP, municipioP, codMunicipioP, provinciaP, codProvP, telP);
 								//					BaseDatos::insertarPoli(db, &p);
+								
 
 								sprintf(sendBuff, "%i", response1);
 								send(comm_socket, sendBuff, sizeof(sendBuff), 0);
