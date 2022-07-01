@@ -192,7 +192,7 @@ void cMostrarMenuModifDat(SOCKET s, char *sendBuff, char *recvBuff)
 
 void cMostrarMenuImportarDatos() ///////////////////////////////////////////////////////////////
 {
-    cout << "Importando datos,no cierre la aplicacion ... \n"
+    cout << "Importando datos, no cierre la aplicacion ... \n"
          << endl;
 
     // FALTA ALGO EN SOCKETS
